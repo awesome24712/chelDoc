@@ -96,4 +96,5 @@
     <File Name="math.hpp"/>
     <File Name="perfTest.hpp"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="Vector"/>
 </CodeLite_Project>

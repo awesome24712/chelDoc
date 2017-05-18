@@ -36,6 +36,8 @@
       <File Name="Templates/Fields/CBitfield.h"/>
       <File Name="Templates/Fields/Fields.h"/>
       <File Name="Templates/Fields/CBitfield.cpp"/>
+      <File Name="Templates/Fields/CField.h"/>
+      <File Name="Templates/Fields/CField.hpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">

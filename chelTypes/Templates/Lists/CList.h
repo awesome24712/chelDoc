@@ -30,9 +30,12 @@ public:
 	}
 	
 	~CList<T>() {
-		delete[] m_pFirst;
+		for (int i = 0; i < m_iLength; i++)
+			delete m_pFirst + i;
 	}
 	
+	CList<T>(const CList<T>& other);
 	
+	operator=(const CList<T>& other);
 };
 #endif //CHEL_LIST_H

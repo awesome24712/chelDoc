@@ -16,13 +16,15 @@ public:
 
 class CBitField {
 private:
-	Ptr<CList<uint8_t>> m_pField;
+	CList<uint8_t> m_pField;
 public:
 	CBitField(short sSize);
+	CBitField(const CBitField& other);
 	
 	short size() const {return (*m_pField).length() * 8;}
 	
 	operator bool() const;
+	bool has (const BitFlag& flag) const;
 	
 	CBitField operator&(const CBitField& other);
 	CBitField operator|(const CBitField& other);
