@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Awesome
-Date                   :=12/05/2017
+Date                   :=19/05/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/TDM-GCC-32/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-32/bin/g++.exe
 CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g  -std=c++14 $(Preprocessors)
+CXXFLAGS :=  -g  -std=c++14  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-32/bin/as.exe
@@ -64,7 +64,7 @@ AS       := C:/TDM-GCC-32/bin/as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 WXWIN:=C:/wxWidgets
 WXCFG:=gcc_dll/mswu
-Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(ObjectSuffix) 
 
 
 
@@ -104,6 +104,22 @@ $(IntermediateDirectory)/String_String.cpp$(DependSuffix): String/String.cpp
 
 $(IntermediateDirectory)/String_String.cpp$(PreprocessSuffix): String/String.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/String_String.cpp$(PreprocessSuffix) String/String.cpp
+
+$(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix): DebugTools/Assertions.cpp $(IntermediateDirectory)/DebugTools_Assertions.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelTypes/DebugTools/Assertions.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/DebugTools_Assertions.cpp$(DependSuffix): DebugTools/Assertions.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DebugTools_Assertions.cpp$(DependSuffix) -MM DebugTools/Assertions.cpp
+
+$(IntermediateDirectory)/DebugTools_Assertions.cpp$(PreprocessSuffix): DebugTools/Assertions.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(PreprocessSuffix) DebugTools/Assertions.cpp
+
+$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(ObjectSuffix): Templates/Fields/CBitfield.cpp $(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelTypes/Templates/Fields/CBitfield.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(DependSuffix): Templates/Fields/CBitfield.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(DependSuffix) -MM Templates/Fields/CBitfield.cpp
+
+$(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(PreprocessSuffix): Templates/Fields/CBitfield.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Templates_Fields_CBitfield.cpp$(PreprocessSuffix) Templates/Fields/CBitfield.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

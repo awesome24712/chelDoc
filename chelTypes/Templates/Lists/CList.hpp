@@ -20,7 +20,7 @@ template<class T> CList<T>::CList(const CList<T>& other) {
 		set(i, other.get(i));
 }
 
-template<class T> CList<T>::operator =(const CList<T>& other) {
+template<class T> void CList<T>::operator =(const CList<T>& other) {
 	m_iLength = other.m_iLength;
 	m_pFirst = new T[m_iLength];
 	

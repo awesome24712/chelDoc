@@ -36,7 +36,10 @@ public:
 	/**
 	 * @brief Destructor removes all items from the heap.
 	 */
-	~CDynList<T>() {flush(); delete[] m_array;}
+	~CDynList<T>() {
+		flush(); 
+		delete[] m_array;
+	}
 
 	/**
 	 * @brief Retrieves the number of elements in the list.

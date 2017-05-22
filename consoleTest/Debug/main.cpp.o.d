@@ -6,8 +6,15 @@ Debug/main.cpp.o: main.cpp ../chelTypes/DebugTools/Assertions.h \
  ../chelTypes/Templates/Lists/CList.h \
  ../chelTypes/Templates/Lists/CLkList.hpp \
  ../chelTypes/Templates/Lists/CLkList.h \
+ ../chelTypes/Templates/Lists/CDblLkLst.hpp \
+ ../chelTypes/Templates/Lists/CDblLkLst.h \
  ../chelTypes/Templates/Wrappers/Wrap_Templates.hpp \
- ../chelTypes/Templates/Wrappers/Ptr.hpp ../chelTypes/String/String.h \
+ ../chelTypes/Templates/Wrappers/Ptr.hpp \
+ ../chelTypes/Templates/Networks/Net_Templates.hpp \
+ ../chelTypes/Templates/Networks/CMap.hpp \
+ ../chelTypes/Templates/Networks/CMap.h \
+ ../chelTypes/Templates/Networks/../Lists/CDynList.hpp \
+ ../chelTypes/String/String.h \
  ../chelTypes/String/../Templates/Lists/CDynList.hpp \
  ../chelMath/perfTest.hpp
 
@@ -29,9 +36,21 @@ Debug/main.cpp.o: main.cpp ../chelTypes/DebugTools/Assertions.h \
 
 ../chelTypes/Templates/Lists/CLkList.h:
 
+../chelTypes/Templates/Lists/CDblLkLst.hpp:
+
+../chelTypes/Templates/Lists/CDblLkLst.h:
+
 ../chelTypes/Templates/Wrappers/Wrap_Templates.hpp:
 
 ../chelTypes/Templates/Wrappers/Ptr.hpp:
+
+../chelTypes/Templates/Networks/Net_Templates.hpp:
+
+../chelTypes/Templates/Networks/CMap.hpp:
+
+../chelTypes/Templates/Networks/CMap.h:
+
+../chelTypes/Templates/Networks/../Lists/CDynList.hpp:
 
 ../chelTypes/String/String.h:
 

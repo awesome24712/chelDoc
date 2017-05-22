@@ -49,6 +49,8 @@ public:
 	
 	String& operator= (const char* str);
 	
+	bool operator==(const String& other);
+	
 	String operator+(const char* str);
 	
 	String& operator+=(const char* str);

@@ -102,4 +102,8 @@
     <File Name="Vector/Vector2D.h"/>
     <File Name="Vector/Vector2D.cpp"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="BitBoard">
+    <File Name="BitBoard/BitBoard.h"/>
+    <File Name="BitBoard/BitBoard.cpp"/>
+  </VirtualDirectory>
 </CodeLite_Project>

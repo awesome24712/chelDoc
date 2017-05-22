@@ -1,7 +1,7 @@
 #ifndef CHEL_TREE_H
 #define CHEL_TREE_H
-#include "CDynList.hpp"
-#include "Ptr.hpp"
+#include "../Lists/CDynList.hpp"
+#include "../Wrappers/Ptr.hpp"
 
 template <class T> class CTreeNode;
 

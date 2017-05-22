@@ -64,6 +64,10 @@ String& String::operator=(const char * str) {
 	return *this;
 }
 
+bool String::operator ==(const String& other) {
+	return this->indexOf(other) != -1;
+}
+
 String String::operator+(const char * str) {
 	String copy = *this;
 	

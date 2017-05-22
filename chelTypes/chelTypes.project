@@ -24,11 +24,15 @@
       <File Name="Templates/Lists/CLkList.h"/>
       <File Name="Templates/Lists/CLkList.hpp"/>
       <File Name="Templates/Lists/List_Templates.hpp"/>
+      <File Name="Templates/Lists/CDblLkLst.h"/>
+      <File Name="Templates/Lists/CDblLkLst.hpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Networks">
       <File Name="Templates/Networks/CTree.h"/>
       <File Name="Templates/Networks/CTree.hpp"/>
       <File Name="Templates/Networks/Net_Templates.hpp"/>
+      <File Name="Templates/Networks/CMap.h"/>
+      <File Name="Templates/Networks/CMap.hpp"/>
     </VirtualDirectory>
     <File Name="Templates/Templates.hpp"/>
     <VirtualDirectory Name="Fields">
@@ -132,5 +136,8 @@
   <VirtualDirectory Name="DebugTools">
     <File Name="DebugTools/Assertions.h"/>
     <File Name="DebugTools/Assertions.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="DebugTools/chelTypes.hpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

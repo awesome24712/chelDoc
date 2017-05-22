@@ -10,7 +10,7 @@ public:
 	inline T* getPtr(int pos) const {return m_pFirst + pos;}
 	inline T get(int pos) const {return *(getPtr(pos));}
 	inline void set(int pos, T value) {*(getPtr(pos)) = value;}
-	inline int length() {return m_iLength;}
+	inline int length() const {return m_iLength;}
 	
 	void flip();
 	
@@ -31,11 +31,11 @@ public:
 	
 	~CList<T>() {
 		for (int i = 0; i < m_iLength; i++)
-			delete m_pFirst + i;
+			delete (m_pFirst + i);
 	}
 	
 	CList<T>(const CList<T>& other);
 	
-	operator=(const CList<T>& other);
+	void operator=(const CList<T>& other);
 };
 #endif //CHEL_LIST_H
