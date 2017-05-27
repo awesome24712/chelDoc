@@ -1,5 +1,16 @@
 #include "String.h"
 
+/**
+ * @brief Measures length of null-terminated character string.
+ * @param str - the string to measure
+ * @return - the length of the string
+ */
+int strlen(const char * str) {
+	int length = 0;
+	while (*(str++)) length++;
+	return length;
+}
+
 String::String(const char * str) {
 	int num = strlen(str);
 	m_array = new char[num];

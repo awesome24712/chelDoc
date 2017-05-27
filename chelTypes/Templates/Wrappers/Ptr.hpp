@@ -43,6 +43,10 @@ public:
 		}
 		return *this;
 	}
+	T* operator ->() const{
+		return m_ptReference;
+	}
+	
 	~Ptr<T>(){
 		if (m_ptReference) {
 			(*m_piReferenceCount)--;
@@ -61,6 +65,7 @@ public:
 	}
 	operator T*() {return m_ptReference;}
 	T& operator*() {return *m_ptReference;}
+	operator bool () { return m_ptReference; }
 };
 
 #endif //CHEL_PTR_HPP

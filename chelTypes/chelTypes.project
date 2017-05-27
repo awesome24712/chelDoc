@@ -7,6 +7,7 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <File Name="chelTypes.hpp"/>
   <VirtualDirectory Name="String">
     <File Name="String/String.h"/>
     <File Name="String/String.cpp"/>
@@ -36,7 +37,7 @@
     </VirtualDirectory>
     <File Name="Templates/Templates.hpp"/>
     <VirtualDirectory Name="Fields">
-      <File Name="Templates/Lists/DBitfield.h"/>
+      <File Name="Templates/Fields/DBitfield.h"/>
       <File Name="Templates/Fields/CBitfield.h"/>
       <File Name="Templates/Fields/Fields.h"/>
       <File Name="Templates/Fields/CBitfield.cpp"/>
@@ -137,7 +138,9 @@
     <File Name="DebugTools/Assertions.h"/>
     <File Name="DebugTools/Assertions.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="DebugTools/chelTypes.hpp"/>
+  <VirtualDirectory Name="Globals">
+    <File Name="Globals/GArgs.h"/>
+    <File Name="Globals/GArgs.cpp"/>
+    <File Name="Globals/Globals.h"/>
   </VirtualDirectory>
 </CodeLite_Project>

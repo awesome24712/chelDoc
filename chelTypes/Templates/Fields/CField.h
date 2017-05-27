@@ -1,6 +1,8 @@
 #ifndef CHEL_FIELD_H
 #define CHEL_FIELD_H
 
+#include "../Wrappers/Ptr.hpp"
+
 template<class T> 
 class CField {
 private:
@@ -15,7 +17,7 @@ public:
 	CField(int height, int width, T initialValue);
 	CField(const CField& otherSize, T initialValue);
 	CField(const CField& other);
-	operator=(const CField& other);
+	CField<T>& operator=(const CField& other);
 
 	T get(int j, int i) const;
 	T getAbs(int i) const;

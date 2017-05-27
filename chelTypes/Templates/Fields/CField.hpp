@@ -52,40 +52,42 @@ template<class T> CField<T>::CField(const CField& other) {
 	
 	m_field = CList<Ptr<CList<T>>>(new Ptr<CList<T>>, m_iHeight);
 	for (int i = 0; i < height; i++) {
-		CList<T>* curRow = new CList<T>(*(other.m_field.get(i));
+		CList<T>* curRow = new CList<T>(*(other.m_field.get(i)));
 		Ptr<CList<T>>* ptrRow = m_field.getPtr(i);
 		ptrRow->init(curRow);
 	}
 }
 
-template<class T> CField<T>::operator=(const CField& other) {
+template<class T> CField<T>& CField<T>::operator=(const CField& other) {
 	m_iSize = other.m_iSize;
 	m_iHeight = other.m_iHeight;
 	m_iWidth = other.m_iWidth;
 	
 	m_field = CList<Ptr<CList<T>>>(new Ptr<CList<T>>, m_iHeight);
 	for (int i = 0; i < height; i++) {
-		CList<T>* curRow = new CList<T>(*(other.m_field.get(i));
+		CList<T>* curRow = new CList<T>(*(other.m_field.get(i)));
 		Ptr<CList<T>>* ptrRow = m_field.getPtr(i);
 		ptrRow->init(curRow);
 	}
+	
+	return *this;
 }
 
-template<class T> T CField<T>::get(int j, int i) {
+template<class T> T CField<T>::get(int j, int i) const {
 	return (*(m_field.get(j))).get(i);
 }
 
-template<class T> T CField<T>::getAbs(int i) {
+template<class T> T CField<T>::getAbs(int i) const {
 	int j = i / width;
 	i = i % width;
 	return (*(m_field.get(j))).get(i);
 }
 
-template<class T> T* CField<T>::getPtr(int j, int i) {
+template<class T> T* CField<T>::getPtr(int j, int i) const {
 	return (*(m_field.get(j))).getPtr(i);
 }
 
-template<class T> T* CField<T>::getPtrAbs(int i) {
+template<class T> T* CField<T>::getPtrAbs(int i) const {
 	int j = i / width;
 	i = i % width;
 	return (*(m_field.get(j))).getPtr(i);

@@ -7,11 +7,7 @@
  * @param str - the string to measure
  * @return - the length of the string
  */
-int strlen(const char * str) {
-	int length = 0;
-	while (*(str++)) length++;
-	return length;
-}
+int strlen(const char * str);
 
 /**
  * @class String

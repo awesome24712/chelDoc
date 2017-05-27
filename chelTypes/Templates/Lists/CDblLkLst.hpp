@@ -2,6 +2,7 @@
 #define CHEL_DBL_LK_LST_HPP
 
 #include "CDblLkLst.h"
+#include "../../DebugTools/Assertions.h"
 
 #define Node SDLkNode
 
