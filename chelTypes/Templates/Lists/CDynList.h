@@ -2,21 +2,36 @@
 #define CHEL_DYNLIST_H
 
 class String;
-
+	/**
+	 * @class CDynList
+	 * @author Awesome
+	 * @date 27/05/2017
+	 * @file CDynList.h
+	 * @brief A dynamically sizeable list. Instances of the template parameter
+	 * 		are stored and managed by-value on the heap. The list reserves
+	 * 		space on both ends to allow for efficient popping/pushing to either
+	 * 		end. Passing by value performs deep copy.
+	 * 		
+	 * 		Removing elements from the list does not guarantee their destruction,
+	 * 		especially in end cases.
+	 */
 template<class T> class CDynList {
 	friend class String;
 protected:
 	int m_iReservedLength = 5;
-	int m_iStartIndex = 0;
-	int m_iEndIndex = 0;
+	int m_iStartIndex = 0; //start index, inclusive
+	int m_iEndIndex = 0; //end index, exclusive
 	T* m_array;
 	
 	int m_iReserveBuffer = 5; //how many spaces to add when reserving new space
 	bool m_bAutoTrim = true;
 	
+	inline int reservedFront() const { return m_iStartIndex; }
+	inline int reservedBack() const { return m_iReservedLength - m_iEndIndex + 1; }
+	
 public:
 	/**
-	 * @brief Default constructor builds and empty lisr.
+	 * @brief Default constructor builds and empty list.
 	 */
 	CDynList<T>() {m_array = new T[m_iReservedLength];}
 	
@@ -36,10 +51,7 @@ public:
 	/**
 	 * @brief Destructor removes all items from the heap.
 	 */
-	~CDynList<T>() {
-		flush(); 
-		delete[] m_array;
-	}
+	~CDynList<T>();
 
 	/**
 	 * @brief Retrieves the number of elements in the list.
@@ -68,6 +80,8 @@ public:
 	 */
 	inline T* getPtr(int pos) const {return m_array + m_iStartIndex + pos;};
 	
+	inline T* getPtrEnd(int revpos) const { return getPtr(length() - 1 - revpos); }
+	
 	/**
 	 * @brief Retrieves the value contained at the given position
 	 * @param pos - the position to look at
@@ -75,6 +89,28 @@ public:
 	 * @return the value contained at the position
 	 */
 	inline T get(int pos) const {return *getPtr(pos);}
+	
+	/**
+	 * @brief Retrieves a value contained at the given index from the end
+	 * @param revpos - the position from the end to look at. Ex.
+	 * 			get(length()-1) == getEnd(0)
+	 * @return the value at the position
+	 */
+	inline T getEnd(int revpos) const { return get(length() - 1 - revpos); }
+	
+	/**
+	 * @brief Reports the first value in the list without modifying
+	 * 		the list
+	 * @return The value at the front of {this}
+	 */
+	inline T front() const { return get(0); }
+	
+	/**
+	 * @brief Reports the last value in the list without modifying
+	 * 		the list
+	 * @return The value at the end of {this}
+	 */
+	inline T end() const { return get(length() - 1); }
 	
 	/**
 	 * @brief Sets the number of spaces to add when reserving extra space on
@@ -143,6 +179,23 @@ public:
 	void add(int pos, T value);
 	
 	/**
+	 * @brief Inserts another list at the given location, displacing other elements
+	 * @perfwarn May reallocate the list to fit the new size
+	 * @param pos - the position in insert the list at
+	 * @param other - the list to insert
+	 */
+	void add(int pos, const CDynList<T>& other);
+	
+	/**
+	 * @brief Adds an value to the given location if an equal value
+	 * 		is not already contained in the list
+	 * @param pos - the position to add the value at
+	 * @param value - the value to attempt adding
+	 * @return - whether or not the value was added
+	 */
+	bool addUnique(int pos, T value);
+	
+	/**
 	 * @brief Removes a value to a given location, displacing other elements
 	 * 			to fill the gap.
 	 * @perfwarn May reallocate the list to take up less memory
@@ -154,13 +207,46 @@ public:
 	T remove(int pos);
 	
 	/**
+	 * @brief Removes a sequence of values
+	 * @perfwarn - May reallocate the list to take up less memory
+	 * @param pos - the starting point, inclusive
+	 * @param removedLength - the amount of values to remove
+	 * @return - a list of copies of the removed values, in original order
+	 */
+	CDynList<T> remove(int pos, int removedLength);
+	
+	/**
+	 * @brief Removes a sequence of values
+	 * @param start - starting point, inclusive
+	 * @param xEnd - ending point, exclusive
+	 * @return - a list of copies of the removed values, in original order
+	 */
+	inline CDynList<T> removeByIndexes(int start, int xEnd) { return remove(start, xEnd - start); }
+	
+	/**
+	 * @brief Given a list of indexes, removes the value at each index
+	 * @param indexList - the list of indexes to remove
+	 * @updates indexList - indexes are modified as values at preceding indexes are removed
+	 * @return - a list of the removed values, in original order.
+	 */
+	CDynList<T> removeByIndexList(CDynList<int>& indexList);
+	
+	/**
 	 * @brief Sets the value at the given position to the given value
 	 * @param pos - the position to replace
 	 * @param value - the incoming value
 	 * @requires {0 <= pos < length()}
 	 * @return - the deleted value
 	 */
-	inline T replace(int pos, T value) {T orig = get(pos); *(getPtr(pos)) = value; return orig;}
+	inline T set(int pos, T value) {T orig = get(pos); *(getPtr(pos)) = value; return orig;}
+	
+	/**
+	 * @brief Replaces all values matching a given value to a given replacement value
+	 * @param find - the value to be replaced
+	 * @param replacement - the replacing value
+	 * @return - the number of replacements made
+	 */
+	int replaceMatches(T find, T replacement);
 	
 	/**
 	 * @brief Gets the position of a given value in the list, returning -1 otherwise.
@@ -168,17 +254,27 @@ public:
 	 * @return -1 if not found, otherwise the index of the first equal element 
 	 */
 	int indexOf(T value) const;
-	
-	/**
-	 * @brief 
-	 * @param other
-	 * @return 
-	 */
 	int indexOf(const CDynList<T>& other) const;
 	
-	CDynList<T> subString(int start, int end);
+	int indexOfAnyOf(const CDynList<T>& other) const;
 	
-	inline CDynList<T> subString(int start) { return subString(start, m_iEndIndex);}
+	int indexOfBounded(T value, int start, int xEnd) const;
+	int indexOfBounded(const CDynList<T>& other, int start, int xEnd) const;
+	
+	inline bool contains(T value) const { return indexOf(value) != -1; }
+	inline bool contains(const CDynList<T>& other) const { return indexOf(other) != -1; }
+	bool 		containsAnyOf(const CDynList<T>& other) const;
+	
+	/**
+	 * @brief Returns by deep-copied value a sublist from two indexes.
+	 * @param start - the starting point of the sub-list, inclusive
+	 * @param end - the end point of the sublist, exclusive
+	 * @requires {start} and {end} are valid indexes
+	 * @return - a sub CDynList<T>
+	 */
+	CDynList<T> subString(int start, int end);
+	inline CDynList<T> subString(int start) { return subString(start, m_iEndIndex); }
+	inline CDynList<T> subStringByLength(int start, int length) { return subString(start, start + length); }
 	
 	/**
 	 * @brief Pops the value from the end of this.
@@ -201,12 +297,101 @@ public:
 	 */
 	inline T popFront() {return remove(0);}
 	
+	/**
+	 * @brief Pushes a value onto the front of this
+	 * @param value - the value to add
+	 */
 	inline void pushFront(T value) {add(0, value);}
 	
+	/**
+	 * @brief Flips the list about its center
+	 */
 	void flip();
+	
+	/**
+	 * @brief Given an item, trims {this} list to ensure that
+	 * 		no elements of equal value are the first or last
+	 * 		elements in the list
+	 * @param removedItem
+	 */
+	void trimEnds(T removedItem);
+	
+	/**
+	 * @brief Rotates the list
+	 * @param numRotations - the number of rotations to perform
+	 * 		positive number rotates from front to end,
+	 * 		negative number from end to front
+	 */
+	void rotate(int numRotations);
+	
+	/**
+	 * @brief Empties the array of all its contents
+	 */
 	void flush();
 	
+	int removeBannedElement(const T& element);
+	
+	/**
+	 * @brief Removes elements from {this} that are also contained
+	 * 		in {bannedElements}
+	 * @param bannedElements - the list of banned elements
+	 * @return - the number of removed elements
+	 */
+	int removeBannedElements(const CDynList<T>& bannedElements);
+	
+	int removeBannedSequence(const CDynList<T>& bannedSequence);
+	
+	int removeBannedSequences(const CDynList<CDynList<T>>& bannedSequences);
+	
+	/**
+	 * @brief Removes elements from the front of {this} which are
+	 * 		also in {bannedElements} until such an element is not found
+	 * @param bannedElements - the list of banned elements
+	 * @return - the number of removed elements
+	 */
+	int removeBannedPrefixingElements(const CDynList<T>& bannedElements);
+	
+	/**
+	 * @brief Given an element, counts the number of elements in the list
+	 * 		which are equal to the given element
+	 * @param element
+	 * @return 
+	 */
+	int count(const T& element) const;
+	
+	/**
+	 * @brief Given a sequence, counts the number of times the sequence appears
+	 * 		in the list
+	 * @param sequence - the sequence to look for
+	 * @return 
+	 */
+	int count(const CDynList<T>& sequence) const;
+	
+	/**
+	 * @brief Given a pointer to a void method which takes T* as a parameter,
+	 * 		calls the function with a pointer to each element in the list
+	 * 		Call order is from first element to last element.
+	 * @param procedure - the procedure to call for each item
+	 */
+	void dispatchProcedure( void (*procedure)(T*) );
+	
+	/**
+	 * @brief Given a pointer to a function which takes T* as a parameter
+	 * 		and returns R, calls the function with each element in the list,
+	 * 		and dumps the return values into the returned list
+	 * 		Call order is from first element to last element.
+	 * @param function - the function to call
+	 * @return - the list of results
+	 */
+	template<class R> CDynList<R> dispatchFunction( R (*function)(T*) );
+	
+	/**
+	 * @brief Implicit conversion to a pointer to the first
+	 * 		element in the list
+	 */
 	operator T*();
+	
+	bool operator==(const CDynList<T>& other);
 	
 	CDynList<T>& operator=(const CDynList<T>& str);
 	

@@ -11,6 +11,10 @@
   <VirtualDirectory Name="String">
     <File Name="String/String.h"/>
     <File Name="String/String.cpp"/>
+    <File Name="String/Character.h"/>
+    <File Name="String/Character.cpp"/>
+    <File Name="String/CStringCase.h"/>
+    <File Name="String/CStringCase.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="Templates">
     <VirtualDirectory Name="Wrappers">
@@ -38,12 +42,19 @@
     <File Name="Templates/Templates.hpp"/>
     <VirtualDirectory Name="Fields">
       <File Name="Templates/Fields/DBitfield.h"/>
-      <File Name="Templates/Fields/CBitfield.h"/>
-      <File Name="Templates/Fields/Fields.h"/>
-      <File Name="Templates/Fields/CBitfield.cpp"/>
       <File Name="Templates/Fields/CField.h"/>
       <File Name="Templates/Fields/CField.hpp"/>
+      <File Name="Templates/Fields/Field_Templates.hpp"/>
     </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="DebugTools">
+    <File Name="DebugTools/Assertions.h"/>
+    <File Name="DebugTools/Assertions.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Globals">
+    <File Name="Globals/GArgs.h"/>
+    <File Name="Globals/GArgs.cpp"/>
+    <File Name="Globals/Globals.h"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
@@ -134,13 +145,19 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="DebugTools">
-    <File Name="DebugTools/Assertions.h"/>
-    <File Name="DebugTools/Assertions.cpp"/>
+  <VirtualDirectory Name="Fields">
+    <File Name="Fields/CBitfield.cpp"/>
+    <File Name="Fields/CBitfield.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="Globals">
-    <File Name="Globals/GArgs.h"/>
-    <File Name="Globals/GArgs.cpp"/>
-    <File Name="Globals/Globals.h"/>
+  <VirtualDirectory Name="ObjectFactory">
+    <File Name="ObjectFactory/CNameable.cpp"/>
+    <File Name="ObjectFactory/CNameable.h"/>
+    <File Name="ObjectFactory/GNameList.h"/>
+    <File Name="ObjectFactory/GNameList.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="FileIO">
+    <File Name="FileIO/CStringScanner.h"/>
+    <File Name="FileIO/CScanner.h"/>
+    <File Name="FileIO/CStringScanner.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

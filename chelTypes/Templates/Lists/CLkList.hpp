@@ -4,6 +4,8 @@
 #include "CLkList.h"
 #include "../chelMath/math.hpp"
 
+#define min(a,b) ((a) < (b) ? (a) : (b) )
+
 template<class T> CLkList<T>::CLkList() {
 	//default private parameters are defined in header
 }
@@ -13,7 +15,7 @@ template<class T> CLkList<T>::~CLkList() {
 	this->flush();
 }
 
-template<class T> LkItem<T> * CLkList<T>::getItem(int pos) {
+template<class T> LkItem<T> * CLkList<T>::getItem(int pos) const {
 	if (!(m_pLastReferenced && pos > m_iLastReferencedIndex)) {
 		m_pLastReferenced = m_pFirst;
 		m_iLastReferencedIndex = 0;
@@ -89,15 +91,15 @@ template<class T> T CLkList<T>::remove(int pos) {
 	return result;
 }
 
-template<class T> T CLkList<T>::get(int pos) {
+template<class T> T CLkList<T>::get(int pos) const {
 	return this->getItem(pos)->value;
 }
 
-template<class T> int CLkList<T>::length() const{
+template<class T> int CLkList<T>::length() const {
 	return m_iLength;
 }
 
-template<class T> T* CLkList<T>::getPtr(int pos) {
+template<class T> T* CLkList<T>::getPtr(int pos) const {
 	return &(getItem(pos)->value);
 }
 

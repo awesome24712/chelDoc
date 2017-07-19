@@ -4,6 +4,15 @@
 #include "CList.h"
 #include "../chelMath/math.hpp"
 
+template<class T> CList<T>::CList(T value, int num)  {
+	m_iLength = num;
+	m_pFirst = new T[m_iLength];
+	T* pItr = m_pFirst;
+	for (int i = 0; i < m_iLength; i++) {
+		*pItr = value;
+		pItr++;
+	}
+}
 
 template<class T> void CList<T>::flip() {
 	int num = length();

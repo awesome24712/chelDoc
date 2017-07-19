@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Project Name="xmlHandler" Version="10.0.0" InternalType="Library">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="SXml">
+    <File Name="SXml/SXml.h"/>
+    <File Name="SXml/SXml.cpp"/>
+  </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -13,10 +22,13 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="."/>
+      <Compiler Options="-g; -std=c++14; -D DEBUG" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="../chelTypes"/>
       </Compiler>
-      <Linker Options="" Required="yes"/>
+      <Linker Options="" Required="yes">
+        <LibraryPath Value="../chelTypes/Debug"/>
+        <Library Value="chelTypes.dll"/>
+      </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <BuildSystem Name="Default"/>
@@ -91,10 +103,8 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="src">
-    <File Name="CContainerTest.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="include">
-    <File Name="CContainerTest.h"/>
+  <VirtualDirectory Name="CXmlTree">
+    <File Name="CXmlTree/CXmlTree.h"/>
+    <File Name="CXmlTree/CXmlTree.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>

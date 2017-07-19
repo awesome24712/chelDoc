@@ -37,6 +37,11 @@ template<class K, class V> V CMap<K,V>::remove(K key) {
 	return m_map.remove(i).value();
 }
 
+template<class K, class V> void CMap<K,V>::flush() {
+	while (size() > 0)
+		m_map.pop();
+}
+
 template<class K, class V> V CMap<K,V>::value(K key) const {
 	bool bFound = false;
 	int i;

@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include "math.h"
 
 #define sqr(A) ((A) * (A))
 

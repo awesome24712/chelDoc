@@ -1,4 +1,5 @@
 #include "String.h"
+#include "Character.h"
 
 /**
  * @brief Measures length of null-terminated character string.
@@ -60,6 +61,23 @@ String::String(const String& str) {
 	}
 }
 
+#define STRING_MAX_INT_SIZE 33
+String String::fromInt(int toStr) {
+	char pStr[33];
+	sprintf(pStr, "%i", toStr);
+	return String(pStr);
+}
+
+void String::toUpperCase() {
+	for (int i = 0; i < length(); i++)
+		Character::toUpperCase(getPtr(i));
+}
+
+void String::toLowerCase() {
+	for (int i = 0; i < length(); i++)
+		Character::toLowerCase(getPtr(i));
+}
+
 String& String::operator=(const char * str) {
 	flush();
 	delete[] m_array;
@@ -76,7 +94,7 @@ String& String::operator=(const char * str) {
 }
 
 bool String::operator ==(const String& other) {
-	return this->indexOf(other) != -1;
+	return this->indexOf(other) != -1 && this->length() == other.length();
 }
 
 String String::operator+(const char * str) {

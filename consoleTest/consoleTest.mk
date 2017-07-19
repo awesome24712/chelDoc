@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=consoleTest
 ConfigurationName      :=Debug
-WorkspacePath          :=F:/Users/Awesome/chelDoc
-ProjectPath            :=F:/Users/Awesome/chelDoc/consoleTest
+WorkspacePath          :=C:/Users/Awesome/chelDoc
+ProjectPath            :=C:/Users/Awesome/chelDoc/consoleTest
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Awesome
-Date                   :=26/05/2017
-CodeLitePath           :="F:/Program Files/CodeLite"
-LinkerName             :=F:/MinGW/bin/g++.exe
-SharedObjectLinkerName :=F:/MinGW/bin/g++.exe -shared -fPIC
+Date                   :=19/07/2017
+CodeLitePath           :="C:/Program Files/CodeLite"
+LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
+SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,32 +36,34 @@ ObjectsFileList        :="consoleTest.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=F:/MinGW/bin/windres.exe
+RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)../chelTypes 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)chelTypes 
-ArLibs                 :=  "chelTypes.dll" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug 
+Libs                   := $(LibrarySwitch)chelTypes $(LibrarySwitch)chelMath 
+ArLibs                 :=  "chelTypes.dll" "chelMath.dll" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug $(LibraryPathSwitch)../chelMath/Debug 
 
 ##
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := F:/MinGW/bin/ar.exe rcu
-CXX      := F:/MinGW/bin/g++.exe
-CC       := F:/MinGW/bin/gcc.exe
+AR       := C:/TDM-GCC-32/bin/ar.exe rcu
+CXX      := C:/TDM-GCC-32/bin/g++.exe
+CC       := C:/TDM-GCC-32/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall  -std=c++14  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := F:/MinGW/bin/as.exe
+AS       := C:/TDM-GCC-32/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=F:\Program Files\CodeLite
+CodeLiteDir:=C:\Program Files\CodeLite
+WXWIN:=C:/wxWidgets
+WXCFG:=gcc_dll/mswu
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
@@ -94,7 +96,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/Users/Awesome/chelDoc/consoleTest/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/consoleTest/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

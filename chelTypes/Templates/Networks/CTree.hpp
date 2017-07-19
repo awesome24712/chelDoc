@@ -6,10 +6,6 @@ template<class T> CTree<T>::CTree(Ptr<CTreeNode<T>> node) {
 	m_pNode = node;
 }
 
-template<class T> CTree<T>::CTree() {
-	//m_pNode = new CTreeNode<T>();
-}
-
 template<class T> CTree<T>::CTree(T value) {
 	m_pNode = new CTreeNode<T>(value);
 }
@@ -40,6 +36,37 @@ template<class T> void CTree<T>::addChild(CTree<T>& otherTree) {
 	//TODO ensure trees don't share children!
 	
 	otherTree.setParent(*this);
+}
+
+template<class T> CTree<T> CTree<T>::removeChild(int index) {
+	CTree<T> tChild = m_pNode->m_children.remove(index);
+	tChild.m_pNode->m_parent.m_pNode.nullify();
+	return tChild;
+}
+
+template<class T> CTree<T> CTree<T>::removeParent() {
+	AssertTrue(this->hasParent(), "Removed CTree<> parent exists");
+	CTree<T> parent = getParent();
+	getParent().removeChild(parent.m_pNode->m_children.indexOf(*this));
+	return parent;
+}
+
+template<class T> CTree<T> CTree<T>::insertParent() {
+	CTree<T> newParent(new CTreeNode<T>());
+	insertParent(newParent);
+	return newParent;
+}
+
+template<class T> CTree<T> CTree<T>::insertParent(T value) {
+	CTree<T> newParent(new CTreeNode<T>(value));
+	insertParent(newParent);
+	return newParent;
+}
+
+template<class T> void CTree<T>::insertParent(CTree<T>& parent) {
+	CTree<T> prevParent = this->removeParent();
+	this->setParent(parent);
+	parent.setParent(prevParent);
 }
 
 template<class T> void CTree<T>::setParent(CTree<T>& parent) {

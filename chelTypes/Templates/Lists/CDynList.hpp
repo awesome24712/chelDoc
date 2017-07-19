@@ -2,6 +2,7 @@
 #define CHEL_DYNLIST_HPP
 #include "CDynList.h"
 #include "stdio.h"
+#include "../../DebugTools/Assertions.h"
 #include "../chelMath/math.hpp"
 
 template<class T> CDynList<T>::CDynList(int num, T value) {
@@ -10,6 +11,11 @@ template<class T> CDynList<T>::CDynList(int num, T value) {
 	m_iEndIndex = num;
 	for (int i = 0; i < num; i++)
 		m_array[i] = value;
+}
+
+template<class T> CDynList<T>::~CDynList() {
+	//flush(); 
+	delete[] m_array;
 }
 
 template<class T> void CDynList<T>::reserve(int newSpace) {
@@ -96,11 +102,59 @@ template<class T> void CDynList<T>::add(int pos, T value) {
 	m_array[absolutePos] = value;
 }
 
+template<class T> void CDynList<T>::add(int pos, const CDynList<T>& other) {
+	int addedLength = other.length(); //so we don't access over and over again
+	
+	//first determine which side we'd prefer to add to
+	bool bFrontHalf = pos < length() / 2;
+	
+	//check if we can save a copy by using the other side instead
+	if (bFrontHalf && reservedFront() < addedLength && reservedBack() > addedLength)
+		bFrontHalf = false;
+	else if (!bFrontHalf && reservedBack() <= addedLength && reservedFront() >= addedLength)
+		bFrontHalf = true;
+	
+	//determine if we need to reserve space
+	if (bFrontHalf && reservedFront() < addedLength)
+		reserveFront(addedLength);
+	else if (!bFrontHalf && reservedBack() <= addedLength) //we check equivalance too to allow null-termination
+		reserve(addedLength);
+	
+	//displace values to create gap 
+	if (bFrontHalf) {
+		m_iStartIndex -= addedLength;
+		int endCopy = m_iStartIndex + pos;
+		for (int i = m_iStartIndex; i < endCopy; i++)
+			m_array[i] = m_array[i+addedLength];
+	} else {
+		m_iEndIndex += addedLength;
+		int endCopy = m_iStartIndex + pos + addedLength;
+		for (int i = m_iEndIndex - 1; i > endCopy; i--) {
+			m_array[i] = m_array[i - addedLength];
+		}
+	}
+	
+	//copy values into place
+	for (int i = 0; i < addedLength; i++)
+		*getPtr(pos + i) = other.get(i);
+}
+
+template<class T> bool CDynList<T>::addUnique(int pos, T value) {
+	bool bAdd = indexOf(value) == -1;
+	if (bAdd) {
+		this->add(pos, value);
+	}
+	return bAdd;
+}
+
 template<class T> T CDynList<T>::remove(int pos) {
+	AssertTrue(length() > 0, "No removal from empty list via CDynList<T>::remove(int)");
+	AssertTrue(pos > 0 && pos < length(), "Valid index for removing from list via CDynList<T>::remove(int)");
+	
 	//absolute position in the array
 	int absolutePos = m_iStartIndex + pos;
 	
-	//first determine which side we're adding to
+	//first determine which side we're removing from
 	bool bFrontHalf = pos < length() / 2;
 	
 	T removed = get(pos);
@@ -124,6 +178,74 @@ template<class T> T CDynList<T>::remove(int pos) {
 		trim();
 		
 	return removed;
+}
+
+template<class T> CDynList<T> CDynList<T>::remove(int pos, int removedLength) {
+	AssertTrue(pos >= 0 && pos < length(), "Valid array index for CDynList<T>::remove(int,int)");
+	AssertTrue(pos + removedLength <= length(), "Range of removed array falls within [0,length] for CDynList<T>::remove(int,int)");
+	
+	//build returned list
+	CDynList<T> result = this->subStringByLength(pos, removedLength);
+	
+	//determine which side to remove from, so there will be less copying later on.
+	bool bFrontHalf = pos < (length() / 2);
+	
+	//perform actual removal and adjust indexes
+	if (bFrontHalf) {
+		int absoluteEnd = m_iStartIndex + pos + removedLength; //exlusive
+		m_iStartIndex += removedLength;
+		for (int i = absoluteEnd - 1; i >= m_iStartIndex; i--) {
+			m_array[i] = m_array[i - removedLength];
+		}
+	} else {
+		int absoluteStart = m_iStartIndex + pos; //inclusive
+		m_iEndIndex -= removedLength;
+		for (int i = absoluteStart; i < m_iEndIndex; i++) {
+			m_array[i] = m_array[i + removedLength];
+		}
+	}
+	
+	//check if we need to trim
+	if (m_bAutoTrim)
+		trim();
+		
+	return result;
+}
+
+template<class T> CDynList<T> CDynList<T>::removeByIndexList(CDynList<int>& indexList) {
+	//TODO implement!
+	//Sort the list and then remove indexes at the end of the list first
+	const int finalNumRemovals = indexList.length();
+	
+	//build empty result list
+	CDynList<T> result(finalNumRemovals);
+	
+	int nextIndex;
+	int curLength;
+	for (int i = 0; i < finalNumRemovals; i++) {
+		nextIndex = indexList.pop();
+		
+		//decrement indexes greater than ours
+		curLength = indexList.length();
+		for (int i = 0; i < curLength; i++)
+			if (indexList.get(i) > nextIndex)
+				indexList.set(i, get(i) - 1);
+				
+		//now actually remove it and add it to the result list
+		result.push(indexList.remove(nextIndex));
+	}
+	
+	return result;
+}
+
+template<class T> int CDynList<T>::replaceMatches(T find, T replacement) {
+	int nReplacemnts = 0;
+	for (int i = 0; i < length(); i++)
+		if (get(i) == find) {
+			*getPtr(i) = replacement;
+			nReplacemnts++;
+		}
+	return nReplacemnts;
 }
 
 template<class T> int CDynList<T>::indexOf(T value) const {
@@ -163,6 +285,64 @@ template<class T> int CDynList<T>::indexOf(const CDynList<T>& other) const {
 	return foundIndex;
 }
 
+template<class T> int CDynList<T>::indexOfAnyOf(const CDynList<T>& other) const {
+	int foundIndex = -1;
+	for (int i = 0; i < this->length() && foundIndex == -1; i++) {
+		if (other.contains(this->get(i))) {
+			foundIndex = i;
+		}
+	}
+	
+	return foundIndex;
+}
+
+template<class T> int CDynList<T>::indexOfBounded(T value, int start, int xEnd) const {
+	int foundIndex = -1;
+	for (int i = start; i < xEnd; i++) {
+		if (get(i) == value) {
+			foundIndex = i;
+			break; //I will break you!
+		}
+	}
+	return foundIndex;
+}
+
+template<class T> int CDynList<T>::indexOfBounded(const CDynList<T>& other, int start, int xEnd) const {
+	bool foundFirst = false;
+	int foundIndex = -1;
+	bool foundLast = false;
+	
+	if (other.length() <= length() && !other.isEmpty()) {
+		for (int i = start; i < xEnd && !foundLast; i++) {
+			//if we've already started checking matches
+			if (foundFirst) {
+				if (get(i) != other.get(i - foundIndex)) {
+					foundFirst = false;
+					foundIndex = -1;
+				} else if ((i - foundIndex + 1) == other.length()) {
+					foundLast = true; //completion
+				}
+			}
+			//check for start of next match
+			 if (get(i) == other.get(0) && !foundFirst) {
+				foundFirst = true;
+				foundIndex = i;
+			}
+		}
+	}
+	return foundIndex;
+}
+
+template<class T> bool CDynList<T>::containsAnyOf(const CDynList<T>& other) const {
+	bool bFound = false;
+	int index = 0;
+	while( index < other.length() && !bFound) {
+		bFound = this->contains(other.get(index));
+		index++;
+	}
+	return bFound;
+}
+
 template<class T> CDynList<T> CDynList<T>::subString(int start, int end) {
 	CDynList<T> result(end - start + 1);
 	//can't use null termination, in case we're storing objects by value
@@ -179,19 +359,142 @@ template<class T> void CDynList<T>::flip() {
 	}
 }
 
+template<class T> void CDynList<T>::trimEnds(T removedItem) {
+	while (front() == removedItem)
+		popFront();
+	
+	while (end() == removedItem)
+		pop();
+}
+
+template<class T> void CDynList<T>::rotate(int numRotations) {
+	//rotate front to end
+	while (numRotations > 0) {
+		push(popFront());
+		numRotations--;
+	}
+	//rotate end to front
+	while (numRotations < 0) {
+		pushFront(pop());
+		numRotations++;
+	}
+}
+
 template<class T> void CDynList<T>::flush() {
 	bool initialTrimState = getAutoTrim();
 	setAutoTrim(false);
-	while (!isEmpty()) {
-		pop();
-	}
+	remove(0, length());
+	trim();
 	setAutoTrim(initialTrimState);
+}
+
+template<class T> int CDynList<T>::removeBannedElement(const T& element) {
+	int removedCount = 0;
+	int index = 0;
+	while (index < this->length()) {
+		if (element == get(index)) {
+			remove(index);
+			removedCount++;
+		} else {
+			index++;
+		}
+	}
+	return removedCount;
+}
+
+template<class T> int CDynList<T>::removeBannedElements(const CDynList<T>& bannedElements) {
+	int removedCount = 0;
+	int index = 0;
+	while (index < this->length()) {
+		T curVal = this->get(index);
+		if (bannedElements.indexOf(curVal) != -1) {
+			this->remove(index);
+			removedCount++;
+		} else {
+			index++;
+		}
+	}
+	return removedCount;
+}
+
+template<class T> int CDynList<T>::removeBannedSequence(const CDynList<T>& bannedSequence) {
+	int removedCount = 0;
+	int removedLength = bannedSequence.length();
+	int nextFoundIndex = this->indexOf(bannedSequence);
+	while (nextFoundIndex != -1) {
+		this->remove(nextFoundIndex, removedLength);
+		nextFoundIndex = indexOfBounded(bannedSequence, nextFoundIndex, length());
+		removedCount++;
+	}
+	return removedCount;
+}
+
+template<class T> int CDynList<T>::removeBannedSequences(const CDynList<CDynList<T>>& bannedSequences) {
+	int removedCount = 0;
+	for (int i = 0; i < bannedSequences.length(); i++)
+		removedCount += this->removeBannedSequence(*(bannedSequences.getPtr(i)));
+	
+	return removedCount;
+}
+
+template<class T> int CDynList<T>::removeBannedPrefixingElements(const CDynList<T>& bannedElements) {
+	int removedCount = 0;
+	bool bTerminate = false;
+	while (!bTerminate) {
+		T curVal = this->get(0);
+		if (bannedElements.indexOf(curVal) != -1) {
+			this->popFront();
+			removedCount++;
+		} else {
+			bTerminate = true;
+		}
+	}
+	return removedCount;
+}
+
+template<class T> int CDynList<T>::count(const T& element) const {
+	int count = 0;
+	int iLength = length();
+	for (int i = 0; i < iLength; i++)
+		if (get(i) == element)
+			count++;
+	return count;
+}
+
+template<class T> int CDynList<T>::count(const CDynList<T>& sequence) const {
+	int count = 0;
+	int lastFoundIndex = indexOf(sequence);
+	int iLength = length();
+	while (lastFoundIndex != -1) {
+		count++;
+		lastFoundIndex = indexOfBounded(sequence, lastFoundIndex, length);
+	}
+	return count;
+}
+
+template<class T> void CDynList<T>::dispatchProcedure(void (*procedure)(T*)) {
+	int len = length();
+	for (int i = 0; i < len; i++)
+		(*procedure)(getPtr(i));
+}
+
+template<class T> template<class R> CDynList<R> CDynList<T>::dispatchFunction(R (*function)(T*)) {
+	//build result list
+	CDynList<R> result(this->length());
+	int len = length();
+	for (int i = 0; i < len; i++)
+		result.set(i, (*function)(getPtr(i)));
+	return result;
 }
 
 template<class T> CDynList<T>::operator T*() {
 	//assert that the string is null-terminated
 	m_array[m_iEndIndex] = 0;
 	return m_array + m_iStartIndex;
+}
+
+template<class T> bool CDynList<T>::operator ==(const CDynList<T>& other) {
+	return this->length == other.length() && this->contains(other);
 }
 
 template<class T>CDynList<T>& CDynList<T>::operator =(const CDynList<T>& str) {

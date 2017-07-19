@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Awesome
-Date                   :=18/04/2017
+Date                   :=18/07/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/TDM-GCC-32/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-32/bin/g++.exe
 CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g $(Preprocessors)
+CXXFLAGS :=  -g  -std=c++14  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-32/bin/as.exe
@@ -64,9 +64,11 @@ AS       := C:/TDM-GCC-32/bin/as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 WXWIN:=C:/wxWidgets
 WXCFG:=gcc_dll/mswu
+Objects0=$(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix) $(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix) 
 
 
-Objects=
+
+Objects=$(Objects0) 
 
 ##
 ## Main Build Targets 
@@ -77,6 +79,7 @@ all: $(OutputFile)
 $(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
+	@echo $(Objects0)  > $(ObjectsFileList)
 	$(SharedObjectLinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 	@$(MakeDirCommand) "C:\Users\Awesome\chelDoc/.build-debug"
 	@echo rebuilt > "C:\Users\Awesome\chelDoc/.build-debug/chelMath"
@@ -94,6 +97,54 @@ PreBuild:
 ##
 ## Objects
 ##
+$(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix): Vector/Vector.cpp $(IntermediateDirectory)/Vector_Vector.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/Vector/Vector.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Vector_Vector.cpp$(DependSuffix): Vector/Vector.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Vector_Vector.cpp$(DependSuffix) -MM Vector/Vector.cpp
+
+$(IntermediateDirectory)/Vector_Vector.cpp$(PreprocessSuffix): Vector/Vector.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Vector_Vector.cpp$(PreprocessSuffix) Vector/Vector.cpp
+
+$(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix): Vector/Vector2D.cpp $(IntermediateDirectory)/Vector_Vector2D.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/Vector/Vector2D.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Vector_Vector2D.cpp$(DependSuffix): Vector/Vector2D.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Vector_Vector2D.cpp$(DependSuffix) -MM Vector/Vector2D.cpp
+
+$(IntermediateDirectory)/Vector_Vector2D.cpp$(PreprocessSuffix): Vector/Vector2D.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Vector_Vector2D.cpp$(PreprocessSuffix) Vector/Vector2D.cpp
+
+$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix): BitBoard/BitBoard.cpp $(IntermediateDirectory)/BitBoard_BitBoard.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/BitBoard/BitBoard.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(DependSuffix): BitBoard/BitBoard.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(DependSuffix) -MM BitBoard/BitBoard.cpp
+
+$(IntermediateDirectory)/BitBoard_BitBoard.cpp$(PreprocessSuffix): BitBoard/BitBoard.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/BitBoard_BitBoard.cpp$(PreprocessSuffix) BitBoard/BitBoard.cpp
+
+$(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix): Coord/Coord2D.cpp $(IntermediateDirectory)/Coord_Coord2D.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/Coord/Coord2D.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Coord_Coord2D.cpp$(DependSuffix): Coord/Coord2D.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Coord_Coord2D.cpp$(DependSuffix) -MM Coord/Coord2D.cpp
+
+$(IntermediateDirectory)/Coord_Coord2D.cpp$(PreprocessSuffix): Coord/Coord2D.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Coord_Coord2D.cpp$(PreprocessSuffix) Coord/Coord2D.cpp
+
+$(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix): Color/Color.cpp $(IntermediateDirectory)/Color_Color.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/Color/Color.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Color_Color.cpp$(DependSuffix): Color/Color.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Color_Color.cpp$(DependSuffix) -MM Color/Color.cpp
+
+$(IntermediateDirectory)/Color_Color.cpp$(PreprocessSuffix): Color/Color.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Color_Color.cpp$(PreprocessSuffix) Color/Color.cpp
+
+$(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix): Rand/Rand.cpp $(IntermediateDirectory)/Rand_Rand.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelMath/Rand/Rand.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Rand_Rand.cpp$(DependSuffix): Rand/Rand.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Rand_Rand.cpp$(DependSuffix) -MM Rand/Rand.cpp
+
+$(IntermediateDirectory)/Rand_Rand.cpp$(PreprocessSuffix): Rand/Rand.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Rand_Rand.cpp$(PreprocessSuffix) Rand/Rand.cpp
+
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
 ##

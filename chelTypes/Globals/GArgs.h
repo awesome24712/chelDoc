@@ -12,6 +12,7 @@ public:
 	
 	bool hasArg(String arg) const { return m_argLst.indexOf(arg) != -1; }
 	void printArgs() const;
+	inline int count() const { return m_argLst.length(); }
 };
 
 extern GArgsLst gArgs;

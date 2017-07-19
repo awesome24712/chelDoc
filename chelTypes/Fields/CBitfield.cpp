@@ -1,5 +1,5 @@
 #include "CBitfield.h"
-#include "../../DebugTools/Assertions.h"
+#include "../DebugTools/Assertions.h"
 
 BitFlag::BitFlag(short sFlagNum) {
 	x = sFlagNum / 8;

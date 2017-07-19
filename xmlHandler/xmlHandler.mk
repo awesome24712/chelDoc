@@ -13,8 +13,8 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Awesome
-Date                   :=31/03/2017
-CodeLitePath           :="C:/Program Files/CodeLite"
+Date                   :=27/05/2017
+CodeLitePath           :="C:/Program Files/codelite"
 LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
 SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
@@ -38,12 +38,12 @@ MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
 LinkOptions            :=  
-IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
+IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)../chelTypes 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
-LibPath                := $(LibraryPathSwitch). 
+Libs                   := $(LibrarySwitch)chelTypes 
+ArLibs                 :=  "chelTypes.dll" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug 
 
 ##
 ## Common variables
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := C:/TDM-GCC-32/bin/ar.exe rcu
 CXX      := C:/TDM-GCC-32/bin/g++.exe
 CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g $(Preprocessors)
+CXXFLAGS :=  -g  -std=c++14  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/TDM-GCC-32/bin/as.exe
@@ -64,7 +64,7 @@ AS       := C:/TDM-GCC-32/bin/as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 WXWIN:=C:/wxWidgets
 WXCFG:=gcc_dll/mswu
-Objects0=$(IntermediateDirectory)/CContainerTest.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/SXml_SXml.cpp$(ObjectSuffix) 
 
 
 
@@ -97,13 +97,13 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/CContainerTest.cpp$(ObjectSuffix): CContainerTest.cpp $(IntermediateDirectory)/CContainerTest.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/xmlHandler/CContainerTest.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CContainerTest.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/CContainerTest.cpp$(DependSuffix): CContainerTest.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/CContainerTest.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/CContainerTest.cpp$(DependSuffix) -MM CContainerTest.cpp
+$(IntermediateDirectory)/SXml_SXml.cpp$(ObjectSuffix): SXml/SXml.cpp $(IntermediateDirectory)/SXml_SXml.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/xmlHandler/SXml/SXml.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/SXml_SXml.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/SXml_SXml.cpp$(DependSuffix): SXml/SXml.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/SXml_SXml.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/SXml_SXml.cpp$(DependSuffix) -MM SXml/SXml.cpp
 
-$(IntermediateDirectory)/CContainerTest.cpp$(PreprocessSuffix): CContainerTest.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CContainerTest.cpp$(PreprocessSuffix) CContainerTest.cpp
+$(IntermediateDirectory)/SXml_SXml.cpp$(PreprocessSuffix): SXml/SXml.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/SXml_SXml.cpp$(PreprocessSuffix) SXml/SXml.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

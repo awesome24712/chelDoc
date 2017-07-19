@@ -16,6 +16,15 @@ public:
 		m_piReferenceCount = new int;
 		*m_piReferenceCount = 1;
 	}
+	
+	void nullify() {
+		AssertTrue(m_ptReference, "No nullification of already null Ptr<>");
+		(*m_piReferenceCount)--;
+		if (*m_piReferenceCount == 0) {
+			delete m_ptReference;
+			delete m_piReferenceCount;
+		}
+	}
 
 	Ptr<T>(T* newHeapObject) {
 		init(newHeapObject);
@@ -30,11 +39,7 @@ public:
 	Ptr<T>& operator=(const Ptr<T>& otherPtr) {
 		if (this != &otherPtr) {
 			if(m_ptReference) {
-				(*m_piReferenceCount)--;
-				if (*m_piReferenceCount == 0) {
-					delete m_ptReference;
-					delete m_piReferenceCount;
-				}
+				this->nullify();
 			}
 			m_ptReference = otherPtr.m_ptReference;
 			m_piReferenceCount = otherPtr.m_piReferenceCount;
@@ -49,11 +54,7 @@ public:
 	
 	~Ptr<T>(){
 		if (m_ptReference) {
-			(*m_piReferenceCount)--;
-			if (*m_piReferenceCount == 0) {
-				delete m_ptReference;
-				delete m_piReferenceCount;
-			}
+			nullify();
 		}
 	}
 	

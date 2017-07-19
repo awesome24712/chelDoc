@@ -1,4 +1,5 @@
 #include "Vector2D.h"
+#include "math.h"
 
 #define sqr(A) ((A) * (A))
 
@@ -30,20 +31,20 @@ float Vector2D::length() const {
 	return sqrtf(sqr(X) + sqr(Y));
 }
 
-Vector2D Vector2D::operator +(const Vector& v2) {
+Vector2D Vector2D::operator +(const Vector2D& v2) {
 	return Vector2D(X + v2.X, Y + v2.Y);
 }
 
-Vector2D& Vector2D::operator +=(const Vector& v2) {
+Vector2D& Vector2D::operator +=(const Vector2D& v2) {
 	X += v2.X; Y += v2.Y;
 	return *this;
 }
 
-Vector2D Vector2D::operator -(const Vector& v2) {
+Vector2D Vector2D::operator -(const Vector2D& v2) {
 	return Vector2D(X - v2.X, Y - v2.Y);
 }
 
-Vector2D& Vector2D::operator -=(const Vector& v2) {
+Vector2D& Vector2D::operator -=(const Vector2D& v2) {
 	X -= v2.X; Y -= v2.Y;
 	return *this;
 }

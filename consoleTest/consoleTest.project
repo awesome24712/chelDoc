@@ -9,6 +9,7 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
+    <File Name="minigames.h"/>
   </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
@@ -28,7 +29,9 @@
       </Compiler>
       <Linker Options="" Required="yes">
         <LibraryPath Value="../chelTypes/Debug"/>
+        <LibraryPath Value="../chelMath/Debug"/>
         <Library Value="chelTypes.dll"/>
+        <Library Value="chelMath.dll"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>

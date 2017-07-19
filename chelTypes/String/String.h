@@ -41,6 +41,35 @@ public:
 	
 	String(const CDynList<char>& str);
 	
+	static String fromInt(int toStr);
+	
+	/**
+	 * @brief Removes spaces from the front and end of this
+	 */
+	inline void trimSpaces() { trimEnds(' '); } 
+	
+	/**
+	 * @brief Removes underscores from the front and end of this
+	 */
+	inline void trimUnderscores() { trimEnds('_'); }
+	
+	/**
+	 * @brief Updates this String in-place to replace all letters with their uppercase form.
+	 * 		Does nothing to already uppercase letters and non-letter characters
+	 */
+	void toUpperCase();
+	
+	/**
+	 * @brief Updates this String in-place to replace all letters with their lowercase form.
+	 * 		Does nothing to already lowercase letters and non-letter characters
+	 */
+	void toLowerCase(); 
+	
+	/**
+	 * @brief Updates this String in-place to replace all spaces with underscores
+	 */
+	inline void toUnderScore() { this->replaceMatches(' ', '_'); }
+	
 	String& operator=(const CDynList<char>& str);
 	
 	String& operator= (const char* str);

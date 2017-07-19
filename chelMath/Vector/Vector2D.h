@@ -11,8 +11,8 @@ struct Vector2D {
 	
 	float length() const;
 	
-	inline void toLength(float magnitude);
-	inline void toClampedLength(float min, float max);
+	void toLength(float magnitude);
+	void toClampedLength(float min, float max);
 	inline void toUnit() { toLength(1.0f); }
 	
 	Vector2D operator+(const Vector2D& v2);

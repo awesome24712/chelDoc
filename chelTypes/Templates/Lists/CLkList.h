@@ -22,12 +22,12 @@ private:
 	int m_iLength = 0;
 	
 	//these are used to enhance the performance linear indexing
-	LkItem<T>* m_pLastReferenced = nullptr;
-	inline void unconst() { m_pLastReferenced = nullptr;}
-	int		m_iLastReferencedIndex = 0;
+	mutable LkItem<T>* m_pLastReferenced = nullptr;
+	inline void nullifyLastReference() { m_pLastReferenced = nullptr;}
+	mutable int		m_iLastReferencedIndex = 0;
 	
 	//KERNAL METHODS
-	LkItem<T> * getItem(int pos);
+	LkItem<T> * getItem(int pos) const;
 public:
 
 	/**
@@ -64,7 +64,7 @@ public:
 	 * @requires {pos < this.length()}
 	 * @return the item
 	 */
-	inline T get(int pos);
+	inline T get(int pos) const;
 	
 	/**
 	 * @brief Retrieves or calculates the number of items in the list.
@@ -73,7 +73,7 @@ public:
 	 */
 	int length() const;
 	
-	T* getPtr(int pos);
+	T* getPtr(int pos) const;
 	
 //SECONDARY METHODS
 	/**

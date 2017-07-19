@@ -1,5 +1,6 @@
-#include "math.h"
-#pragma once
+#ifndef CHEL_MATH_HPP2
+#define CHEL_MATH_HPP2
+#include "CBase/CBase.h"
 
 /**
  * @brief Clamps a value by reference
@@ -33,7 +34,7 @@ template<class T> inline T clone(T var) {
 	return var;
 	}
 
-template<class T> T lerp(T lerp, T min, T max) {
+template<class T, class R> T lerp(T lerp, R min, R max) {
 	return min + lerp * (max-min);
 }
 
@@ -58,3 +59,5 @@ template<class T> void swap(T* a, T* b) {
 	*a = *b;
 	*b = tmp;
 } 
+
+#endif //CHEL_MATH_HPP2
