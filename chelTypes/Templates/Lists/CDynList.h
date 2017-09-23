@@ -216,6 +216,25 @@ public:
 	CDynList<T> remove(int pos, int removedLength);
 	
 	/**
+	 * @brief Removes a sequence of values until the firstfound value which is equivalent
+	 * 		to the given value, or until the end of the list.
+	 * 		The firstfound value is popped off but it is not included in the result.
+	 * @param value - the value to look for.
+	 * @return - the sequence of values until the firstfound match.
+	 */
+	CDynList<T> removeUntil(T value);
+	
+	/**
+	 * @brief Performs removeUntil(T) for the given number of iterations.
+	 * 		For example, calling removeUntilIterated('\n', 3) on a String would
+	 * 		remove 3 lines from the String and return three Strings in the returned list.
+	 * @param value
+	 * @param iterations
+	 * @return - a list of the resulting sequences.
+	 */
+	CDynList<CDynList<T>> removeUntilIterated(T value, int iterations);
+	
+	/**
 	 * @brief Removes a sequence of values
 	 * @param start - starting point, inclusive
 	 * @param xEnd - ending point, exclusive

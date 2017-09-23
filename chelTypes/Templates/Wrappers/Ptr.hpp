@@ -48,6 +48,7 @@ public:
 		}
 		return *this;
 	}
+	
 	T* operator ->() const{
 		return m_ptReference;
 	}

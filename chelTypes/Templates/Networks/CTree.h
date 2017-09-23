@@ -2,6 +2,7 @@
 #define CHEL_TREE_H
 #include "../Lists/CDynList.hpp"
 #include "../Wrappers/Ptr.hpp"
+#include "../../String/String.h"
 
 template<class T> class CTree;
 
@@ -21,7 +22,7 @@ private:
 
 template <class T> class CTree {
 	friend class CTreeNode<T>;
-protected:
+public:
 	Ptr<CTreeNode<T>> m_pNode;
 	
 	CTree<T>(Ptr<CTreeNode<T>> node);
@@ -188,5 +189,6 @@ public:
 	static bool 	treesShareAncestor(const CTree<T>& t1, const CTree<T>& t2);
 };
 
+void treeToString(CTree<String> t, String& dest, int indentlevel = 0);
 
 #endif //CHEL_TREE_H

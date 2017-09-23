@@ -1,0 +1,2 @@
+consoleTest.exe hello
+pause

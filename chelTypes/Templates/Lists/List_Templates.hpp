@@ -7,7 +7,7 @@
 
 #include "CDynList.hpp"
 #include "CList.hpp"
-#include "CLkList.hpp"
+#include "CLkLst.hpp"
 #include "CDblLkLst.hpp"
 
 #endif //CHEL_LIST_TEMPLATES_H

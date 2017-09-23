@@ -1,21 +1,21 @@
 #ifndef CHEL_LKLIST_HPP
 #define CHEL_LKLIST_HPP
 
-#include "CLkList.h"
+#include "CLkLst.h"
 #include "../chelMath/math.hpp"
 
 #define min(a,b) ((a) < (b) ? (a) : (b) )
 
-template<class T> CLkList<T>::CLkList() {
+template<class T> CLkLst<T>::CLkLst() {
 	//default private parameters are defined in header
 }
 
-template<class T> CLkList<T>::~CLkList() {
+template<class T> CLkLst<T>::~CLkLst() {
 	//remove all link nodes from the heap
 	this->flush();
 }
 
-template<class T> LkItem<T> * CLkList<T>::getItem(int pos) const {
+template<class T> LkItem<T> * CLkLst<T>::getItem(int pos) const {
 	if (!(m_pLastReferenced && pos > m_iLastReferencedIndex)) {
 		m_pLastReferenced = m_pFirst;
 		m_iLastReferencedIndex = 0;
@@ -30,7 +30,7 @@ template<class T> LkItem<T> * CLkList<T>::getItem(int pos) const {
 	return m_pLastReferenced;
 }
 
-template<class T> void CLkList<T>::add(int pos, T item) {
+template<class T> void CLkLst<T>::add(int pos, T item) {
 	if (pos == 0) {
 		m_pFirst = new LkItem<T>(item, m_pFirst);
 		m_pLast = m_pFirst;
@@ -52,7 +52,7 @@ template<class T> void CLkList<T>::add(int pos, T item) {
 	m_iLength++;
 }
 
-template<class T> T CLkList<T>::remove(int pos) {
+template<class T> T CLkLst<T>::remove(int pos) {
 	T result;
 	if (pos == 0) {
 		//handle this edge case simply
@@ -91,51 +91,51 @@ template<class T> T CLkList<T>::remove(int pos) {
 	return result;
 }
 
-template<class T> T CLkList<T>::get(int pos) const {
+template<class T> T CLkLst<T>::get(int pos) const {
 	return this->getItem(pos)->value;
 }
 
-template<class T> int CLkList<T>::length() const {
+template<class T> int CLkLst<T>::length() const {
 	return m_iLength;
 }
 
-template<class T> T* CLkList<T>::getPtr(int pos) const {
+template<class T> T* CLkLst<T>::getPtr(int pos) const {
 	return &(getItem(pos)->value);
 }
 
-template<class T> T CLkList<T>::pop() {
+template<class T> T CLkLst<T>::pop() {
 	return this->remove(length() - 1);
 }
 
-template<class T> void CLkList<T>::push(T item) {
+template<class T> void CLkLst<T>::push(T item) {
 	this->add(length(), item);
 }
 
-template<class T> void CLkList<T>::push(CLkList<T>& otherList) {
+template<class T> void CLkLst<T>::push(CLkLst<T>& otherList) {
 	for (int i = 0; i < otherList.length(); i++) {
 		this->push(otherList.get(i));
 	}
 }
 
-template<class T> T CLkList<T>::front() const {
+template<class T> T CLkLst<T>::front() const {
 	return (m_pFirst->value);
 }
 
-template<class T> T CLkList<T>::end() const {
+template<class T> T CLkLst<T>::end() const {
 	return (m_pLast->value);
 }
 
-template<class T> void CLkList<T>::flush() {
+template<class T> void CLkLst<T>::flush() {
 	//remove all link nodes from the heap
 	while (!this->isEmpty())
 		this->remove(0);
 }
 
-template<class T> void CLkList<T>::replace(int pos, T replacement) {
+template<class T> void CLkLst<T>::replace(int pos, T replacement) {
 	*(this->getPtr(pos)) = replacement;
 }
 
-template<class T> void CLkList<T>::flip() {
+template<class T> void CLkLst<T>::flip() {
 	int num = this->length();
 	if (num > 0) {
 		int half = num/2;

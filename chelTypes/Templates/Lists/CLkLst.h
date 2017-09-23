@@ -13,7 +13,7 @@ struct LkItem {
 };
 
 template< class T >
-class CLkList {
+class CLkLst {
 	
 private:
 	LkItem<T>* m_pFirst = nullptr;
@@ -33,12 +33,12 @@ public:
 	/**
 	 * @brief Default constructor builds an empty linked list.
 	 */
-	CLkList<T>();
+	CLkLst<T>();
 	
 	/**
 	 * @brief Destructor flushes the list
 	 */
-	~CLkList<T>();
+	~CLkLst<T>();
 	
 	/**
 	 * @brief Adds {item} to {this} at position {pos}.
@@ -102,7 +102,7 @@ public:
 	 * @restores {otherList}
 	 * @param otherList
 	 */
-	void push(CLkList<T>& otherList);
+	void push(CLkLst<T>& otherList);
 	
 	/**
 	 * @brief Retrieves the value at the front {this} without removing it.

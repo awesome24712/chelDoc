@@ -1,8 +1,6 @@
 #ifndef CHEL_RANDOM
 #define CHEL_RANDOM
 
-#define SOME_NUMBER 11
-
 void RandReport();
 
 void RandSeed();

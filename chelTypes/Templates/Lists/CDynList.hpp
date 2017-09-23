@@ -212,6 +212,26 @@ template<class T> CDynList<T> CDynList<T>::remove(int pos, int removedLength) {
 	return result;
 }
 
+template<class T> CDynList<T> CDynList<T>::removeUntil(T value) {
+	int endIndex = indexOf(value);
+	if (endIndex == -1) {
+		return remove(0, length());
+	} else {
+		remove(endIndex);
+		return removeByIndexes(0, endIndex);
+	}
+}
+
+template<class T> CDynList<CDynList<T>> CDynList<T>::removeUntilIterated(T value, int iterations) {
+	CDynList<CDynList<T>> result;
+	while (this->length() > 0 && iterations > 0) {
+		result.push(removeUntil(value));
+		
+		iterations--;
+	}
+	return result;
+}
+
 template<class T> CDynList<T> CDynList<T>::removeByIndexList(CDynList<int>& indexList) {
 	//TODO implement!
 	//Sort the list and then remove indexes at the end of the list first

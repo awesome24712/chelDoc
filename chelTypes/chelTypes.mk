@@ -13,10 +13,10 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Awesome
-Date                   :=17/07/2017
+Date                   :=23/09/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
-LinkerName             :=C:/TDM-GCC-32/bin/g++.exe
-SharedObjectLinkerName :=C:/TDM-GCC-32/bin/g++.exe -shared -fPIC
+LinkerName             :=C:/GCC7/mingw32/bin/g++.exe
+SharedObjectLinkerName :=C:/GCC7/mingw32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,7 +36,7 @@ ObjectsFileList        :="chelTypes.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=C:/TDM-GCC-32/bin/windres.exe
+RcCompilerName         :=C:/GCC7/mingw32/bin/windres.exe
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
@@ -49,13 +49,13 @@ LibPath                := $(LibraryPathSwitch).
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := C:/TDM-GCC-32/bin/ar.exe rcu
-CXX      := C:/TDM-GCC-32/bin/g++.exe
-CC       := C:/TDM-GCC-32/bin/gcc.exe
-CXXFLAGS :=  -g  -std=c++14  -D DEBUG $(Preprocessors)
+AR       := C:/GCC7/mingw32/bin/ar.exe rcu
+CXX      := C:/GCC7/mingw32/bin/g++.exe
+CC       := C:/GCC7/mingw32/bin/gcc.exe
+CXXFLAGS :=  -g  -std=c++1z  -fconcepts  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g $(Preprocessors)
 ASFLAGS  := 
-AS       := C:/TDM-GCC-32/bin/as.exe
+AS       := C:/GCC7/mingw32/bin/as.exe
 
 
 ##
@@ -64,7 +64,8 @@ AS       := C:/TDM-GCC-32/bin/as.exe
 CodeLiteDir:=C:\Program Files\CodeLite
 WXWIN:=C:/wxWidgets
 WXCFG:=gcc_dll/mswu
-Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_Character.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_CStringCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IntermediateDirectory)/Globals_GArgs.cpp$(ObjectSuffix) $(IntermediateDirectory)/Fields_CBitfield.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_CNameable.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_GNameList.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_Character.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_CStringCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IntermediateDirectory)/Globals_GArgs.cpp$(ObjectSuffix) $(IntermediateDirectory)/Fields_CBitfield.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_CNameable.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_GNameList.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(ObjectSuffix) $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) \
+	
 
 
 
@@ -168,6 +169,14 @@ $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(DependSuffix): FileIO/CStrin
 
 $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(PreprocessSuffix): FileIO/CStringScanner.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(PreprocessSuffix) FileIO/CStringScanner.cpp
+
+$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix): Templates/Networks/CTree.cpp $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/chelTypes/Templates/Networks/CTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(DependSuffix): Templates/Networks/CTree.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(DependSuffix) -MM Templates/Networks/CTree.cpp
+
+$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(PreprocessSuffix): Templates/Networks/CTree.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(PreprocessSuffix) Templates/Networks/CTree.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
