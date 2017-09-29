@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="chelDoc" Database="" Version="10.0.0">
-  <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="Yes"/>
+  <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="No"/>
   <Project Name="xmlHandler" Path="xmlHandler/xmlHandler.project" Active="No"/>
-  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="No"/>
+  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="Yes"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
   <Project Name="chelChess" Path="chelChess/chelChess.project" Active="No"/>
   <BuildMatrix>

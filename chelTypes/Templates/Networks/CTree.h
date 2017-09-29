@@ -20,14 +20,32 @@ private:
 	}
 };
 
+/**
+ * Represents a muteable tree structure.
+ * Values are implicitly reference type, such that any CTree can
+ * 		be passed as a variable without expensive deep copying.
+ * 
+ * The tree structure is maintained in memory for as long as there
+ * 		is any CTree value which references any node in the tree.
+ * 		ex. If one has a CTree which is a leaf, then the entire tree
+ * 			is still accesible via provided member functions.
+ * 
+ * @class CTree
+ * @author Awesome
+ * @date 23/09/2017
+ * @file CTree.h
+ * @brief 
+ */
+
 template <class T> class CTree {
 	friend class CTreeNode<T>;
-public:
+	friend class CDynList<T>;
+private:
 	Ptr<CTreeNode<T>> m_pNode;
 	
 	CTree<T>(Ptr<CTreeNode<T>> node);
 	
-	//privatize emptry constructor
+	//privatize empty constructor
 	//attempting to create a default-value treenode results
 	//in infinite recursion
 	CTree<T>() {}
@@ -98,6 +116,39 @@ public:
 	void			addChild(CTree<T>& otherTree);
 	
 	/**
+	 * @brief Checks if the given tree is a direct child of this
+	 * @param otherTree - the tree to look for
+	 * @return - whether or not otherTree is direct child of this
+	 */
+	inline bool 	hasChild(const CTree<T>& otherTree) const {
+		return m_pNode->m_children.contains(otherTree);
+	}
+	
+	/**
+	 * @brief Checks if the given value can be found in any direct
+	 * 		child of this.
+	 * @param value - the value to look for
+	 * @return - whether or not a child of this has value
+	 */
+	bool			hasChildValue(const T& value) const;
+	
+	/**
+	 * @brief Recursively checks if any child or subchild of this
+	 * 		is the given tree.
+	 * @param otherTree - the tree to look for
+	 * @return - whether or not the tree was found
+	 */
+	bool			hasChildRecurse(const CTree<T>& otherTree) const;
+	
+	/**
+	 * @brief Recursively checks if any child or subchild of this
+	 * 		has a value equal to given the value.
+	 * @param value - the value to look for
+	 * @return - whether or not it was found
+	 */
+	bool			hasChildValueRecurse(const T& value) const;
+	
+	/**
 	 * @brief Removes a child by index
 	 * @param index - the index of the child to be removed
 	 * @return - the removed child tree
@@ -156,6 +207,13 @@ public:
 	operator 		bool() { return m_pNode; }
 	
 	/**
+	 * @brief Retrieves the highest-level node at the
+	 * 		top of the tree.
+	 * @return - the root
+	 */
+	CTree<T>		getRoot() const;
+	
+	/**
 	 * @brief Retrieves the parent of {this}
 	 * @return the parent
 	 */
@@ -170,7 +228,7 @@ public:
 	 * @return Checks if this tree is the head of the tree.
 	 * 		A head of a tree does not have a parent.
 	 */
-	inline bool		isHead() const { return !hasParent(); }
+	inline bool		isRoot() const { return !hasParent(); }
 	
 	/**
 	 * @brief Links {this} as a child of the given parent
@@ -186,7 +244,18 @@ public:
 	 * @param t2
 	 * @return 
 	 */
-	static bool 	treesShareAncestor(const CTree<T>& t1, const CTree<T>& t2);
+	inline static bool 	treesShareAncestor(const CTree<T>& t1, const CTree<T>& t2) {
+		return t1.getRoot() == t2.getRoot();
+	}
+	
+	/**
+	 * @brief 
+	 * @param t1
+	 * @param t2
+	 * @requires - t1 and t2 share a common ancestor. Use treesShareAcestor(...) to check.
+	 * @return 
+	 */
+	static CTree<T>		lowestCommonAncestor(const CTree<T>& t1, const CTree<T>& t2);
 };
 
 void treeToString(CTree<String> t, String& dest, int indentlevel = 0);

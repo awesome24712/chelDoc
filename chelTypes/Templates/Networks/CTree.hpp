@@ -33,9 +33,35 @@ template<class T> CTree<T> CTree<T>::addChild(T value) {
 }
 
 template<class T> void CTree<T>::addChild(CTree<T>& otherTree) {
-	//TODO ensure trees don't share children!
-	
+	AssertTrue(otherTree.isRoot(), "For CTree<T>::addChild(CTree<T>& otherTree), otherTree has not parent");
 	otherTree.setParent(*this);
+}
+
+template<class T> bool CTree<T>::hasChildValue(const T& value) const {
+	bool hasValue = false;
+	for (int i = 0; i < numChildren() && !hasValue; i++)
+		hasValue = child(i).value() == value;
+	return hasValue;
+}
+
+template<class T> bool CTree<T>::hasChildRecurse(const CTree<T>& otherTree) const {
+	bool bHasChild = otherTree == *this;
+	
+	for (int i = 0; i < numChildren() && !bHasChild; i++) {
+		bHasChild = child(i).hasChildRecurse(otherTree);
+	}
+	
+	return bHasChild;
+}
+
+template<class T> bool CTree<T>::hasChildValueRecurse(const T& value) const {
+	bool bHasChildValue = this->value() == value;
+	
+	for (int i = 0; i < numChildren() && !bHasChildValue; i++) {
+		bHasChildValue = child(i).hasChildValueRecurse(value);
+	}
+	
+	return bHasChildValue;
 }
 
 template<class T> CTree<T> CTree<T>::removeChild(int index) {
@@ -69,26 +95,48 @@ template<class T> void CTree<T>::insertParent(CTree<T>& parent) {
 	parent.setParent(prevParent);
 }
 
+template<class T> CTree<T> CTree<T>::getRoot() const {
+	CTree<T> curParent = *this;
+	while (!curParent.isRoot())
+		curParent = curParent.getParent();
+	return curParent;
+}
+
 template<class T> void CTree<T>::setParent(CTree<T>& parent) {
+	AssertFalse(hasParent(), "In CTree<T>::setParent(CTree<T>&), this does not already have parent.");
+	
 	m_pNode->m_parent = parent;
 	parent.m_pNode->m_children.push(*this);
 }
 
-template<class T> bool CTree<T>::treesShareAncestor(const CTree<T>& t1, const CTree<T>& t2) {
-	bool foundMatch = false;
+template<class T> CTree<T> CTree<T>::lowestCommonAncestor(const CTree<T>& t1, const CTree<T>& t2) {
+	AssertTrue(treesShareAncestor(t1, t2), "Trees share ancestor");
+	
+	CTree<T> result;
 	
 	//this is kind of like pointer arithmetic except as an iterative singly-linked list of sorts
-	CTree<T> firstTreeParent = t1.getParent();
-	while (firstTreeParent && !foundMatch) {
-		CTree<T> secondTreeParent = t2.getParent();
-		while (secondTreeParent && !foundMatch) {
-			foundMatch = (firstTreeParent == secondTreeParent);
+	CTree<T> firstTreeParent = t1;
+	CTree<T> secondTreeParent = t2;
+	
+	bool bAlternateNextParent = false;
+	
+	//loop until we find a result
+	while (!result) {
+		if (firstTreeParent == secondTreeParent) {
+			result = firstTreeParent;
+			break;
+		}
+		
+		if (bAlternateNextParent) {
+			firstTreeParent = firstTreeParent.getParent();
+		}
+		else {
 			secondTreeParent = secondTreeParent.getParent();
 		}
-		firstTreeParent = firstTreeParent.getParent();
+		bAlternateNextParent = !bAlternateNextParent;
 	}
 	
-	return foundMatch;
+	return result;
 }
 
 
