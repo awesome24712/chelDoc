@@ -12,7 +12,7 @@ Vector::Vector(float x) {
 	Y = Z = 0.0f;
 }
 
-Vector::Vector(float x, float y, float z) {
+Vector::Vector(float x, float y, float z = 0) {
 	X = x; Y = y; Z = z;
 }
 

@@ -19,6 +19,15 @@ void BitBoard::set(Coord2D pos, bool value) {
 	m_pBoardRows[pos.Y][pos.X] = value;
 }
 
+BitBoard BitBoard::operator ~() {
+	BitBoard result(m_iHeight, m_iWidth);
+	Coord2D pos;
+	for (pos.Y = 0; pos.Y < height(); pos.Y++)
+		for (pos.X = 0; pos.X < width(); pos.X++)
+			result.set(pos, !this->get(pos));
+	return result;
+}
+
 BitBoard BitBoard::operator &(const BitBoard& other) {
 	//AssertTrue(other.width() == this->width() && other.height() == this->height(), "BitBoard operands are of equal size in operator &");
 	BitBoard result(m_iHeight, m_iWidth);

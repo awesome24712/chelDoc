@@ -1,1 +1,1 @@
-./Debug/Vector_Vector.cpp.o ./Debug/Vector_Vector2D.cpp.o ./Debug/BitBoard_BitBoard.cpp.o ./Debug/Coord_Coord2D.cpp.o ./Debug/Color_Color.cpp.o ./Debug/Rand_Rand.cpp.o   
+./Debug/perfTest.cpp.o ./Debug/Vector_Vector.cpp.o ./Debug/Vector_Vector2D.cpp.o ./Debug/BitBoard_BitBoard.cpp.o ./Debug/Coord_Coord2D.cpp.o ./Debug/Color_Color.cpp.o ./Debug/Rand_Rand.cpp.o   

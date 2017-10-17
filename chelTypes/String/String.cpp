@@ -93,8 +93,8 @@ String& String::operator=(const char * str) {
 	return *this;
 }
 
-bool String::operator ==(const String& other) {
-	return this->indexOf(other) != -1 && this->length() == other.length();
+bool String::operator ==(const String& other) const {
+	return this->length() == other.length() && (this->length() == 0 || this->indexOf(other) != -1);
 }
 
 String String::operator+(const char * str) {

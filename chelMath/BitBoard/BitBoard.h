@@ -26,6 +26,8 @@ public:
 	BitBoard operator |(const BitBoard& other);
 	BitBoard& operator &=(const BitBoard& other);
 	BitBoard& operator |=(const BitBoard& other);
+	
+	BitBoard operator ~();
 };
 
 #endif //ChEL_BITBOARD_H

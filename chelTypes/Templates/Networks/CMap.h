@@ -15,6 +15,9 @@ public:
 	}
 	inline K key() const { return m_key; }
 	inline V value() const { return m_value; }
+	inline V* valuePtr() { return &m_value; }
+	inline bool operator ==(const SMapPair<K,V>& other) const { return m_key == other.m_key && m_value == other.m_value; }
+	inline bool operator !=(const SMapPair<K,V>& other) const { return !(*this == other); }
 };
 
 /**
@@ -57,6 +60,7 @@ public:
 	/**
 	 * @brief Removes the given key from the map
 	 * @param key - the key to remove
+	 * @requires - the key is inside the map.
 	 * @return - the value associated with the key
 	 */
 	V remove(K key);
@@ -67,12 +71,21 @@ public:
 	void flush();
 	
 	/**
+	 * @brief Finds address of value associated with the given key
+	 * @param key - the key whose value to find
+	 * @return - the address of the value bound to the key
+	 * @requires - the key exists in the map
+	 */
+	V* valuePtr(K key) const;
+	
+	/**
 	 * @brief Finds the value associated with the given key
 	 * @param key - the key whose value to find
 	 * @return - the value bound to the key
 	 * @requires - the key exists in the map
 	 */
-	V value(K key) const;
+	inline V value(K key) const { return *valuePtr(key); }
+	
 	
 	/**
 	 * @brief Finds the first key bound to the given value
@@ -110,6 +123,8 @@ public:
 		}
 		return result;
 	}
+	
+	bool operator ==(const CMap<K,V>& other) const;
 };
 
 #endif //CHEL_MAP_H

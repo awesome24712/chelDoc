@@ -9,5 +9,6 @@
 #include "CList.hpp"
 #include "CLkLst.hpp"
 #include "CDblLkLst.hpp"
+#include "IList.h"
 
 #endif //CHEL_LIST_TEMPLATES_H

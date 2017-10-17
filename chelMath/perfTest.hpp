@@ -1,15 +1,9 @@
-#pragma once
+#ifndef CHEL_PERFTEST_HPP
+#define CHEL_PERFTEST_HPP
+
 #include <stdio.h>
 #include <ctime>
 
-double perfTest(void (*procedure)(void), const char * testName) {
-	std::clock_t start = std::clock();
-	
-	(*procedure)();
-	
-	double duration = (std::clock() - start) / CLOCKS_PER_SEC;
-	
-	printf("----Completed task \"%s\" in %.3f seconds------", testName, duration);
-	
-	return duration;
-}
+double perfTest(void (*procedure)(void), const char * testName);
+
+#endif //CHEL_PERFTEST_HPP

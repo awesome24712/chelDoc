@@ -10,16 +10,11 @@
 #include "Array/CArray.hpp"
 
 int main() {
-	CTree<String> pTree("Hello World!");
-	
-	CTree<String> firstChild = pTree.addChild("First Child!");
-	firstChild.addChild("1");
-	firstChild.addChild("2");
-	firstChild.addChild("3").addChild("3.5");
-	
-	pTree.addChild("Second Child!").addChild("2.5");
-	
-	String stringRep;
-	treeToString(pTree, stringRep);
-	printf(stringRep);
+	printf("Begin main\n");
+	{
+		CTreeHandle<int> t = 3;
+		t->addChild(4)->addChild(67);
+		printf("%i\n", t->child(0)->value());
+	}
+	printf("End main\n");
 }

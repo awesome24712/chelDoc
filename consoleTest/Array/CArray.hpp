@@ -8,7 +8,7 @@
 template<class T>
 #if CHEL_ARRAY_HPP == 2
 #define CArray ICArray
-class ICArray : public IArray
+class ICArray : public IList
 #else
 #undef CArray
 class CArray
@@ -50,7 +50,7 @@ public:
 #define CHEL_ARRAY_HPP 1
 #elif CHEL_ARRAY_HPP == 1
 
-template<class T1, class T2> requires IIArray<T1> && IIArray<T2>
+template<class T1, class T2> requires IIList<T1> && IIList<T2>
 bool arrayequals(T1 pList1, T2 pList2) {
 	bool result = false;
 	if (pList1.length() == pList2.length()) {
@@ -63,7 +63,7 @@ bool arrayequals(T1 pList1, T2 pList2) {
 	return result;
 }
 
-template<class T> requires IIArray<T>
+template<class T> requires IIList<T>
 void printList(T* pList) {
 	for (int i = 0; i < pList->length(); i++) {
 		printf("%c", *(pList->getByte(i)));

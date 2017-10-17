@@ -32,14 +32,20 @@
       <File Name="Templates/Lists/CDblLkLst.hpp"/>
       <File Name="Templates/Lists/CLkLst.h"/>
       <File Name="Templates/Lists/CLkLst.hpp"/>
+      <File Name="Templates/Lists/IList.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="Networks">
-      <File Name="Templates/Networks/CTree.h"/>
-      <File Name="Templates/Networks/CTree.hpp"/>
       <File Name="Templates/Networks/Net_Templates.hpp"/>
       <File Name="Templates/Networks/CMap.h"/>
       <File Name="Templates/Networks/CMap.hpp"/>
-      <File Name="Templates/Networks/CTree.cpp"/>
+      <File Name="Templates/Networks/CTree.cpp" ExcludeProjConfig="Debug"/>
+      <VirtualDirectory Name="HashMap">
+        <File Name="Templates/Networks/HashMap/CHMap.hpp"/>
+      </VirtualDirectory>
+      <File Name="Templates/Networks/CTreeOld.hpp"/>
+      <File Name="Templates/Networks/CTreeOld.h"/>
+      <File Name="Templates/Networks/CTree.h"/>
+      <File Name="Templates/Networks/CTree.hpp"/>
     </VirtualDirectory>
     <File Name="Templates/Templates.hpp"/>
     <VirtualDirectory Name="Fields">
@@ -73,6 +79,11 @@
     <File Name="FileIO/CScanner.h"/>
     <File Name="FileIO/CStringScanner.cpp"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="Console">
+    <VirtualDirectory Name="ConVar">
+      <File Name="Console/ConVar/IConVar.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -83,7 +94,7 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( MinGW_GCC_7.1 )" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Debug" CompilerType="GCC32" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g; -std=c++1z; -fconcepts; -D DEBUG" C_Options="-g" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>

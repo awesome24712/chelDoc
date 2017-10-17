@@ -1,263 +1,158 @@
-#ifndef CHEL_TREE_H
-#define CHEL_TREE_H
 #include "../Lists/CDynList.hpp"
-#include "../Wrappers/Ptr.hpp"
-#include "../../String/String.h"
 
-template<class T> class CTree;
+template<class T> class CTreeHandle;
+template<class T> class Ptr;
 
-template <class T> class CTreeNode {
-	friend class CTree<T>;
+template<class T>
+class CTree {
+	friend class CTreeHandle<T>;
+	friend class Ptr<CTree<T>>;
 private:
-	T m_value;
-	CTree<T> m_parent;
-	CDynList<CTree<T>> m_children;
+	T 					m_tValue;
+	CTree<T>* 			m_pParent;
+	CDynList<CTree<T>*> m_aChildren;
 	
-	CTreeNode<T>() {}
-	CTreeNode<T>(T value) { m_value = value; }
-	CTreeNode<T>(T value, CTree<T> parent) {
-		m_parent = parent; m_value = value;
+	CTree(T value) {
+		m_tValue = value;
 	}
-};
-
-/**
- * Represents a muteable tree structure.
- * Values are implicitly reference type, such that any CTree can
- * 		be passed as a variable without expensive deep copying.
- * 
- * The tree structure is maintained in memory for as long as there
- * 		is any CTree value which references any node in the tree.
- * 		ex. If one has a CTree which is a leaf, then the entire tree
- * 			is still accesible via provided member functions.
- * 
- * @class CTree
- * @author Awesome
- * @date 23/09/2017
- * @file CTree.h
- * @brief 
- */
-
-template <class T> class CTree {
-	friend class CTreeNode<T>;
-	friend class CDynList<T>;
-private:
-	Ptr<CTreeNode<T>> m_pNode;
+	~CTree() {
+		for (int i = 0; i < m_aChildren.length(); i++) {
+			delete m_aChildren.get(i);
+		}
+		printf("Destorying tree node\n");
+	}
 	
-	CTree<T>(Ptr<CTreeNode<T>> node);
 	
-	//privatize empty constructor
-	//attempting to create a default-value treenode results
-	//in infinite recursion
-	CTree<T>() {}
 public:
 	/**
-	 * Builds a new tree with the given initial value
-	 * @param value - the initial value of the tree
+	 * @brief Retrieves the value at this node.
+	 * @return - the value.
 	 */
-	CTree<T>(T value);
+	T value() const { return m_tValue; }
 	
 	/**
-	 * @brief Builds a new tree with the given value
-	 * 		attached to a given parent
-	 * @param parent - the parent to attach to
-	 * @param value - the value of this new node
+	 * @brief Retrieves the address of the value at this node;
+	 * @return - the address.
 	 */
-	CTree<T>(const CTree<T>& parent, T value);
-	
-	//TODO: write up recursive reference-counting algorithm
-	//	that destroys the entire tree structure when
-	//	there are no external references
-	~CTree<T>() {}
-
-	/**
-	 * @brief Retrieves the value contained at this tree node
-	 * @return the value
-	 */
-	inline T 		value() const { return m_pNode->m_value; }
+	T* valuePtr() const { return &m_tValue; }
 	
 	/**
-	 * @brief Retrieves address of the value contained at this node
-	 * @return the address of the value
+	 * @brief Sets the value at this node to the given value.
+	 * @param value - the new value
 	 */
-	inline T*		valuePtr() const { return &(m_pNode->m_value); }
+	void setValue(const T& value) { m_tValue = value; }
 	
 	/**
-	 * @brief Sets the value at this node to the given value
-	 * @param value - the overriding value
+	 * @brief Given a procedure which takes a pointer to T as a parameter,
+	 * 	dispatches the procedure onto the value at this and onto all children.
+	 * 	Order is depth-first.
 	 */
-	inline void		set(T value) { m_pNode->m_value = value; }
+	void dispatchProcedure(void (*pProcedure)(T*));
 	
 	/**
-	 * @brief Retrieves a child of this node by index
-	 * @param index - the index of the child
-	 * @requires {index} is a valid index
-	 * @return the child
+	 * @brief Given a function which takes a pointer to T and returns R,
+	 * 		dispatches the function onto the value of this and onto all
+	 * 		children, recursively. Returns a tree of results matching the
+	 * 		original shape and ordering of the tree at this.
+	 * @return - the tree of results
 	 */
-	CTree<T>		child(int index) const;
+	template<class R> CTreeHandle<R> dispatchFunction(R (*pFunction)(T*));
 	
 	/**
-	 * @brief Builds a valid default-value child in-place
-	 * @return the created child
+	 * @brief Pushes a child onto this.
+	 * @param value - the value of the child node.
+	 * @return - address of added child.
 	 */
-	CTree<T>		addChild();
-	
-	/**
-	 * @brief Adds a child with the given value
-	 * @param value - the value of the child
-	 * @return - the created child
-	 */
-	CTree<T>		addChild(T value);
-	
-	/**
-	 * @brief Adds the given tree as a child of this
-	 * @param otherTree - the other tree
-	 * @requires - {otherTree} does not already have a parent
-	 */
-	void			addChild(CTree<T>& otherTree);
-	
-	/**
-	 * @brief Checks if the given tree is a direct child of this
-	 * @param otherTree - the tree to look for
-	 * @return - whether or not otherTree is direct child of this
-	 */
-	inline bool 	hasChild(const CTree<T>& otherTree) const {
-		return m_pNode->m_children.contains(otherTree);
+	CTree<T>*	addChild(const T& value) {
+		CTree<T>* pChild = new CTree<T>(value);
+		pChild->m_pParent = this;
+		m_aChildren.push(pChild);
+		return m_aChildren.getEnd(0);
 	}
 	
 	/**
-	 * @brief Checks if the given value can be found in any direct
-	 * 		child of this.
-	 * @param value - the value to look for
-	 * @return - whether or not a child of this has value
-	 */
-	bool			hasChildValue(const T& value) const;
-	
-	/**
-	 * @brief Recursively checks if any child or subchild of this
-	 * 		is the given tree.
-	 * @param otherTree - the tree to look for
-	 * @return - whether or not the tree was found
-	 */
-	bool			hasChildRecurse(const CTree<T>& otherTree) const;
-	
-	/**
-	 * @brief Recursively checks if any child or subchild of this
-	 * 		has a value equal to given the value.
-	 * @param value - the value to look for
-	 * @return - whether or not it was found
-	 */
-	bool			hasChildValueRecurse(const T& value) const;
-	
-	/**
-	 * @brief Removes a child by index
-	 * @param index - the index of the child to be removed
-	 * @return - the removed child tree
-	 */
-	CTree<T>		removeChild(int index);
-	
-	/**
-	 * @brief Breaks references between parent and this
-	 * @return - the removed parent
-	 */
-	CTree<T>		removeParent();
-	
-	/**
-	 * @brief Inserts a default-value parent.
-	 * 		If {this} already has a parent, then the new
-	 * 		parent becomes a child of the old parent
-	 * @return - the new parent
-	 */
-	CTree<T>		insertParent();
-	
-	/**
-	 * @brief Inserts a default-value parent.
-	 * 		If {this} already has a parent, then the new
-	 * 		parent becomes a child of the old parent
-	 * @param value - the value of the new parent
-	 * @return - the new parent
-	 */
-	CTree<T>		insertParent(T value);
-	
-	/**
-	 * @brief Inserts the given tree as a parent of {this}
-	 * 		If {this} already has a parent, then the new
-	 * 		parent becomes a child of the old parent
-	 * 		The given parent maintains its other children
-	 * @param parent - the new parent of {this}
-	 * @requires - {this} does not already have a parent
-	 */
-	void 			insertParent(CTree<T>& parent);
-	
-	/**
-	 * @return - the number of children
-	 */
-	inline int 		numChildren() const { return m_pNode->m_children.length(); }
-	
-	/**
-	 * @brief Checks if this node is a leaf. A leaf is defined as a node
-	 * 		that has no children.
-	 * @return - if {this} is a leaf
-	 */
-	inline bool 	isLeaf() const { return numChildren() == 0; }
-	
-	/**
-	 * @brief Implicit conversion to bool checks
-	 * 		if this tree is non-null
-	 */
-	operator 		bool() { return m_pNode; }
-	
-	/**
-	 * @brief Retrieves the highest-level node at the
-	 * 		top of the tree.
-	 * @return - the root
-	 */
-	CTree<T>		getRoot() const;
-	
-	/**
-	 * @brief Retrieves the parent of {this}
-	 * @return the parent
-	 */
-	inline CTree<T> getParent() const { return m_pNode->m_parent; }
-	
-	/**
-	 * @return - whether or not this tree has a parent
-	 */
-	inline bool 	hasParent() const { return getParent(); }
-	
-	/**
-	 * @return Checks if this tree is the head of the tree.
-	 * 		A head of a tree does not have a parent.
-	 */
-	inline bool		isRoot() const { return !hasParent(); }
-	
-	/**
-	 * @brief Links {this} as a child of the given parent
-	 * @requires {this} does not already have a parent
-	 * @param parent
-	 */
-	void 			setParent( CTree<T>& parent );
-	
-	/**
-	 * @brief Checks if any of the ancestors of t1 are also ancestors
-	 * 		of t2, i.e. if t1 and t2 are parts of a larger tree structure
-	 * @param t1
-	 * @param t2
+	 * @brief Retrieves address of child, by index
+	 * @param index
 	 * @return 
 	 */
-	inline static bool 	treesShareAncestor(const CTree<T>& t1, const CTree<T>& t2) {
-		return t1.getRoot() == t2.getRoot();
+	CTree<T>* 	child(int index) const {
+		return m_aChildren.get(index);
 	}
 	
 	/**
-	 * @brief 
-	 * @param t1
-	 * @param t2
-	 * @requires - t1 and t2 share a common ancestor. Use treesShareAcestor(...) to check.
-	 * @return 
+	 * @brief Given a value, returns the index of the first found child
+	 * 		whose value() matches. Returns -1 otherwise.
+	 * @param childValue - the value to look for
+	 * @return - the index of the firstfound child with that value, -1 otherwise.
 	 */
-	static CTree<T>		lowestCommonAncestor(const CTree<T>& t1, const CTree<T>& t2);
+	int 		indexOfChild(const T& childValue) const;
+	
+	/**
+	 * @brief Detaches a child ang gives it back as a CTreeHandle
+	 * @param index - the index of the child to remove
+	 * @return - a CTreeHandle for that child
+	 */
+	CTreeHandle<T> removeChild(int index) { return CTreeHandle(m_aChildren.remove(index)); }
+	
+	/**
+	 * @brief Inserts a node between this and the children of this.
+	 * @updates this, this.children
+	 * @param value - the value at the new node
+	 * @return - address of the new node
+	 */
+	CTree<T>* insertSubParent(const T& value);
+	
+	/**
+	 * @brief Allocates more space children. This happens automatically anyway
+	 * 			but doing it manually can improve performance.
+	 * @perf Use this if you are about to add more children, and you know
+	 * 		about how many you will add.
+	 * 		Larger amounts will allow for faster growing/shrinking, but take
+	 * 		up more memory.
+	 * @param newSpace - the number of extra children to allocate for.
+	 */
+	void reserve(int newSpace) {
+		m_aChildren.reserve(newSpace);
+	}
+	
+	/**
+	 * @brief Modifiers the amount by which extra space is reserved when
+	 * 		adding additional children to this requires re-allocation
+	 * 		of the array. Larger values allow for faster adding/removing, but
+	 * 		take up more memory.
+	 * @perf Use larger values when the expected number of children is small,
+	 * 		small values otherwise.
+	 * @param iBuffer - the amount by which to grow
+	 */
+	void setReserveBuffer(int iBufferSize) {
+		m_aChildren.setReserveBuffer(iBufferSize);
+	}
+	
 };
 
-void treeToString(CTree<String> t, String& dest, int indentlevel = 0);
-
-#endif //CHEL_TREE_H
+template<class T>
+class CTreeHandle {
+	friend class CTree<T>;
+private:
+	CTreeHandle(CTree<T>* pTree) {
+		m_pNode = pTree;
+	}
+	
+public:
+	Ptr<CTree<T>> m_pNode;
+	
+	CTreeHandle(const T& value) {
+		m_pNode = new CTree<T>(value);
+	}
+	
+	~CTreeHandle() {
+		printf("Destroying tree handle\n");
+	}
+	
+	CTree<T>& get() { return *m_pNode; }
+	
+	operator CTree<T>*() const { return m_pNode; }
+	operator CTree<T>&() const { return *m_pNode; } 
+	CTree<T>* operator->() const { return m_pNode; }
+	CTree<T>& operator*() const { return *m_pNode; }
+};

@@ -3,7 +3,7 @@ Debug/String_CStringCase.cpp.o: String/CStringCase.cpp \
  String/String.h String/../Templates/Lists/CDynList.hpp \
  String/../Templates/Lists/CDynList.h \
  String/../Templates/Lists/../../DebugTools/Assertions.h \
- ../chelMath/math.hpp
+ ../chelMath/math.hpp ../chelMath/CBase/CBase.h
 
 String/CStringCase.h:
 
@@ -18,3 +18,5 @@ String/../Templates/Lists/CDynList.h:
 String/../Templates/Lists/../../DebugTools/Assertions.h:
 
 ../chelMath/math.hpp:
+
+../chelMath/CBase/CBase.h:

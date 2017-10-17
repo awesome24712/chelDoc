@@ -74,7 +74,7 @@ public:
 	
 	String& operator= (const char* str);
 	
-	bool operator==(const String& other);
+	bool operator==(const String& other) const;
 	
 	String operator+(const char* str);
 	

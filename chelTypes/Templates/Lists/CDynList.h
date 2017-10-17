@@ -1,6 +1,8 @@
 #ifndef CHEL_DYNLIST_H
 #define CHEL_DYNLIST_H
 
+#include "../chelMath/chelMath.hpp"
+
 class String;
 	/**
 	 * @class CDynList
@@ -272,7 +274,7 @@ public:
 	 * @param value - the value to look for.
 	 * @return -1 if not found, otherwise the index of the first equal element 
 	 */
-	int indexOf(T value) const;
+	int indexOf(const T& value) const;
 	int indexOf(const CDynList<T>& other) const;
 	
 	int indexOfAnyOf(const CDynList<T>& other) const;
@@ -283,6 +285,13 @@ public:
 	inline bool contains(T value) const { return indexOf(value) != -1; }
 	inline bool contains(const CDynList<T>& other) const { return indexOf(other) != -1; }
 	bool 		containsAnyOf(const CDynList<T>& other) const;
+	
+	/**
+	 * @brief Tests that every element in other is also in this
+	 * @param other - the list of values to look for
+	 * @return - whether or not they were all found
+	 */
+	bool		containsAsSubSet(const CDynList<T>& other) const;
 	
 	/**
 	 * @brief Returns by deep-copied value a sublist from two indexes.
@@ -393,16 +402,19 @@ public:
 	 * @param procedure - the procedure to call for each item
 	 */
 	void dispatchProcedure( void (*procedure)(T*) );
+	//void dispatchProcedure( void (T::* procedure)());
 	
 	/**
 	 * @brief Given a pointer to a function which takes T* as a parameter
 	 * 		and returns R, calls the function with each element in the list,
-	 * 		and dumps the return values into the returned list
+	 * 		and dumps the return values into the given list
 	 * 		Call order is from first element to last element.
 	 * @param function - the function to call
-	 * @return - the list of results
+	 * @param dest - where the results are dumped into
 	 */
-	template<class R> CDynList<R> dispatchFunction( R (*function)(T*) );
+	template<class R> void dispatchFunction( R (*function)(T*), CDynList<R>& dest );
+	//template<class R> CDynList<R> dispatchFunction( R (T::* function)());
+	
 	
 	/**
 	 * @brief Implicit conversion to a pointer to the first
@@ -410,12 +422,15 @@ public:
 	 */
 	operator T*();
 	
-	bool operator==(const CDynList<T>& other);
+	bool operator==(const CDynList<T>& other) const;
 	
 	CDynList<T>& operator=(const CDynList<T>& str);
 	
 	CDynList<T> operator+(const CDynList<T>& other);
 	
 	CDynList<T>& operator+=(const CDynList<T>& other);
+	
+	inline const char* 	hashSource() const { return (const char*) m_array; }
+	inline uint32		hashLength() const { return (unsigned int) length(); }
 };
 #endif //CHEL_DYNLIST_H

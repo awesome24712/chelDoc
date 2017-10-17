@@ -5,18 +5,18 @@
 ## Debug
 ProjectName            :=consoleTest
 ConfigurationName      :=Debug
-WorkspacePath          :=C:/Users/Awesome/chelDoc
-ProjectPath            :=C:/Users/Awesome/chelDoc/consoleTest
+WorkspacePath          :=C:/Users/Chel/source/chelDoc
+ProjectPath            :=C:/Users/Chel/source/chelDoc/consoleTest
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Awesome
-Date                   :=23/09/2017
+User                   :=Chel
+Date                   :=11/10/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
-LinkerName             :=C:/GCC7/mingw32/bin/g++.exe
-SharedObjectLinkerName :=C:/GCC7/mingw32/bin/g++.exe -shared -fPIC
+LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
+SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,7 +36,7 @@ ObjectsFileList        :="consoleTest.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=C:/GCC7/mingw32/bin/windres.exe
+RcCompilerName         :=C:/MinGW_GCC_7.1/mingw32/bin/windres.exe
 LinkOptions            :=  
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch)../chelTypes 
 IncludePCH             := 
@@ -49,21 +49,19 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := C:/GCC7/mingw32/bin/ar.exe rcu
-CXX      := C:/GCC7/mingw32/bin/g++.exe
-CC       := C:/GCC7/mingw32/bin/gcc.exe
+AR       := C:/MinGW_GCC_7.1/mingw32/bin/ar.exe rcu
+CXX      := C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
+CC       := C:/MinGW_GCC_7.1/mingw32/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall -std=c++1z  -fconcepts  -D DEBUG $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := C:/GCC7/mingw32/bin/as.exe
+AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-WXWIN:=C:/wxWidgets
-WXCFG:=gcc_dll/mswu
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) 
 
 
@@ -96,7 +94,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Awesome/chelDoc/consoleTest/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/consoleTest/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
 

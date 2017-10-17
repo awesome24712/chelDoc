@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="chelDoc" Database="" Version="10.0.0">
-  <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="No"/>
+  <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="Yes"/>
   <Project Name="xmlHandler" Path="xmlHandler/xmlHandler.project" Active="No"/>
-  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="Yes"/>
+  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="No"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
   <Project Name="chelChess" Path="chelChess/chelChess.project" Active="No"/>
+  <Project Name="chelTester" Path="chelTester/chelTester.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -13,6 +14,7 @@
       <Project Name="consoleTest" ConfigName="Debug"/>
       <Project Name="xmlHandler" ConfigName="Debug"/>
       <Project Name="chelChess" ConfigName="Debug"/>
+      <Project Name="chelTester" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -21,6 +23,7 @@
       <Project Name="chelTypes" ConfigName="Release"/>
       <Project Name="chelMath" ConfigName="Release"/>
       <Project Name="chelChess" ConfigName="Release"/>
+      <Project Name="chelTester" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

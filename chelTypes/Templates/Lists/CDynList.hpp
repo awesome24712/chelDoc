@@ -149,7 +149,7 @@ template<class T> bool CDynList<T>::addUnique(int pos, T value) {
 
 template<class T> T CDynList<T>::remove(int pos) {
 	AssertTrue(length() > 0, "No removal from empty list via CDynList<T>::remove(int)");
-	AssertTrue(pos > 0 && pos < length(), "Valid index for removing from list via CDynList<T>::remove(int)");
+	AssertTrue(pos >= 0 && pos < length(), "Valid index for removing from list via CDynList<T>::remove(int)");
 	
 	//absolute position in the array
 	int absolutePos = m_iStartIndex + pos;
@@ -181,7 +181,7 @@ template<class T> T CDynList<T>::remove(int pos) {
 }
 
 template<class T> CDynList<T> CDynList<T>::remove(int pos, int removedLength) {
-	AssertTrue(pos >= 0 && pos < length(), "Valid array index for CDynList<T>::remove(int,int)");
+	AssertTrue(pos >= 0 && (pos < length() || length() == 0), "Valid array index for CDynList<T>::remove(int,int)");
 	AssertTrue(pos + removedLength <= length(), "Range of removed array falls within [0,length] for CDynList<T>::remove(int,int)");
 	
 	//build returned list
@@ -268,7 +268,7 @@ template<class T> int CDynList<T>::replaceMatches(T find, T replacement) {
 	return nReplacemnts;
 }
 
-template<class T> int CDynList<T>::indexOf(T value) const {
+template<class T> int CDynList<T>::indexOf(const T& value) const {
 	int foundIndex = -1;
 	for (int i = 0; i < length(); i++) {
 		if (get(i) == value) {
@@ -284,23 +284,28 @@ template<class T> int CDynList<T>::indexOf(const CDynList<T>& other) const {
 	int foundIndex = -1;
 	bool foundLast = false;
 	
-	if (other.length() <= length() && !other.isEmpty()) {
+	if (other.length() == 1)
+		foundIndex = this->indexOf(other.get(0));
+	else if (other.length() <= length() && !other.isEmpty()) {
 		for (int i = 0; i < length() && !foundLast; i++) {
 			//if we've already started checking matches
 			if (foundFirst) {
-				if (get(i) != other.get(i - foundIndex)) {
+				if (!(get(i) == other.get(i - foundIndex))) {
 					foundFirst = false;
 					foundIndex = -1;
-				} else if ((i - foundIndex + 1) == other.length()) {
+				}
+				else if ((i - foundIndex + 1) == other.length()) {
 					foundLast = true; //completion
 				}
 			}
 			//check for start of next match
-			 if (get(i) == other.get(0) && !foundFirst) {
+			if (get(i) == other.get(0) && !foundFirst) {
 				foundFirst = true;
 				foundIndex = i;
 			}
 		}
+		if (!foundLast)
+			foundIndex = -1;
 	}
 	return foundIndex;
 }
@@ -332,23 +337,28 @@ template<class T> int CDynList<T>::indexOfBounded(const CDynList<T>& other, int 
 	int foundIndex = -1;
 	bool foundLast = false;
 	
-	if (other.length() <= length() && !other.isEmpty()) {
+	if (other.length() == 1)
+		foundIndex = this->indexOfBounded(other.get(0), start, xEnd);
+	else if (other.length() <= length() && !other.isEmpty()) {
 		for (int i = start; i < xEnd && !foundLast; i++) {
 			//if we've already started checking matches
 			if (foundFirst) {
-				if (get(i) != other.get(i - foundIndex)) {
+				if (!(get(i) == other.get(i - foundIndex))) {
 					foundFirst = false;
 					foundIndex = -1;
-				} else if ((i - foundIndex + 1) == other.length()) {
+				}
+				else if ((i - foundIndex + 1) == other.length()) {
 					foundLast = true; //completion
 				}
 			}
 			//check for start of next match
-			 if (get(i) == other.get(0) && !foundFirst) {
+			if (get(i) == other.get(0) && !foundFirst) {
 				foundFirst = true;
 				foundIndex = i;
 			}
 		}
+		if (!foundLast)
+			foundIndex = -1;
 	}
 	return foundIndex;
 }
@@ -361,6 +371,16 @@ template<class T> bool CDynList<T>::containsAnyOf(const CDynList<T>& other) cons
 		index++;
 	}
 	return bFound;
+}
+
+template<class T> bool CDynList<T>::containsAsSubSet(const CDynList<T>& other) const {
+	bool bIsSubSet = true;
+	
+	for (int i = 0; i < other.length() && bIsSubSet; i++) {
+		bIsSubSet = this->contains(other.get(i));
+	}
+	
+	return bIsSubSet;
 }
 
 template<class T> CDynList<T> CDynList<T>::subString(int start, int end) {
@@ -401,11 +421,13 @@ template<class T> void CDynList<T>::rotate(int numRotations) {
 }
 
 template<class T> void CDynList<T>::flush() {
-	bool initialTrimState = getAutoTrim();
-	setAutoTrim(false);
-	remove(0, length());
-	trim();
-	setAutoTrim(initialTrimState);
+	if (length() > 0) {
+		bool initialTrimState = getAutoTrim();
+		setAutoTrim(false);
+		remove(0, length());
+		trim();
+		setAutoTrim(initialTrimState);
+	}
 }
 
 template<class T> int CDynList<T>::removeBannedElement(const T& element) {
@@ -498,14 +520,29 @@ template<class T> void CDynList<T>::dispatchProcedure(void (*procedure)(T*)) {
 		(*procedure)(getPtr(i));
 }
 
-template<class T> template<class R> CDynList<R> CDynList<T>::dispatchFunction(R (*function)(T*)) {
+/*template<class T> void CDynList<T>::dispatchProcedure(void (T::* procedure)()) {
+	int len = length();
+	for (int i = 0; i < len; i++)
+		(getPtr(i))->(*procedure)();
+}*/
+
+template<class T> template<class R> void CDynList<T>::dispatchFunction(R (*function)(T*), CDynList<R>& dest) {
+	//build result list
+	dest.flush();
+	dest.reserve(this->length() - dest.reservedLength());
+	int len = length();
+	for (int i = 0; i < len; i++)
+		dest.push((*function)(getPtr(i)));
+}
+
+/*template<class T> template<class R> CDynList<R> CDynList<T>::dispatchProcedure((R)(T::* function)()) {
 	//build result list
 	CDynList<R> result(this->length());
 	int len = length();
 	for (int i = 0; i < len; i++)
-		result.set(i, (*function)(getPtr(i)));
+		result.set(i, getPtr(i)->(*function)());
 	return result;
-}
+}*/
 
 template<class T> CDynList<T>::operator T*() {
 	//assert that the string is null-terminated
@@ -513,8 +550,8 @@ template<class T> CDynList<T>::operator T*() {
 	return m_array + m_iStartIndex;
 }
 
-template<class T> bool CDynList<T>::operator ==(const CDynList<T>& other) {
-	return this->length == other.length() && this->contains(other);
+template<class T> bool CDynList<T>::operator ==(const CDynList<T>& other) const {
+	return this->length() == other.length() && (this->length() == 0 ||this->indexOf(other) != -1);
 }
 
 template<class T>CDynList<T>& CDynList<T>::operator =(const CDynList<T>& str) {

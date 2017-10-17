@@ -6,7 +6,7 @@
 
 #define Node SDLkNode
 
-template<class T> Node<T>* CDblLkLst<T>::knownNodeClosestToIndex(int index, int& ldResultIndex) {
+template<class T> Node<T>* CDblLkLst<T>::knownNodeClosestToIndex(int index, int& ldResultIndex) const {
 #define abs(a) (a) < 0 ? -a : a
 	Node<T>* result = m_pFirst;
 	int min = index;
@@ -35,7 +35,7 @@ template<class T> Node<T>* CDblLkLst<T>::knownNodeClosestToIndex(int index, int&
 #undef abs
 }
 
-template<class T> Node<T>* CDblLkLst<T>::getNode(int index) {
+template<class T> Node<T>* CDblLkLst<T>::getNode(int index) const {
 	AssertTrue(index >= 0 && index < m_iLength && m_iLength > 0, "Valid CDblLkLst index");
 	
 	int 		iStartIndex;
@@ -118,6 +118,14 @@ template<class T> T CDblLkLst<T>::remove(int index) {
 template<class T> void CDblLkLst<T>::flush() {
 	while (!isEmpty())
 		pop();
+}
+
+template<class T> bool CDblLkLst<T>::operator ==(const CDblLkLst<T>& other) const {
+	bool bEqual = this->length() == other.length();
+	for (int i = 0; bEqual && i < length(); i++) {
+		bEqual = this->get(i) == other.get(i);
+	}
+	return bEqual;
 }
 
 

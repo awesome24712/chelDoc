@@ -3,7 +3,7 @@
 
 typedef unsigned char byte;
 
-class IArray;
+class IList;
 
 /**
  * Concept to test whether or not a template parameter implements IArray
@@ -21,13 +21,13 @@ template<class T> concept bool IIArray =
 	};
 
 
-class IArray {
+class IList {
 protected:
 	/**
 	 * Default constructors and destructors do nothing. 
 	 */
-	IArray() {}
-	~IArray() {}
+	IList() {}
+	~IList() {}
 public:
 	/**
 	 * Retrieves a pointer to the first element in the array.

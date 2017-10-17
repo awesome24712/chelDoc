@@ -1,11 +1,26 @@
 #ifndef CHEL_PTR_HPP
 #define CHEL_PTR_HPP
 
+template<class T> class CTree;
+template<class T> class CTreeHandle;
+
 template<class T>
 struct Ptr {
+	friend class CTree<T>;
+	friend class CTreeHandle<T>;
+	//friend void CTree<T>::destroyTree();
 private:
 	T* 		m_ptReference = nullptr;
 	int*	m_piReferenceCount = nullptr;
+	
+public:
+	//This forces the destruction of the object
+	void destroy() {
+		if (m_ptReference) {
+			delete m_ptReference;
+			delete m_piReferenceCount;
+		}
+	}
 	
 public:
 	Ptr<T>() {}
@@ -65,9 +80,13 @@ public:
 		else
 			return 0;
 	}
-	operator T*() {return m_ptReference;}
-	T& operator*() {return *m_ptReference;}
-	operator bool () { return m_ptReference; }
+	operator T*() const {return m_ptReference;}
+	T& operator*() const {return *m_ptReference;}
+	operator bool () const { return m_ptReference; }
+	
+	bool operator ==(const Ptr<T>& other) const {
+		return this->m_ptReference == other.m_ptReference;
+	}
 };
 
 #endif //CHEL_PTR_HPP

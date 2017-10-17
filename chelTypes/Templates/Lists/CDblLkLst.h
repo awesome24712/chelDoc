@@ -31,12 +31,17 @@ private:
 	
 	int m_iLength = 0;
 	
-	SDLkNode<T>* 	m_pLastReferenced = nullptr;
-	int 			m_iLastReferencedIndex = 0;
+	mutable SDLkNode<T>* 	m_pLastReferenced = nullptr;
+	mutable int 			m_iLastReferencedIndex = 0;
 	
-	SDLkNode<T>* knownNodeClosestToIndex(int index, int& ldResultIndex);
-	SDLkNode<T>* getNode(int index);
+	SDLkNode<T>* knownNodeClosestToIndex(int index, int& ldResultIndex) const;
+	SDLkNode<T>* getNode(int index) const;
 public:
+	
+	/**
+	 * Default constructor builds empty list.
+	 */
+	CDblLkLst<T>() {}
 	
 	/**
 	 * Copy contructor performs deep copy
@@ -59,14 +64,14 @@ public:
 	 * @param index - the index of the desired value
 	 * @return - a pointer to the value
 	 */
-	inline T*	getPtr(int index) { return &(getNode(index)->m_value); }
+	inline T*	getPtr(int index) const { return &(getNode(index)->m_value); }
 	
 	/**
 	 * @brief Retrieves a copy of the value at the given index
 	 * @param index - the index of the desired value
 	 * @return - a copy of the value
 	 */
-	inline T 	get(int index) { return *getPtr(index); }
+	inline T 	get(int index) const { return *getPtr(index); }
 	
 	/**
 	 * @brief Sets the value at the given index to the given value
@@ -130,6 +135,11 @@ public:
 	 * @return - the emptiness
 	 */
 	inline bool isEmpty() const { return m_iLength == 0; }
+	
+	/**
+	 * Comparison operator performs deep comparison.
+	 */ 
+	bool operator ==(const CDblLkLst<T>& other) const;
 };
 
 #endif //CHEL_DBL_LK_LST_H

@@ -9,6 +9,8 @@
 
 #include "Color/Color.h"
 
+#include "Hash/NHash.h"
+
 #include "BitBoard/BitBoard.h"
 
 #include "Vector/Vector.h"

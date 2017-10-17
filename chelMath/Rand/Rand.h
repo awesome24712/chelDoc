@@ -17,6 +17,6 @@ float RandFloat(float min, float max);
 
 inline float RandFloat(float max) { return RandFloat(0, max); }
 
-inline bool RandBool(float proportion) { return RandFloat() < proportion; }
+inline bool RandBool(float proportion = 0.5f) { return RandFloat() < proportion; }
 
 #endif //CHEL_RANDOM

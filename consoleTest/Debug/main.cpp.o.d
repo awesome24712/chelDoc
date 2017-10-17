@@ -1,21 +1,23 @@
 Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelMath/CBase/CBase.h ../chelMath/perfTest.hpp \
  ../chelMath/Coord/Coord2D.h ../chelMath/Color/Color.h \
- ../chelMath/Color/../CBase/CBase.h ../chelMath/BitBoard/BitBoard.h \
- ../chelMath/BitBoard/../Coord/Coord2D.h ../chelMath/Vector/Vector.h \
- ../chelMath/Vector/Vector2D.h ../chelMath/Rand/Rand.h \
- ../chelTypes/chelTypes.hpp ../chelTypes/DebugTools/Assertions.h \
- ../chelTypes/Fields/CBitfield.h \
+ ../chelMath/Color/../CBase/CBase.h ../chelMath/Hash/NHash.h \
+ ../chelMath/BitBoard/BitBoard.h ../chelMath/BitBoard/../Coord/Coord2D.h \
+ ../chelMath/Vector/Vector.h ../chelMath/Vector/Vector2D.h \
+ ../chelMath/Rand/Rand.h ../chelTypes/chelTypes.hpp \
+ ../chelTypes/DebugTools/Assertions.h ../chelTypes/Fields/CBitfield.h \
  ../chelTypes/Fields/../Templates/Lists/List_Templates.hpp \
  ../chelTypes/Fields/../Templates/Lists/CDynList.hpp \
  ../chelTypes/Fields/../Templates/Lists/CDynList.h \
- C:/Users/Awesome/chelDoc/chelTypes/DebugTools/Assertions.h \
+ ../chelMath/chelMath.hpp \
+ C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h \
  ../chelMath/math.hpp ../chelTypes/Fields/../Templates/Lists/CList.hpp \
  ../chelTypes/Fields/../Templates/Lists/CList.h \
  ../chelTypes/Fields/../Templates/Lists/CLkLst.hpp \
  ../chelTypes/Fields/../Templates/Lists/CLkLst.h \
  ../chelTypes/Fields/../Templates/Lists/CDblLkLst.hpp \
  ../chelTypes/Fields/../Templates/Lists/CDblLkLst.h \
+ ../chelTypes/Fields/../Templates/Lists/IList.h \
  ../chelTypes/Fields/../Templates/Wrappers/Ptr.hpp \
  ../chelTypes/String/String.h \
  ../chelTypes/String/../Templates/Lists/CDynList.hpp \
@@ -26,12 +28,12 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelTypes/Templates/Lists/List_Templates.hpp \
  ../chelTypes/Templates/Networks/Net_Templates.hpp \
  ../chelTypes/Templates/Networks/CTree.hpp \
- ../chelTypes/Templates/Networks/CTree.h \
  ../chelTypes/Templates/Networks/../Lists/CDynList.hpp \
- ../chelTypes/Templates/Networks/../Wrappers/Ptr.hpp \
- C:/Users/Awesome/chelDoc/chelTypes/String/String.h \
  ../chelTypes/Templates/Networks/CMap.hpp \
  ../chelTypes/Templates/Networks/CMap.h \
+ ../chelTypes/Templates/Networks/HashMap/CHMap.hpp \
+ ../chelTypes/Templates/Networks/HashMap/../CMap.hpp \
+ ../chelTypes/Templates/Networks/HashMap/../../Lists/CList.hpp \
  ../chelTypes/Templates/Wrappers/Wrap_Templates.hpp \
  ../chelTypes/Templates/Wrappers/Ptr.hpp \
  ../chelTypes/Templates/Fields/Field_Templates.hpp \
@@ -44,7 +46,7 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelTypes/ObjectFactory/../String/String.h \
  ../chelTypes/ObjectFactory/../Templates/Lists/CDynList.hpp \
  ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp \
- Array/CArray.hpp Array/IArray.hpp
+ Array/CArray.hpp
 
 ../chelMath/chelMath.hpp:
 
@@ -59,6 +61,8 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
 ../chelMath/Color/Color.h:
 
 ../chelMath/Color/../CBase/CBase.h:
+
+../chelMath/Hash/NHash.h:
 
 ../chelMath/BitBoard/BitBoard.h:
 
@@ -82,7 +86,9 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
 
 ../chelTypes/Fields/../Templates/Lists/CDynList.h:
 
-C:/Users/Awesome/chelDoc/chelTypes/DebugTools/Assertions.h:
+../chelMath/chelMath.hpp:
+
+C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 
 ../chelMath/math.hpp:
 
@@ -97,6 +103,8 @@ C:/Users/Awesome/chelDoc/chelTypes/DebugTools/Assertions.h:
 ../chelTypes/Fields/../Templates/Lists/CDblLkLst.hpp:
 
 ../chelTypes/Fields/../Templates/Lists/CDblLkLst.h:
+
+../chelTypes/Fields/../Templates/Lists/IList.h:
 
 ../chelTypes/Fields/../Templates/Wrappers/Ptr.hpp:
 
@@ -120,17 +128,17 @@ C:/Users/Awesome/chelDoc/chelTypes/DebugTools/Assertions.h:
 
 ../chelTypes/Templates/Networks/CTree.hpp:
 
-../chelTypes/Templates/Networks/CTree.h:
-
 ../chelTypes/Templates/Networks/../Lists/CDynList.hpp:
-
-../chelTypes/Templates/Networks/../Wrappers/Ptr.hpp:
-
-C:/Users/Awesome/chelDoc/chelTypes/String/String.h:
 
 ../chelTypes/Templates/Networks/CMap.hpp:
 
 ../chelTypes/Templates/Networks/CMap.h:
+
+../chelTypes/Templates/Networks/HashMap/CHMap.hpp:
+
+../chelTypes/Templates/Networks/HashMap/../CMap.hpp:
+
+../chelTypes/Templates/Networks/HashMap/../../Lists/CList.hpp:
 
 ../chelTypes/Templates/Wrappers/Wrap_Templates.hpp:
 
@@ -157,5 +165,3 @@ C:/Users/Awesome/chelDoc/chelTypes/String/String.h:
 ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp:
 
 Array/CArray.hpp:
-
-Array/IArray.hpp:
