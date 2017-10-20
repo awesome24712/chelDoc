@@ -1,19 +1,25 @@
 #include "../Lists/CDynList.hpp"
+#include "../../String/String.h"
+#include "../Wrappers/Ptr.hpp"
 
 template<class T> class CTreeHandle;
 template<class T> class Ptr;
 
+class CXMLTree;
+
 template<class T>
 class CTree {
+	friend class CXMLTree;
 	friend class CTreeHandle<T>;
 	friend class Ptr<CTree<T>>;
-private:
+protected:
 	T 					m_tValue;
 	CTree<T>* 			m_pParent;
 	CDynList<CTree<T>*> m_aChildren;
 	
-	CTree(T value) {
+	CTree(const T& value) {
 		m_tValue = value;
+		m_pParent = nullptr;
 	}
 	~CTree() {
 		for (int i = 0; i < m_aChildren.length(); i++) {
@@ -56,7 +62,24 @@ public:
 	 * 		original shape and ordering of the tree at this.
 	 * @return - the tree of results
 	 */
-	template<class R> CTreeHandle<R> dispatchFunction(R (*pFunction)(T*));
+	template<class R> CTreeHandle<R> dispatchFunction(R (*pFunction)(T*)) {
+		return CTreeHandle<T>(dispatchFunctionRecurse(pFunction));
+	}
+	
+private:
+	template<class R> CTree<R>* dispatchFunctionRecurse(R (*pFunction)(T*));
+	
+	//requires that otherTree has no parent already
+	CTree<T>*	addChild(CTree<T>* otherTree) {
+		assertFalse(otherTree->hasParent());
+		
+		otherTree->m_pParent = this;
+		this->m_aChildren.push(otherTree);
+		return otherTree;
+	}
+public:
+	
+	int numChildren() const { return m_aChildren.length(); }
 	
 	/**
 	 * @brief Pushes a child onto this.
@@ -92,7 +115,13 @@ public:
 	 * @param index - the index of the child to remove
 	 * @return - a CTreeHandle for that child
 	 */
-	CTreeHandle<T> removeChild(int index) { return CTreeHandle(m_aChildren.remove(index)); }
+	CTreeHandle<T> removeChild(int index) { return CTreeHandle<T>(m_aChildren.remove(index)); }
+	
+	/**
+	 * @brief Gets the parent of this
+	 * @return - pointer to parent
+	 */
+	CTree<T>* parent() const { return m_pParent; }
 	
 	/**
 	 * @brief Inserts a node between this and the children of this.
@@ -128,28 +157,38 @@ public:
 		m_aChildren.setReserveBuffer(iBufferSize);
 	}
 	
+	void toString(String& dest, void (*pFunc)(String&, const T&), int iIndentLevel = 0) const;
+	
+	/**
+	 * @brief Recursively counts the number subtrees + 1
+	 * @return - number of subtrees + 1
+	 */
+	int size() const;
+	
 };
 
 template<class T>
 class CTreeHandle {
 	friend class CTree<T>;
-private:
+	friend class CXMLTree;
+protected:
 	CTreeHandle(CTree<T>* pTree) {
 		m_pNode = pTree;
 	}
 	
-public:
 	Ptr<CTree<T>> m_pNode;
 	
+public:
 	CTreeHandle(const T& value) {
 		m_pNode = new CTree<T>(value);
 	}
 	
 	~CTreeHandle() {
-		printf("Destroying tree handle\n");
+		//printf("Destroying tree handle\n");
 	}
 	
 	CTree<T>& get() { return *m_pNode; }
+	CTree<T>* getPtr() { return m_pNode; }
 	
 	operator CTree<T>*() const { return m_pNode; }
 	operator CTree<T>&() const { return *m_pNode; } 

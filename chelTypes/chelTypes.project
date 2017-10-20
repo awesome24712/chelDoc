@@ -38,12 +38,10 @@
       <File Name="Templates/Networks/Net_Templates.hpp"/>
       <File Name="Templates/Networks/CMap.h"/>
       <File Name="Templates/Networks/CMap.hpp"/>
-      <File Name="Templates/Networks/CTree.cpp" ExcludeProjConfig="Debug"/>
+      <File Name="Templates/Networks/CTree.cpp" ExcludeProjConfig=""/>
       <VirtualDirectory Name="HashMap">
         <File Name="Templates/Networks/HashMap/CHMap.hpp"/>
       </VirtualDirectory>
-      <File Name="Templates/Networks/CTreeOld.hpp"/>
-      <File Name="Templates/Networks/CTreeOld.h"/>
       <File Name="Templates/Networks/CTree.h"/>
       <File Name="Templates/Networks/CTree.hpp"/>
     </VirtualDirectory>
@@ -173,4 +171,11 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="XML">
+    <File Name="XML/SXML.h"/>
+    <File Name="XML/CXMLTree.h"/>
+    <File Name="XML/CXMLTree.cpp"/>
+  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

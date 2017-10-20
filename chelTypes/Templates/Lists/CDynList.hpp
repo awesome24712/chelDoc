@@ -136,7 +136,7 @@ template<class T> void CDynList<T>::add(int pos, const CDynList<T>& other) {
 	
 	//copy values into place
 	for (int i = 0; i < addedLength; i++)
-		*getPtr(pos + i) = other.get(i);
+		*getPtr_noassert(pos + i) = other.get(i);
 }
 
 template<class T> bool CDynList<T>::addUnique(int pos, T value) {
@@ -544,9 +544,13 @@ template<class T> template<class R> void CDynList<T>::dispatchFunction(R (*funct
 	return result;
 }*/
 
-template<class T> CDynList<T>::operator T*() {
+template<> CDynList<char>::operator char*() const {
 	//assert that the string is null-terminated
 	m_array[m_iEndIndex] = 0;
+	return m_array + m_iStartIndex;
+}
+
+template<class T> CDynList<T>::operator T*() const {
 	return m_array + m_iStartIndex;
 }
 

@@ -7,6 +7,7 @@
 #include "Globals/Globals.h"
 #include "Templates/Templates.hpp"
 #include "ObjectFactory/GNameList.h"
+#include "XML/CXMLTree.h"
 
 
 #endif //CHELTYPES_HPP

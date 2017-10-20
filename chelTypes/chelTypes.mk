@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=06/10/2017
+Date                   :=20/10/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -62,8 +62,8 @@ AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_Character.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_CStringCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IntermediateDirectory)/Globals_GArgs.cpp$(ObjectSuffix) $(IntermediateDirectory)/Fields_CBitfield.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_CNameable.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_GNameList.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(ObjectSuffix) $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) \
-	
+Objects0=$(IntermediateDirectory)/String_String.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_Character.cpp$(ObjectSuffix) $(IntermediateDirectory)/String_CStringCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/DebugTools_Assertions.cpp$(ObjectSuffix) $(IntermediateDirectory)/Globals_GArgs.cpp$(ObjectSuffix) $(IntermediateDirectory)/Fields_CBitfield.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_CNameable.cpp$(ObjectSuffix) $(IntermediateDirectory)/ObjectFactory_GNameList.cpp$(ObjectSuffix) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(ObjectSuffix) $(IntermediateDirectory)/XML_CXMLTree.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) 
 
 
 
@@ -167,6 +167,14 @@ $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(DependSuffix): FileIO/CStrin
 
 $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(PreprocessSuffix): FileIO/CStringScanner.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/FileIO_CStringScanner.cpp$(PreprocessSuffix) FileIO/CStringScanner.cpp
+
+$(IntermediateDirectory)/XML_CXMLTree.cpp$(ObjectSuffix): XML/CXMLTree.cpp $(IntermediateDirectory)/XML_CXMLTree.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTypes/XML/CXMLTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/XML_CXMLTree.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/XML_CXMLTree.cpp$(DependSuffix): XML/CXMLTree.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/XML_CXMLTree.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/XML_CXMLTree.cpp$(DependSuffix) -MM XML/CXMLTree.cpp
+
+$(IntermediateDirectory)/XML_CXMLTree.cpp$(PreprocessSuffix): XML/CXMLTree.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/XML_CXMLTree.cpp$(PreprocessSuffix) XML/CXMLTree.cpp
 
 $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix): Templates/Networks/CTree.cpp $(IntermediateDirectory)/Templates_Networks_CTree.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTypes/Templates/Networks/CTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Templates_Networks_CTree.cpp$(ObjectSuffix) $(IncludePath)

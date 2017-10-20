@@ -8,6 +8,7 @@ Debug/String_String.cpp.o: String/String.cpp String/String.h \
  ../chelMath/Vector/Vector.h ../chelMath/Vector/Vector2D.h \
  ../chelMath/Rand/Rand.h \
  String/../Templates/Lists/../../DebugTools/Assertions.h \
+ C:/Users/Chel/source/chelDoc/chelTypes/String/String.h \
  ../chelMath/math.hpp String/Character.h
 
 String/String.h:
@@ -43,6 +44,8 @@ String/../Templates/Lists/CDynList.h:
 ../chelMath/Rand/Rand.h:
 
 String/../Templates/Lists/../../DebugTools/Assertions.h:
+
+C:/Users/Chel/source/chelDoc/chelTypes/String/String.h:
 
 ../chelMath/math.hpp:
 

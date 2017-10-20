@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=06/10/2017
+Date                   :=20/10/2017
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) 
 
 
 
@@ -132,6 +132,14 @@ $(IntermediateDirectory)/Test_Test_Map.cpp$(DependSuffix): Test/Test_Map.cpp
 
 $(IntermediateDirectory)/Test_Test_Map.cpp$(PreprocessSuffix): Test/Test_Map.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_Map.cpp$(PreprocessSuffix) Test/Test_Map.cpp
+
+$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix): Test/Test_CXMLTree.cpp $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/Test_CXMLTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix): Test/Test_CXMLTree.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix) -MM Test/Test_CXMLTree.cpp
+
+$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(PreprocessSuffix): Test/Test_CXMLTree.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(PreprocessSuffix) Test/Test_CXMLTree.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

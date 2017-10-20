@@ -13,7 +13,7 @@ public:
 	SMapPair(K key, V value) {
 		m_key = key; m_value = value;
 	}
-	inline K key() const { return m_key; }
+	inline const K& key() const { return m_key; }
 	inline V value() const { return m_value; }
 	inline V* valuePtr() { return &m_value; }
 	inline bool operator ==(const SMapPair<K,V>& other) const { return m_key == other.m_key && m_value == other.m_value; }
@@ -109,7 +109,7 @@ public:
 	 */
 	inline void reserve(int iNumPairs) { m_map.reserve(iNumPairs); }
 	
-	inline K keyByIndex(int index) const { return m_map.get(index).key(); }
+	inline const K& keyByIndex(int index) const { return m_map.get(index).key(); }
 	
 	inline V valueByIndex(int index) const { return m_map.get(index).value(); }
 	

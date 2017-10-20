@@ -18,6 +18,7 @@
     <File Name="Test/Test_CTree.cpp" ExcludeProjConfig="Debug"/>
     <File Name="Test/Test_CHMap.cpp" ExcludeProjConfig=""/>
     <File Name="Test/Test_Map.cpp" ExcludeProjConfig=""/>
+    <File Name="Test/Test_CXMLTree.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -114,4 +115,6 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

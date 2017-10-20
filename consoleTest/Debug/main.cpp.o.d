@@ -9,7 +9,7 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelTypes/Fields/../Templates/Lists/List_Templates.hpp \
  ../chelTypes/Fields/../Templates/Lists/CDynList.hpp \
  ../chelTypes/Fields/../Templates/Lists/CDynList.h \
- ../chelMath/chelMath.hpp \
+ ../chelMath/chelMath.hpp ../chelTypes/DebugTools/Assertions.h \
  C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h \
  ../chelMath/math.hpp ../chelTypes/Fields/../Templates/Lists/CList.hpp \
  ../chelTypes/Fields/../Templates/Lists/CList.h \
@@ -28,7 +28,9 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelTypes/Templates/Lists/List_Templates.hpp \
  ../chelTypes/Templates/Networks/Net_Templates.hpp \
  ../chelTypes/Templates/Networks/CTree.hpp \
+ ../chelTypes/Templates/Networks/CTree.h \
  ../chelTypes/Templates/Networks/../Lists/CDynList.hpp \
+ ../chelTypes/Templates/Networks/../../String/String.h \
  ../chelTypes/Templates/Networks/CMap.hpp \
  ../chelTypes/Templates/Networks/CMap.h \
  ../chelTypes/Templates/Networks/HashMap/CHMap.hpp \
@@ -45,8 +47,7 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelTypes/ObjectFactory/CNameable.h \
  ../chelTypes/ObjectFactory/../String/String.h \
  ../chelTypes/ObjectFactory/../Templates/Lists/CDynList.hpp \
- ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp \
- Array/CArray.hpp
+ ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp
 
 ../chelMath/chelMath.hpp:
 
@@ -88,6 +89,8 @@ Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
 
 ../chelMath/chelMath.hpp:
 
+../chelTypes/DebugTools/Assertions.h:
+
 C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 
 ../chelMath/math.hpp:
@@ -128,7 +131,11 @@ C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 
 ../chelTypes/Templates/Networks/CTree.hpp:
 
+../chelTypes/Templates/Networks/CTree.h:
+
 ../chelTypes/Templates/Networks/../Lists/CDynList.hpp:
+
+../chelTypes/Templates/Networks/../../String/String.h:
 
 ../chelTypes/Templates/Networks/CMap.hpp:
 
@@ -163,5 +170,3 @@ C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 ../chelTypes/ObjectFactory/../Templates/Lists/CDynList.hpp:
 
 ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp:
-
-Array/CArray.hpp:

@@ -2,6 +2,7 @@
 #define CHEL_DYNLIST_H
 
 #include "../chelMath/chelMath.hpp"
+#include "../../DebugTools/Assertions.h"
 
 class String;
 	/**
@@ -23,13 +24,17 @@ protected:
 	int m_iReservedLength = 5;
 	int m_iStartIndex = 0; //start index, inclusive
 	int m_iEndIndex = 0; //end index, exclusive
-	T* m_array;
+	mutable T* m_array;
 	
 	int m_iReserveBuffer = 5; //how many spaces to add when reserving new space
 	bool m_bAutoTrim = true;
 	
 	inline int reservedFront() const { return m_iStartIndex; }
 	inline int reservedBack() const { return m_iReservedLength - m_iEndIndex + 1; }
+	
+	inline T* getPtr_noassert(int pos) const {
+		return m_array + m_iStartIndex + pos;
+	}
 	
 public:
 	/**
@@ -80,7 +85,10 @@ public:
 	 * @requires {0 <= pos < length()}
 	 * @return - a pointer to the item
 	 */
-	inline T* getPtr(int pos) const {return m_array + m_iStartIndex + pos;};
+	inline T* getPtr(int pos) const {
+		AssertTrue(0 <= pos && pos < length(), "index must be valid");
+		return m_array + m_iStartIndex + pos;
+	}
 	
 	inline T* getPtrEnd(int revpos) const { return getPtr(length() - 1 - revpos); }
 	
@@ -420,7 +428,7 @@ public:
 	 * @brief Implicit conversion to a pointer to the first
 	 * 		element in the list
 	 */
-	operator T*();
+	operator T*() const;
 	
 	bool operator==(const CDynList<T>& other) const;
 	
