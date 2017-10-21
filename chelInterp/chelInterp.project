@@ -107,5 +107,6 @@
   </Settings>
   <VirtualDirectory Name="DynamicLoad">
     <File Name="DynamicLoad/NDynamicLoad.h"/>
+    <File Name="DynamicLoad/NDynamicLoad.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
