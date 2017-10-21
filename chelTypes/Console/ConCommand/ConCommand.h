@@ -22,7 +22,13 @@ public:
 	ConCommandBase(const char* _pszName);
 	
 	virtual void performCommand(CArgs* args) = 0;
+	
+	static bool exists(const String& sName);
+	
+	static ConCommandBase* getCommand(const String& sName);
 };
+
+
 
 #define CON_COMMAND(name) \
 	namespace Commands { \

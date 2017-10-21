@@ -11,6 +11,14 @@ ConCommandBase::ConCommandBase(const char* _pszName) {
 	Commands::g_mCommands.add(m_sName, this);
 }
 
+bool ConCommandBase::exists(const String& sName){
+	return Commands::g_mCommands.hasKey(sName);
+}
+
+ConCommandBase* ConCommandBase::getCommand(const String& sName){
+	return Commands::g_mCommands.value(sName);
+}
+
 
 void CArgs::parseFromString(const String& str) {
 	//make a copy

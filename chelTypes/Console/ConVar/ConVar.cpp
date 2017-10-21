@@ -12,4 +12,8 @@ ConVar* ConVar::findByName(const String& sName) {
 	return g_mConVarDictionary.value(sName);
 }
 
+bool ConVar::exists(const String& sName){
+	return g_mConVarDictionary.hasKey(sName);
+}
+
 int ConVar::numConVars() { return g_mConVarDictionary.size(); }

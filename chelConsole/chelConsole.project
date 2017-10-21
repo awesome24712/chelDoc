@@ -105,5 +105,6 @@
   </Settings>
   <VirtualDirectory Name="Console">
     <File Name="Console/CConsole.h"/>
+    <File Name="Console/CConsole.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
