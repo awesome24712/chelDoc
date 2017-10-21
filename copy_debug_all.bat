@@ -1,8 +1,12 @@
 @echo off
 cls
-copy "chelTypes\Debug\chelTypes.dll" "consoleTest\Debug"
-copy "chelMath\Debug\chelMath.dll" "consoleTest\Debug"
-copy "chelTypes\Debug\chelTypes.dll" "chelTester\Debug"
-copy "chelMath\Debug\chelMath.dll" "chelTester\Debug"
-::copy "chelChess\Debug\chelChess.dll" "consoleTest\Debug"
+copy "chelTypes\Debug\chelTypes.dll" "%CD%"
+copy "chelMath\Debug\chelMath.dll" "%CD%"
+copy "chelDocBase\Debug\chelDocBase.dll" "%CD%"
+copy "chelConsole\Debug\chelConsole.dll" "%CD%"
+copy "chelProjectScanner\Debug\chelProjectScanner.dll" "%CD%"
+copy "chelInterpBase\Debug\chelInterpBase.dll" "%CD%"
+copy "chelWeb\Debug\chelWeb.dll" "%CD%"
+copy "chelInterp\Debug\chelInterp.dll" "%CD%"
+copy "chelDoc\Debug\chelInterp.dll" "%CD%"
 pause
