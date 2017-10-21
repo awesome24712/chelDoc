@@ -1,18 +1,20 @@
 #ifndef IInterp
 #define IInterp
 
+// extend this class for each Interpreter.
 class IInterp {
 private:
-	String languageName;
+	String m_sLanguageName;
 	static CDynList<IInterp> g_lInterpreters;
 public:
+	// Add itself to g_lInterpreters anytime a new Interpreter is created.
 	IInterp(String& lanName) {
-		languageName = lanName;
+		m_LanguageName = lanName;
 		g_lInterpreters.push(this);
 	}
-	const String& getLanguageName() { return languageName; }
-	void setLanguageName(String lan) { languageName = lan; }
-	//call incrementInterpreters in any constructor of interpreters
+	// Every interpreter should have a language name.
+	const String& getLanguageName() { return m_sLanguageName; }
+	void setLanguageName(String lan) { m_sLanguageName = lan; }
 }
 
 
