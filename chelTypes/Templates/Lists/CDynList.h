@@ -283,7 +283,9 @@ public:
 	 * @return -1 if not found, otherwise the index of the first equal element 
 	 */
 	int indexOf(const T& value) const;
+	int lastIndexOf(const T& value) const;
 	int indexOf(const CDynList<T>& other) const;
+	int lastIndexOf(const CDynList<T>& other) const;
 	
 	int indexOfAnyOf(const CDynList<T>& other) const;
 	

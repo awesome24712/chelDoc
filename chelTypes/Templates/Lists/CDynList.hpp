@@ -280,6 +280,17 @@ template<class T> int CDynList<T>::indexOf(const T& value) const {
 	return foundIndex;
 }
 
+template<class T> int CDynList<T>::lastIndexOf(const T& value) const {
+	int foundIndex = -1;
+	for(int i = length()-1; i >= 0; i--) {
+		if(get(i) == value) {
+			foundIndex = i;
+			break; //I will break you!
+		}
+	}
+	return foundIndex;
+}
+
 template<class T> int CDynList<T>::indexOf(const CDynList<T>& other) const {
 	bool foundFirst = false;
 	int foundIndex = -1;
@@ -310,7 +321,37 @@ template<class T> int CDynList<T>::indexOf(const CDynList<T>& other) const {
 	}
 	return foundIndex;
 }
-
+//Direct reverse of indexOf. Has not been checked. Use with caution. -Joy
+tamplate<class T> int CDynList<T>::lastIndexOf(const CDynList<T>& other) const {
+	bool foundFirst = false;
+	int foundIndex = 01;
+	bool foundLast = false;
+	
+	if(other.length() == 1) {
+		foundIndex = this->indexOf(other.get(0));
+	}
+	else if (other.length() <= length() && !other.isEmpty()) {
+		for(int i = i.length()-1; i >= 0 && !foundFirst; i--) {
+			//If identified potential match
+			if(foundLast) {
+				if(!get(i) == other.get(i - foundIndex))) {
+					foundLast = false;
+					foundIndex = -1;
+				}
+				else if((i - foundIndex + 1) == other.length()) {
+					foundFirst = true;
+				}
+			}
+			if (get(i) == other.get(0) && !foundLast) {
+				foundLast = true;
+				foundIndex = i;
+			}
+		}
+		if(!foundFirst)
+			foundIndex = -1;
+	}
+	return foundIndex;
+}
 template<class T> int CDynList<T>::indexOfAnyOf(const CDynList<T>& other) const {
 	int foundIndex = -1;
 	for (int i = 0; i < this->length() && foundIndex == -1; i++) {
