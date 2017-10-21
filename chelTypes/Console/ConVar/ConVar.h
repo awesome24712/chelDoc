@@ -1,13 +1,13 @@
 #ifndef CHEL_CONVAR_H
 #define CHEL_CONVAR_H
 
-#include "String/String.h"
+#include "../../String/String.h"
 
 class ConVar {
 protected:
 	const String 	m_sName;
 	String 			m_sValue;
-	const String	m_sToolTip
+	const String	m_sToolTip;
 	int				m_iFlags;
 	
 public:

@@ -4,14 +4,14 @@
   <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="Yes"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
   <Project Name="chelTester" Path="chelTester/chelTester.project" Active="No"/>
-  <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project"/>
-  <Project Name="chelInterpBase" Path="chelInterpBase/chelInterpBase.project"/>
-  <Project Name="chelProjectScanner" Path="chelProjectScanner/chelProjectScanner.project"/>
-  <Project Name="chelConsole" Path="chelConsole/chelConsole.project"/>
-  <Project Name="chelWeb" Path="chelWeb/chelWeb.project"/>
-  <Project Name="chelInterp" Path="chelInterp/chelInterp.project"/>
-  <Project Name="chelDoc" Path="chelDoc/chelDoc.project"/>
-  <Project Name="chelTUI" Path="chelTUI/chelTUI.project"/>
+  <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project" Active="No"/>
+  <Project Name="chelInterpBase" Path="chelInterpBase/chelInterpBase.project" Active="No"/>
+  <Project Name="chelProjectScanner" Path="chelProjectScanner/chelProjectScanner.project" Active="No"/>
+  <Project Name="chelConsole" Path="chelConsole/chelConsole.project" Active="No"/>
+  <Project Name="chelWeb" Path="chelWeb/chelWeb.project" Active="No"/>
+  <Project Name="chelInterp" Path="chelInterp/chelInterp.project" Active="No"/>
+  <Project Name="chelDoc" Path="chelDoc/chelDoc.project" Active="No"/>
+  <Project Name="chelTUI" Path="chelTUI/chelTUI.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>

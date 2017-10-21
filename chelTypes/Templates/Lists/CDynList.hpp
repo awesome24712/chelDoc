@@ -322,19 +322,19 @@ template<class T> int CDynList<T>::indexOf(const CDynList<T>& other) const {
 	return foundIndex;
 }
 //Direct reverse of indexOf. Has not been checked. Use with caution. -Joy
-tamplate<class T> int CDynList<T>::lastIndexOf(const CDynList<T>& other) const {
+template<class T> int CDynList<T>::lastIndexOf(const CDynList<T>& other) const {
 	bool foundFirst = false;
-	int foundIndex = 01;
+	int foundIndex = -1;
 	bool foundLast = false;
 	
 	if(other.length() == 1) {
 		foundIndex = this->indexOf(other.get(0));
 	}
 	else if (other.length() <= length() && !other.isEmpty()) {
-		for(int i = i.length()-1; i >= 0 && !foundFirst; i--) {
+		for(int i = length()-1; i >= 0 && !foundFirst; i--) {
 			//If identified potential match
 			if(foundLast) {
-				if(!get(i) == other.get(i - foundIndex))) {
+				if(!get(i) == other.get(i - foundIndex)) {
 					foundLast = false;
 					foundIndex = -1;
 				}

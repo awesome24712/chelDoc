@@ -3,7 +3,7 @@
 #endif
 
 
-#if CHEL_CHMAP_HPP
+#if CHEL_CHMAP_HPP != 0
 #include "../CMap.hpp"
 #include "../../Lists/CList.hpp"
 

@@ -2,8 +2,7 @@
 #define CHEL_CONCOMMAND
 
 #include "../../String/String.h"
-#include "../../Templates/Networks/HashMap/CHMap.hpp"
-#include "../../Templates/Networks/HashMap/CHMap.hpp"
+#include "../../Templates/Networks/Net_Templates.hpp"
 
 class CArgs {
 private:
