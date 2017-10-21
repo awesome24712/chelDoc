@@ -45,13 +45,17 @@ public:
 			throw new CChelException("In file " STRINGIZE(__FILE__) " line:" STRINGIZE(__LINE__) ",\n\tviolation of precondition: " #bCondition " -- ", pszMsg); \
 		}\
 	} while(false)
-		
+
+//#define AssertTrue(bCondition) AssertTrue(bCondition, "")
 #define AssertFalse(bCondition, pszMsg) AssertTrue(!(bCondition), pszMsg)
+//#define AssertFalse(bCondition) AssertTrue(!bCondition)
 
 
 #else
 #define AssertTrue(a,b)
 #define AssertFalse(a,b)
+#define AssertTrue(a)
+#define AssertFalse(a)
 #endif
 //void AssertTrue(bool bCondition, const char * pszMsg);
 

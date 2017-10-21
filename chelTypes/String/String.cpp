@@ -12,6 +12,12 @@
 	return length;
 }*/
 
+template<> CDynList<char>::operator char*() const {
+	//assert that the string is null-terminated
+	m_array[m_iEndIndex] = 0;
+	return m_array + m_iStartIndex;
+}
+
 String::String(const char * str) {
 	int num = strlen(str);
 	m_array = new char[num];

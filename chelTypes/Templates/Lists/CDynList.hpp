@@ -1,5 +1,6 @@
 #ifndef CHEL_DYNLIST_HPP
 #define CHEL_DYNLIST_HPP
+
 #include "CDynList.h"
 #include "stdio.h"
 #include "../../DebugTools/Assertions.h"
@@ -544,11 +545,10 @@ template<class T> template<class R> void CDynList<T>::dispatchFunction(R (*funct
 	return result;
 }*/
 
-template<> CDynList<char>::operator char*() const {
-	//assert that the string is null-terminated
-	m_array[m_iEndIndex] = 0;
-	return m_array + m_iStartIndex;
-}
+/**
+ * @brief Implicit conversion to char* for will null-terminate the string
+ */
+template<> CDynList<char>::operator char*() const;
 
 template<class T> CDynList<T>::operator T*() const {
 	return m_array + m_iStartIndex;
@@ -598,4 +598,5 @@ template<class T> CDynList<T>& CDynList<T>::operator +=(const CDynList<T>& other
 		
 	return *this;
 }
+
 #endif //CHEL_DYNLIST_HPP

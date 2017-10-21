@@ -5,7 +5,7 @@
 #include "../Templates/Networks/CMap.hpp"
 #include "../Templates/Networks/CTree.hpp"
 
-struct SXML;
+//struct SXML;
 //class CXMLTree;
 //class CTree<SXML>;
 
@@ -16,7 +16,7 @@ struct SXML;
  * @file SXML.h
  * @brief Represents the values at a node of an CXMLTree. 
  */
-struct SXML {
+/*struct SXML {
 	friend class CXMLTree;
 	friend class CTree<SXML>;
 private:
@@ -26,6 +26,6 @@ private:
 	bool 					m_bIsTag; //whether or not our label is inside </>
 public:
 	
-};
+};*/
 
 #endif //CHEL_SXML_H

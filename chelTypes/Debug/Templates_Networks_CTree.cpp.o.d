@@ -10,7 +10,8 @@ Debug/Templates_Networks_CTree.cpp.o: Templates/Networks/CTree.cpp \
  ../chelMath/Rand/Rand.h \
  Templates/Networks/../Lists/../../DebugTools/Assertions.h \
  ../chelMath/math.hpp Templates/Networks/../../String/String.h \
- Templates/Networks/../../String/../Templates/Lists/CDynList.hpp
+ Templates/Networks/../../String/../Templates/Lists/CDynList.hpp \
+ Templates/Networks/../Wrappers/Ptr.hpp
 
 Templates/Networks/CTree.hpp:
 
@@ -53,3 +54,5 @@ Templates/Networks/../Lists/../../DebugTools/Assertions.h:
 Templates/Networks/../../String/String.h:
 
 Templates/Networks/../../String/../Templates/Lists/CDynList.hpp:
+
+Templates/Networks/../Wrappers/Ptr.hpp:

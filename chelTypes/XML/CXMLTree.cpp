@@ -13,7 +13,7 @@ void CXMLTree::toString(String& dest, int iIndentLevel) {
 	//print header and attributes
 	dest += String("<") + label();
 	for (int i = 0; i < numAttributes(); i++) {
-		const String& curAttribute = m_tValue.m_mAttributes.keyByIndex(i);
+		const String& curAttribute = m_mAttributes.keyByIndex(i);
 		dest += String(" ") + curAttribute + String("=\"") + attributeValue(curAttribute) + String("\"");
 	}
 	

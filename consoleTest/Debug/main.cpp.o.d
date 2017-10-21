@@ -1,3 +1,6 @@
+<<<<<<< .mine
+Debug/main.cpp.o: main.cpp
+=======
 Debug/main.cpp.o: main.cpp ../chelMath/chelMath.hpp ../chelMath/math.hpp \
  ../chelMath/CBase/CBase.h ../chelMath/perfTest.hpp \
  ../chelMath/Coord/Coord2D.h ../chelMath/Color/Color.h \
@@ -170,3 +173,4 @@ C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 ../chelTypes/ObjectFactory/../Templates/Lists/CDynList.hpp:
 
 ../chelTypes/ObjectFactory/../Templates/Networks/CMap.hpp:
+>>>>>>> .r11

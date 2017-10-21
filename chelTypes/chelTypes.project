@@ -79,7 +79,8 @@
   </VirtualDirectory>
   <VirtualDirectory Name="Console">
     <VirtualDirectory Name="ConVar">
-      <File Name="Console/ConVar/IConVar.h"/>
+      <File Name="Console/ConVar/ConVar.h"/>
+      <File Name="Console/ConVar/ConVar.cpp"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
