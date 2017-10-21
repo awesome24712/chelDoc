@@ -9,6 +9,7 @@
   <Dependencies/>
   <VirtualDirectory Name="IInterp">
     <File Name="IInterp/IInterp.h"/>
+    <File Name="IInterp/IInterp.cpp"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
