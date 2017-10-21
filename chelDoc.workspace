@@ -3,24 +3,45 @@
   <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="No"/>
   <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="Yes"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
-  <Project Name="chelChess" Path="chelChess/chelChess.project" Active="No"/>
   <Project Name="chelTester" Path="chelTester/chelTester.project" Active="No"/>
+  <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project"/>
+  <Project Name="chelInterpBase" Path="chelInterpBase/chelInterpBase.project"/>
+  <Project Name="chelProjectScanner" Path="chelProjectScanner/chelProjectScanner.project"/>
+  <Project Name="chelConsole" Path="chelConsole/chelConsole.project"/>
+  <Project Name="chelWeb" Path="chelWeb/chelWeb.project"/>
+  <Project Name="chelInterp" Path="chelInterp/chelInterp.project"/>
+  <Project Name="chelDoc" Path="chelDoc/chelDoc.project"/>
+  <Project Name="chelTUI" Path="chelTUI/chelTUI.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="chelMath" ConfigName="Debug"/>
       <Project Name="chelTypes" ConfigName="Debug"/>
       <Project Name="consoleTest" ConfigName="Debug"/>
-      <Project Name="chelChess" ConfigName="Debug"/>
       <Project Name="chelTester" ConfigName="Debug"/>
+      <Project Name="chelDocBase" ConfigName="Debug"/>
+      <Project Name="chelInterpBase" ConfigName="Debug"/>
+      <Project Name="chelProjectScanner" ConfigName="Debug"/>
+      <Project Name="chelConsole" ConfigName="Debug"/>
+      <Project Name="chelWeb" ConfigName="Debug"/>
+      <Project Name="chelInterp" ConfigName="Debug"/>
+      <Project Name="chelDoc" ConfigName="Debug"/>
+      <Project Name="chelTUI" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="consoleTest" ConfigName="Release"/>
       <Project Name="chelTypes" ConfigName="Release"/>
       <Project Name="chelMath" ConfigName="Release"/>
-      <Project Name="chelChess" ConfigName="Release"/>
       <Project Name="chelTester" ConfigName="Release"/>
+      <Project Name="chelDocBase" ConfigName="Release"/>
+      <Project Name="chelInterpBase" ConfigName="Release"/>
+      <Project Name="chelProjectScanner" ConfigName="Release"/>
+      <Project Name="chelConsole" ConfigName="Release"/>
+      <Project Name="chelWeb" ConfigName="Release"/>
+      <Project Name="chelInterp" ConfigName="Release"/>
+      <Project Name="chelDoc" ConfigName="Release"/>
+      <Project Name="chelTUI" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
