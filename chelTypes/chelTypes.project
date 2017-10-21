@@ -82,6 +82,11 @@
       <File Name="Console/ConVar/ConVar.h"/>
       <File Name="Console/ConVar/ConVar.cpp"/>
     </VirtualDirectory>
+    <VirtualDirectory Name="ConCommand">
+      <File Name="Console/ConCommand/ConCommand.h"/>
+      <File Name="Console/ConCommand/ConCommand.cpp"/>
+    </VirtualDirectory>
+    <File Name="Console/ConBase.h"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>

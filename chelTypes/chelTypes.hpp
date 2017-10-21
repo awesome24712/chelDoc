@@ -1,6 +1,7 @@
 #ifndef CHELTYPES_HPP
 #define CHELTYPES_HPP
 
+#include "Console/ConBase.h"
 #include "DebugTools/Assertions.h"
 #include "Fields/CBitfield.h"
 #include "String/String.h"
