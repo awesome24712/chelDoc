@@ -13,5 +13,5 @@ void NDirectoryScanner::fromPath(const char* absolutePath, CTask* pathsList) {
 void NDirectoryScanner::startupDirectory(String& dir) {
 	
 	// Set dir to the current directory
-	dir = fs.current_path;
+	dir = fs::current_path();
 }
