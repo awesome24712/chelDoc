@@ -107,4 +107,8 @@
     <File Name="ConsoleInterface/IConsole.h"/>
     <File Name="ConsoleInterface/IConsole.cpp"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="Task">
+    <File Name="Task/CTask.cpp"/>
+    <File Name="Task/CTask.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>

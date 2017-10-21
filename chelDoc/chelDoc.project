@@ -113,8 +113,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="Task">
-    <File Name="Task/CTask.h"/>
-    <File Name="Task/CTask.cpp"/>
-  </VirtualDirectory>
 </CodeLite_Project>
