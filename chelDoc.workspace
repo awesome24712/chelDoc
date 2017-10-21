@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="chelDoc" Database="" Version="10.0.0">
   <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="No"/>
-  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="Yes"/>
+  <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="No"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
   <Project Name="chelTester" Path="chelTester/chelTester.project" Active="No"/>
   <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project" Active="No"/>
   <Project Name="chelInterpBase" Path="chelInterpBase/chelInterpBase.project" Active="No"/>
   <Project Name="chelProjectScanner" Path="chelProjectScanner/chelProjectScanner.project" Active="No"/>
-  <Project Name="chelConsole" Path="chelConsole/chelConsole.project" Active="No"/>
+  <Project Name="chelConsole" Path="chelConsole/chelConsole.project" Active="Yes"/>
   <Project Name="chelWeb" Path="chelWeb/chelWeb.project" Active="No"/>
   <Project Name="chelInterp" Path="chelInterp/chelInterp.project" Active="No"/>
   <Project Name="chelDoc" Path="chelDoc/chelDoc.project" Active="No"/>

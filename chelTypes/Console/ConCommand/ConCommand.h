@@ -30,12 +30,12 @@ public:
 
 
 #define CON_COMMAND(name) \
-	namespace Commands { \
 		class ConCommand_##name : public ConCommandBase { \
+			public: ConCommand_##name(const char* _pszName) : ConCommandBase(_pszName) {} \
 			virtual void performCommand(CArgs* args) override; \
 		}; \
 		ConCommand_##name name(#name); \
-		void ConCommand##name::performCommand(CArgs* args)
+		void ConCommand_##name::performCommand(CArgs* args)
 		
 namespace Commands {
 	extern CHMap<String, ConCommandBase*> g_mCommands;

@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ chelTypes - Debug ]----------"
-	@cd "chelTypes" && "$(MAKE)" -f  "chelTypes.mk"
+	@echo "----------Building project:[ chelDocBase - Debug ]----------"
+	@cd "chelDocBase" && "$(MAKE)" -f  "chelDocBase.mk"
 clean:
-	@echo "----------Cleaning project:[ chelTypes - Debug ]----------"
-	@cd "chelTypes" && "$(MAKE)" -f  "chelTypes.mk" clean
+	@echo "----------Cleaning project:[ chelDocBase - Debug ]----------"
+	@cd "chelDocBase" && "$(MAKE)" -f  "chelDocBase.mk" clean
