@@ -42,7 +42,7 @@ namespace NChelDoc{
 		bool m_sIsVolatile;
 	};
 	enum EType{
-		FILE = 0,
+		FILEDESC = 0,
 		VARIABLE,
 		FUNCTION,
 		PARAMETER,

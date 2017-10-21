@@ -10,6 +10,7 @@
   <VirtualDirectory Name="CDXML">
     <File Name="CDXML/CDXML.h"/>
     <File Name="CDXML/EIdentifier.h"/>
+    <File Name="CDXML/CDXML.cpp"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
