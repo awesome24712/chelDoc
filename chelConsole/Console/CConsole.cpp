@@ -26,36 +26,39 @@ void CConsole::EnterCommandCycle(){
 		std::getline(std::cin, currentCommand);
 		String cmd = currentCommand.c_str();
 		
-		cmd.trimSpaces();
-		if(cmd.contains(' ')){
-			int spIndex = cmd.indexOf(' ');
-			String subcmd = cmd.subString(0,spIndex);
-			bool isConVar = exists(subcmd);
-			if(isConVar){
-				String varValue = cmd.subString(spIndex+1,cmd.length());
-				ConVar* pVar = ConVar::findByName(subcmd);
-				pVar->setValue(varValue);
-			}
-			else if(ConCommandBase::exists(subcmd)){
-				CArgs args = cmd;
-				ConCommandBase::getCommand(subcmd)->performCommand(&args);
-			}
-		}
-		else if(ConCommandBase::exists(cmd)){
-				CArgs args = cmd;
-				ConCommandBase::getCommand(cmd)->performCommand(&args);
-		}
-		else if(ConVar::exists(cmd)){
-			ConVar* pVar = ConVar::findByName(cmd);
-			Msg(pVar->getToolTip());
-		}
-		else{
-			Msg("Unknown command");
-		}
+		ProcessCommand(cmd);
 	}
 }
 
-
+void CConsole::ProcessCommand(const String& sCommand){
+	String cmd = sCommand;
+	cmd.trimSpaces();
+	if(cmd.contains(' ')){
+		int spIndex = cmd.indexOf(' ');
+		String subcmd = cmd.subString(0,spIndex);
+		bool isConVar = exists(subcmd);
+		if(isConVar){
+			String varValue = cmd.subString(spIndex+1,cmd.length());
+			ConVar* pVar = ConVar::findByName(subcmd);
+			pVar->setValue(varValue);
+		}
+		else if(ConCommandBase::exists(subcmd)){
+			CArgs args = cmd;
+			ConCommandBase::getCommand(subcmd)->performCommand(&args);
+		}
+	}	
+	else if(ConCommandBase::exists(cmd)){
+		CArgs args = cmd;
+		ConCommandBase::getCommand(cmd)->performCommand(&args);
+	}
+	else if(ConVar::exists(cmd)){
+		ConVar* pVar = ConVar::findByName(cmd);
+		Msg(pVar->getToolTip());
+	}
+	else{
+		Msg("Unknown command");
+	}
+}
 
 CON_COMMAND(quit){
 	g_console.m_bQuit = true;

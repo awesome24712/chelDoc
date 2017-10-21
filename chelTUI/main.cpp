@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <../chelConsole/Console/CConsole.h>
 
-int main(int argc, char **argv)
+int main()
 {
-	printf("hello world\n");
-	return 0;
+	try {
+		g_pConsole->EnterCommandCycle();
+	} catch(CChelException* e){
+		e->handle();
+	}
 }

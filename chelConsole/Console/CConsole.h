@@ -23,7 +23,7 @@ public:
 	 //Enters input stream so that user can start typing commands
 	void EnterCommandCycle();
 	
-	
+	virtual void ProcessCommand(const String& sCommand);
 	
 }
 

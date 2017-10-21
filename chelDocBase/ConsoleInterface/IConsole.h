@@ -29,6 +29,8 @@ class IConsole {
 	virtual void ProcessCommand(const String& sCommand) = 0;
 };
 
+
+
 inline void Msg(const char* pszFormat, ...) { g_pConsole->Msg(pszMsg, ...); }
 inline void DevMsg(const char* pszFormat, ...) { g_pConsole->DevMsg(pszMsg, ...); }
 inline void Log(const char* pszFormat, ...) { g_pConsole->Log(pszMsg, ...); }
