@@ -105,5 +105,6 @@
   </Settings>
   <VirtualDirectory Name="Directory">
     <File Name="Directory/NDirectoryScanner.h"/>
+    <File Name="Directory/NDirectoryScanner.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
