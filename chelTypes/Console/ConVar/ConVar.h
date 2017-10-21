@@ -7,6 +7,7 @@ class ConVar {
 protected:
 	const String 	m_sName;
 	String 			m_sValue;
+	const String	m_sToolTip
 	int				m_iFlags;
 	
 public:
@@ -14,6 +15,7 @@ public:
 
 
 	const String* 	getName() 	const { return &m_sName; }
+	const String* 	getToolTip	const { return &m_sName; }
 	int				getFlags() 	const { return m_iFlags; }
 
 	const char* getCStr() 	const { return (char*) m_sValue; }

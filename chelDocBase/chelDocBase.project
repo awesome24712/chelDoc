@@ -9,6 +9,7 @@
   <Dependencies/>
   <VirtualDirectory Name="CDXML">
     <File Name="CDXML/CDXML.h"/>
+    <File Name="CDXML/EIdentifier.h"/>
   </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
@@ -102,4 +103,8 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="ConsoleInterface">
+    <File Name="ConsoleInterface/IConsole.h"/>
+    <File Name="ConsoleInterface/IConsole.cpp"/>
+  </VirtualDirectory>
 </CodeLite_Project>
