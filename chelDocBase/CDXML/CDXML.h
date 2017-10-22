@@ -18,7 +18,7 @@ namespace NChelDoc{
 	};
 	struct SNamespace{
 		String m_sAccessibility;
-		bool m_bInstantiable;
+		bool m_bIsInstantiable;
 		String m_sName;
 		String m_sScope;
 		
