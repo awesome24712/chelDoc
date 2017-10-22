@@ -12,14 +12,6 @@ private:
 	~CHTMLWriter(); //destructor declaration
 	
 	ofstream outfile;
-	
-	CHTMLWriter(outputFileName){
-		outfile.open(outputFileName);
-	}
-	
-	~CHTMLWriter(){
-		outfile.close();
-	}
 
 	void createHeaders(const String& title);
 	void createTable(CDynList<String>& headers);
@@ -30,9 +22,27 @@ private:
 	void encloseLink(const String& link, String& str);
 	void printParagraph(const String& paragraph);
 	void printPreParagraph(const String& PreParagraph);
+
+public:
+	void open(const String& path){
+		outfile.open(path);
+	}
+	
+	void close(const String&path){
+		outfile.close(path);
+	}
+	
+	CHTMLWriter(outputFileName){
+		outfile.open(outputFileName);
+	}
+	
+	~CHTMLWriter(){
+		outfile.close();
+	}
 }
 
 class CWebGenerator{
+	
 	
 	CHTMLWriter m_Writer;
 	

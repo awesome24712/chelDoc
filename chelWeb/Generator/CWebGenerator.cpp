@@ -106,6 +106,9 @@ void CWebGenerator::processJob(CDynList<CDocTree*>& treeList) {
 	
 }
 
+//Create a file that contains the html output for this function.
+//Call printParameter for each child that is a Parameter and
+//	printVariable for each child that is a variable
 void CWebGenerator::printFunction(CDocTree* pFunction){
 	String& accessiibility = pVariable->asVariable.m_sAccessibility;
 	String& parameter = pVariable->asVariable.m_sParameter;
@@ -113,11 +116,22 @@ void CWebGenerator::printFunction(CDocTree* pFunction){
 	bool m_bIsFirstClass;
 	bool m_bCanOverride;
 	bool m_sIsVirtual;
-	//TO-DO use m_Writer to print.
+	// Don't know right now how many columns. Added so program will compile.
+	int numberOfColumns = 10;
+	
+	for(int i = 0; i < pFunction->numChildren(); i++){
+		String type = pFunction->getEType();
+		switch(type) {
+			case VARIABLE : printVarial(pFunction->getChild(i));
+			case FUNCTION : printFunctionBrief(pFunction -> getChild(i));
+			case PARAMETER : printParameter(pFunction -> getChild(i), numberOfColumns);
+		}
+	}
 }
 
 void CWebGenerator::printParameter(CDocTree* pParameter, int numberOfColumns){
 	//TO-DO use m_Writer to print.
+	
 }
 
 void CWebGenerator::printNamespace(CDocTree* pNamespace){
@@ -135,5 +149,6 @@ void CWebGenerator::printVariable(CDocTree* pVariable){
 	String& accessibility = pVariable->asVariable.m_sAccessibility;
 	bool isPointer = pVariable->asVariable.m_bIsPointer;
 	bool isOnHeap = pVariable->asVariable.m_bIsOnHeap;
-	//TO-DO use m_Writer to print.
+	
+	
 }
