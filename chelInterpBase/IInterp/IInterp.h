@@ -18,7 +18,7 @@ public:
 	// File Extension should not include "."
 	virtual const String& getFileExtension() = 0;
 	
-	virtual Ptr<CXMLTree> interpFile(const SFilePath& path) = 0;
+	virtual Ptr<CDocTree> interpFile(const SFilePath& path) = 0;
 }
 
 

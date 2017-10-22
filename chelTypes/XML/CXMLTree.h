@@ -21,9 +21,10 @@ class CXMLTreeHandle {
 private:
 	friend class CXMLTree;
 	Ptr<CXMLTree> m_pNode;
-	CXMLTreeHandle(CXMLTree* treeOnHeap) { m_pNode = treeOnHeap; }
+
 public:
 	
+	CXMLTreeHandle(CXMLTree* treeOnHeap) { m_pNode = treeOnHeap; }
 	CXMLTreeHandle(const String& _sLabel);
 	
 	CXMLTree& get() { return *m_pNode; }
