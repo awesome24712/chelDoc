@@ -132,4 +132,5 @@
     <Project Name="chelInterp"/>
     <Project Name="chelWeb"/>
   </Dependencies>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

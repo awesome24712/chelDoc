@@ -52,13 +52,13 @@ void CConsole::ProcessCommand(const String& sCommand) {
 			pVar->setValue(varValue);
 		}
 		else if(ConCommandBase::exists(subcmd)){
-			CArgs args = cmd;
+			CArgs args = String(cmd.subString(spIndex+1));
 			ConCommandBase::getCommand(subcmd)->performCommand(&args);
 		}
 	}
 	else if(ConCommandBase::exists(cmd)){
-			CArgs args = cmd;
-			ConCommandBase::getCommand(cmd)->performCommand(&args);
+			//CArgs args = cmd;
+			ConCommandBase::getCommand(cmd)->performCommand(nullptr);
 	}
 	else if(ConVar::exists(cmd)){
 		ConVar* pVar = ConVar::findByName(cmd);
@@ -79,6 +79,10 @@ CON_COMMAND(quit){
 
 String g_sEmptyLines(100,'\n');
 
+CON_COMMAND(cls){
+	Msg(g_sEmptyLines);
+}
+
 CON_COMMAND(printstars) {
 	for (int i = 0; i < 10; i++) {
 		for (int j = i; j < 10; j++) {
@@ -86,8 +90,4 @@ CON_COMMAND(printstars) {
 		}
 		Msg("\n");
 	}
-}
-
-CON_COMMAND(cls){
-	Msg(g_sEmptyLines);
 }

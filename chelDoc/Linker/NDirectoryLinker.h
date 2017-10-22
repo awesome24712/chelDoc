@@ -5,4 +5,4 @@ namespace NChelDoc {
 	
 }
 
-#define CHEL_DIRECTORY_LINKER
+#endif //CHEL_DIRECTORY_LINKER

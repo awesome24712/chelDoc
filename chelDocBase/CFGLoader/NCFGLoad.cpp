@@ -11,18 +11,18 @@ string currentcommand;
 
 namespace NCFGLoad{
 	void fromFile(const char* pszPath){
-
+		
 		ifstream infile;
 		infile.open(pszPath);
+		
 		while(!infile.eof()){
 			getline(infile,currentcommand);
 			String command = currentcommand.c_str();
+			Msg("%s\n", (char*) command);
 			g_pConsole->ProcessCommand(command);
 		}
 		infile.close();
+		
+		Msg("Finished file %s\n", pszPath);
 	}
-}
-
-CON_COMMAND(print) {
-	Msg(args->get(1));
 }

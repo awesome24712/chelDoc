@@ -119,4 +119,6 @@
     <File Name="CFGLoader/NCFGLoad.cpp"/>
     <File Name="CFGLoader/NCFGLoad.h"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

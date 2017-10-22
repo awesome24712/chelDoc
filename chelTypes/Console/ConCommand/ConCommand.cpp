@@ -22,18 +22,28 @@ ConCommandBase* ConCommandBase::getCommand(const String& sName){
 
 void CArgs::parseFromString(const String& str) {
 	//make a copy
+	printf("Received string \"%s\"\n", (char*) str);
 	String str2 = str;
+	
 	
 	//remove initial command
 	str2.trimSpaces();
 	str2.push(' '); //an extra space for the indexing to work
-	int nextSpaceIndex = str2.indexOf(' ');
+	str2.pushFront(' ');
+	
+	int prevSpaceIndex = 0;
+	int nextSpaceIndex = str2.indexOfBounded(' ', prevSpaceIndex + 1, str2.length());
 	while (nextSpaceIndex != -1) {
-		str2.removeByIndexes(0, nextSpaceIndex + 1);
+		printf("Parsing string \"%s\"\n", (char*) str2);
+		String arg = str2.subString(prevSpaceIndex + 1, nextSpaceIndex);
+		arg.pop(); //pop off the space
+		printf("Parsed \"%s\"\n", (char*) arg);
+		m_Args.push(arg); 
 		
-		nextSpaceIndex = str2.indexOf(' ');
-		if (nextSpaceIndex != -1) {
-			m_Args.push(str2.subString(0, nextSpaceIndex));
-		}
+		if (nextSpaceIndex == str2.length() - 1)
+			break;
+		
+		prevSpaceIndex = nextSpaceIndex;
+		nextSpaceIndex = str2.indexOfBounded(' ', prevSpaceIndex + 1, str2.length());;
 	}
 }

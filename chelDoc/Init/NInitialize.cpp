@@ -8,18 +8,11 @@ namespace NChelDoc {
 	
 	void LoadCommonConfigs() {
 		//get startup directory
-		String loc;
-		NDirectoryScanner::startupDirectory(loc);
-		loc /= "autoexec.cfg";
-		NCFGLoad::fromFile(loc);
+		NCFGLoad::fromFile("autoexec.cfg");
 		
-		NDirectoryScanner::startupDirectory(loc);
-		loc /= "interp.cfg";
-		NCFGLoad::fromFile(loc);
+		NCFGLoad::fromFile("interp.cfg");
 		
-		NDirectoryScanner::startupDirectory(loc);
-		loc /= "web.cfg";
-		NCFGLoad::fromFile(loc);
+		NCFGLoad::fromFile("web.cfg");
 	}
 	
 	void LoadRuntimeLibraries() {
