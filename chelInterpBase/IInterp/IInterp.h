@@ -13,13 +13,17 @@ public:
 		g_lInterpreters.push(this);
 	}
 	// Every interpreter should have a language name.
+	// This should be the same name as the library.
+	// ex. java.dll should return "java"
 	virtual const String& getLanguageName() = 0;
 	
 	// File Extension should not include "."
 	virtual const String& getFileExtension() = 0;
 	
 	virtual Ptr<CDocTree> interpFile(const SFilePath& path) = 0;
-}
+	
+	static const CDynList<IInterp*>* interpreterList() { return &g_lInterpreters; }
+}  
 
 
 #endif //IInterp
