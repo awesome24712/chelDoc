@@ -4,7 +4,7 @@
   <Project Name="chelTypes" Path="chelTypes/chelTypes.project" Active="No"/>
   <Project Name="chelMath" Path="chelMath/chelMath.project" Active="No"/>
   <Project Name="chelTester" Path="chelTester/chelTester.project" Active="No"/>
-  <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project" Active="No"/>
+  <Project Name="chelDocBase" Path="chelDocBase/chelDocBase.project" Active="Yes"/>
   <Project Name="chelInterpBase" Path="chelInterpBase/chelInterpBase.project" Active="No"/>
   <Project Name="chelProjectScanner" Path="chelProjectScanner/chelProjectScanner.project" Active="No"/>
   <Project Name="chelConsole" Path="chelConsole/chelConsole.project" Active="Yes"/>
