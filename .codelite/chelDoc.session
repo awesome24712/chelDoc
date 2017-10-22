@@ -1,19 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="F:\Users\Awesome\chelDoc\chelDoc.workspace">
-  <int Value="1" Name="m_selectedTab"/>
-  <wxString Value="F:\Users\Awesome\chelDoc\chelDoc.workspace" Name="m_workspaceName"/>
+<Session Name="C:\Users\olivi\chelDoc\chelDoc.workspace">
+  <int Value="7" Name="m_selectedTab"/>
+  <wxString Value="C:\Users\olivi\chelDoc\chelDoc.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="F:\Users\Awesome\chelDoc\chelTypes\Templates\Networks\CTree.hpp" Name="FileName"/>
-      <int Value="93" Name="FirstVisibleLine"/>
-      <int Value="109" Name="CurrentLine"/>
+      <wxString Value="C:\Users\olivi\chelDoc\chelDocBase\CDXML\CDXML.h" Name="FileName"/>
+      <int Value="69" Name="FirstVisibleLine"/>
+      <int Value="89" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
-      <wxString Value="F:\Users\Awesome\chelDoc\chelTypes\Templates\Networks\CTree.h" Name="FileName"/>
-      <int Value="235" Name="FirstVisibleLine"/>
-      <int Value="183" Name="CurrentLine"/>
+      <wxString Value="C:\Users\olivi\chelDoc\chelDocBase\CDXML\CDXML.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="18" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelWeb\Generator\NGenerator.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="10" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelWeb\Generator\NGenerator.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="23" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelConsole\Console\CConsole.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelConsole\Console\CConsole.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelTypes\XML\CXMLTree.h" Name="FileName"/>
+      <int Value="33" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\olivi\chelDoc\chelDocBase\ConsoleInterface\IConsole.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
