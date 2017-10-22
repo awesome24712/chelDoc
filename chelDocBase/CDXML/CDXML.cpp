@@ -1,4 +1,4 @@
-#include <CDXML.h>
+#include <CDXML/CDXML.h>
 
 namespace NChelDoc{
 	
@@ -8,7 +8,8 @@ namespace NChelDoc{
 		"FUNCTION",
 		"PARAMETER",
 		"NAMESPACE"
-	}
+	};
+	
 	EType getETypeName(String sType){
 		
 		#define check(a) \
@@ -24,7 +25,7 @@ namespace NChelDoc{
 		#undef check
 	}
 	
-	String getStringName(EType eType){
+	String& getStringName(EType eType){
 		return g_aEnumTable[eType];
 	}
 }

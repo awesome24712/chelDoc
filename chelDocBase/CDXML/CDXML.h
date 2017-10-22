@@ -1,9 +1,13 @@
 #ifndef CDXML
 #define CDXML
 
-#include <../../chelTypes/chelTypes.hpp>
+#include <../chelTypes/chelTypes.hpp>
+
+
 
 namespace NChelDoc{
+	
+	
 	struct SFile{
 		String m_sName;
 		int m_iNumberOfLines;
@@ -47,7 +51,11 @@ namespace NChelDoc{
 		FUNCTION,
 		PARAMETER,
 		NAMESPACE,
-	}
+	};
+	
+	EType getETypeName(String sType);
+	String& getStringName(EType eType);
+	
 	class CDocTree : public CXMLTree {
 	private:
 		
@@ -66,27 +74,25 @@ namespace NChelDoc{
 		Ptr<SVariable>	asVariable()	{ return m_pVariable; }
 		Ptr<SParameter> asParameter()	{ return m_pParameter; }
 		
-		CDocTree(Ptr<SFile> pFile) {
+		CDocTree(Ptr<SFile> pFile) : CXMLTree("FILE") {
 			m_pFile = pFile;
 		}
-		CDocTree(Ptr<SNamespace> pNamespace){
+		CDocTree(Ptr<SNamespace> pNamespace) : CXMLTree("NAMESPACE") {
 			m_pNamespace = pNamespace;
 		}
-		CDocTree(Ptr<SFunction> pFunction){
+		CDocTree(Ptr<SFunction> pFunction) : CXMLTree("FUNCTION") {
 			m_pFunction = pFunction;
 		}
-		CDocTree(Ptr<SParameter> pParameter){
+		CDocTree(Ptr<SParameter> pParameter) : CXMLTree("PARAMETER") {
 			m_pParameter = pParameter;
 		}
-		CDocTree(Ptr<SVariable> pVariable){
+		CDocTree(Ptr<SVariable> pVariable) : CXMLTree("VARIABLE"){
 			m_pVariable = pVariable;
 		}
 		
 
 	};
 	
-	EType getETypeName(String sType);
-	String getStringName(EType eType);
 	
 }
 
