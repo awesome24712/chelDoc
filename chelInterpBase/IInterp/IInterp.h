@@ -1,6 +1,8 @@
 #ifndef IInterp
 #define IInterp
 
+#include "/../../chelDocBase/"
+
 // extend this class for each Interpreter.
 class IInterp {
 private:
