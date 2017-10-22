@@ -42,7 +42,9 @@ class CWebGenerator{
 	 * @param outputMap - map of CDocTree* to file output locations
 	 * @param identifierMap - map of identifiers to output locations
 	 */
-	void mapOutputLocations(CDynList<CDocTree*>& treeList, CHMap<CDocTree* , String>& outputMap, CHMap<String , String>& identifierMap);
+	void mapOutputLocations(CDynList<CDocTree*>& treeList, CMap<CDocTree* , String>& outputMap, CMap<String , String>& identifierMap);
+	
+	void mapOutputLocations(CDocTree* tree, CMap<CDocTree*, String>& outputMap, CMap<String,String>& identifierMap);
 	
 	void fullyQualifiedName(CDocTree* pTree, CDynList<String>& result);
 	
@@ -61,6 +63,11 @@ class CWebGenerator{
 	void processJob(CDynList<CDocTree*>& treeList);
 	
 private:
+
+	String g_sRootNodeDirectory;
+	void getRootDirectory();
+	
+	CWebGenerator() { getRootDirectory(); }
 	/**
 	* prints HTML information about a function and creates a table of its parameters
 	* @param pFunction

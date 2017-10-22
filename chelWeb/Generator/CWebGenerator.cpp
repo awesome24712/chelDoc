@@ -2,13 +2,50 @@
 
 #include "../../chelDocBase/chelDocBase.h";
 #include "../../chelTypes/chelTypes.hpp";
+#include <filesystem>
+namespace fs = std::filesystem;
 
+
+void CWebGenerator::getRootDirectory(){
+	wcstombs(directoryBuffer, fs::current_path().root_path().c_str(), 512);
+	g_sRootNodeDirectory = directoryBuffer;
+}
 void CWebGenerator::mapOutputLocations(CDynList<CDocTree*>& treeList, CMap<CDocTree* , String>& outputMap, CMap<String , String>& identifierMap){
-	
+	for(int i = 0; i < treeList.length(); i++){
+		mapOutputLocations(treelist.get(i), outputMap, identifierMap);
+	}
+}
+
+//Given a CDocTree*, return the associated file path.
+//i.e. "C://Users/Awesome/chelDoc/namespace_1/function_1/variable_1"
+void filePathForNode(CDocTree* tree, String& filePath){
+	//Assume the working directory is the root directory of the tree
+	//From there, add the fullyQualifiedName of the path to node
+	CDynList<String> result;
+	fullyQualifiedName(tree, result);
+	filePath = "";
+	for(int i = 0; i < result.length(); i++) {
+		filePath += result(i);
+	}
+	filePath.pushFront(g_sRootNodeDirectory);
 }
 
 void CWebGenerator::mapOutputLocations(CDocTree* tree, CMap<CDocTree*, String> & outputMap, CMap<CDynList<String>, String>& identifierMap){
-	
+	CDynList<String> name;
+	fullyQualifiedName(tree, name);
+	//If there's already a CDynList by this name, get the resulting string for the outputMap.
+	if(identifierMap.hasKey(name)){
+		CMap.add(tree, identifierMap.value(name));
+		//If Key already exists, no need to add it to outputMap.
+	} else {
+		//otherwise, create a unique string label for the tree that corresponds to its fully qualified name.
+		String nodePath;
+		filePathForNode(tree, nodePath);
+		identifierMap.add(name, nodePath);
+		outputMap.add(tree, nodePath);
+	}
+	outputMap.add(tree, name);
+	identifierMap.add(
 	for(int i = 0; i < tree->numChildren(); i++){
 		mapOutputLocations(tree.child(i), CMap<CDocTree*, String> & outputMap, CMap(String, String>& identifierMap);
 	}
