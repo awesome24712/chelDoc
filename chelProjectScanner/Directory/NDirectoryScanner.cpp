@@ -1,4 +1,4 @@
-#include "Windows.h"
+#include "windows.h"
 #include <filesystem>
 namespace fs = std::filesystem;
 
@@ -13,5 +13,5 @@ void NDirectoryScanner::fromPath(const char* absolutePath, CTask* pathsList) {
 void NDirectoryScanner::startupDirectory(String& dir) {
 	
 	// Set dir to the current directory
-	dir = fs::current_path();
+	dir = fs::current_path().root_path().c_str();
 }
