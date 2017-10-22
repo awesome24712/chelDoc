@@ -27,7 +27,7 @@ public:
 
 class CTask {
 private:
-	CDynList<SFilePath> m_aFilePaths;
+	const CDynList<SFilePath> m_aFilePaths;
 	int m_iNextIndex;
 	
 public:

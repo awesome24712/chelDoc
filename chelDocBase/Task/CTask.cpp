@@ -3,11 +3,11 @@
 String g_sWorkingDirectory;
 char slashChar;
 
-static void CTask::setWorkingDirectory(String& dir){
+void CTask::setWorkingDirectory(String& dir){
 	g_sWorkingDirectory = dir;
 }
 
-static void SFilePath::goUpDirectory() {
+void SFilePath::goUpDirectory() {
 	//Get index of last meaningful forward or backward slash.
 	char last = g_sWorkingDirectory->end();
 	bool hasLast = (last == "\\" || last == "/");
@@ -27,7 +27,7 @@ static void SFilePath::goUpDirectory() {
 	}
 }
 
-static void SFilePath::goDownDirectory(String& subfile){
+void SFilePath::goDownDirectory(String& subfile){
 	//Get a char with the appropriate slash.
 	if(slashChar = NULL){
 		char slash = getSlashChar();
@@ -44,7 +44,7 @@ static void SFilePath::goDownDirectory(String& subfile){
 	g_sWorkingDirectory += subfile;
 }
 
-static char SFilePath::getSlashChar(){
+char SFilePath::getSlashChar(){
 	char slash;
 	if(g_sWorkingDirectory.contains("\")){
 		slash = "\";
