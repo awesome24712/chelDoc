@@ -93,6 +93,7 @@ namespace NChelDoc{
 
 	};
 	
+	inline CDocTree* ToDoc(CXMLTree* pTree){ return static_cast<CDocTree*>(pTree);}
 	
 }
 
