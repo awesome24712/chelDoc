@@ -110,4 +110,8 @@
     <File Name="DynamicLoad/NDynamicLoad.h"/>
     <File Name="DynamicLoad/NDynamicLoad.cpp"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="Dispatcher">
+    <File Name="Dispatcher/Dispatcher.cpp"/>
+    <File Name="Dispatcher/Dispatcher.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>
