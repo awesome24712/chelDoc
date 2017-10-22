@@ -49,8 +49,17 @@ void CHTMLWriter::createFooter(){
 }
 
 void CHTMLWriter::createLink(const String& link,const String& linkName){
-	outfile << "<a href" << link << ">";
+	outfile << "<a href \"" << link << " \" >";
 	outfile << linkName << "</a> \n";
+}
+
+void CHTMLWriter::encloseLink(const String& link, String& str){
+	str.add(0,"\">");
+	
+	str.add(0 , link);
+	str.add(0, "<a href=\"");
+	str.add(str.length(), "</a>");
+	
 }
 
 void CHTMLWriter::printParagraph(const String& paragraph){

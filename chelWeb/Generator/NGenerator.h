@@ -27,6 +27,7 @@ private:
 	void closeTable(const String& tableFooter);
 	void createFooter();
 	void createLink(const String& link, const String& linkName);
+	void encloseLink(const String& link, String& str);
 	void printParagraph(const String& paragraph);
 	void printPreParagraph(const String& PreParagraph);
 }
