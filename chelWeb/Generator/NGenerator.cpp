@@ -18,19 +18,24 @@ void CHTMLWriter::createHeaders(const String& title){
 	
 }
 
-void CHTMLWriter::createTable((const String& tableHeader, outfile){
+void CHTMLWriter::createTable(CDynList<String>& headers){
 	outfile << "<table border='1' \n";
 	outfile << "<tbody> \n";
 	outfile << "<tr> \n";
-	outfile << "<th>" << tableHeader << "</th> \n";
-	outfile << "<th> Value </th> \n"; //might want to change table headers
+	for(int i=0; i< header.length(); i++){
+	outfile << "<th>" << *(cells.getPtr(i)) << "</th> \n";
+	}
 	outfile << "</tr>";
 	
 }
 
-void CHTMLWriter::createTableRows(const String& type, const String& value){
-	outfile <<"<td>" << type << "</td> \n";
-	outfile <<"<td>" << value << "</td> \n";
+void CHTMLWriter::createTableRow(CDynList<String>& cells){
+	
+	outfile << "<tr> \n";
+	for(int i=0; i< cells.length(); i++){
+		outfile <<"<td>" << *(cells.getPtr(i)) << "</td> \n";
+	}
+	outfile << "</tr> \n";
 
 }
 

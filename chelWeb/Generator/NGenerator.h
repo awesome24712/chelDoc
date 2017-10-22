@@ -22,8 +22,8 @@ private:
 	}
 
 	void createHeaders(const String& title);
-	void createTable(const String& tableHeader);
-	void createTableRows(const String& type, const String& value);
+	void createTable(CDynList<String>& headers);
+	void createTableRows(CDynList<String>& cells);
 	void closeTable(const String& tableFooter);
 	void createFooter();
 	void createLink(const String& link, const String& linkName);
@@ -31,10 +31,58 @@ private:
 	void printPreParagraph(const String& PreParagraph);
 }
 
-class TreeViewer{
-	String getElement(const String& element);
-	String getAttributeValue(const String& name);
-
+class CWebGenerator{
+	
+	/**
+	 * @brief 
+	 * @param treeList - list of trees to process
+	 * @param outputMap - map of CDocTree* to file output locations
+	 * @param identifierMap - map of identifiers to output locations
+	 */
+	void mapOutputLocations(CDynList<CDocTree*>& treeList, CHMap<CDocTree* , String>& outputMap, CHMap<String , String>& identifierMap);
+	
+	/**
+	 * @brief 
+	 * @param treeList - list of trees to process
+	 * @param namespaceGrouping - map of partial namespace identifiers to a list of all identical partial namespace identifiers.
+	 */
+	void mapNamespaces(CDynList<CDocTree*>& treeList, CHMap<CDocTree*, CDynList<CDocTree*>>& namespaceGrouping);
+	
+	/**
+	 * Dispatches functions to generate HTML documentation
+	 */ 
+	void processJob(CDynList<CDocTree*>& treeList);
+	
+private:
+	/**
+	* prints HTML information about a function and creates a table of its parameters
+	* @param pFunction
+	*/
+	void printFunction(CDocTree* pFunction);
+	
+	/**
+	 * prints a row in a table describing the parameter
+	 * @param pParameter
+	 */
+	void printParameter(CDocTree* pParameter, int numberOfColumns);
+	
+	/**
+	 * @brief prints information about namespace and brief description of all of its members
+	 * @param pNamespace
+	 */
+	void printNamespace(CDocTree* pNamespace);
+	
+	/**
+	 * prints brief description of function
+	 * @param pFunction
+	 */
+	void printFunctionBrief(CDocTree* pFunction);
+	
+	/**
+	 * @brief prints information about the variable
+	 * @param pVariable
+	 */
+	void printVariable(CDocTree* pVariable);
 }
 
 
