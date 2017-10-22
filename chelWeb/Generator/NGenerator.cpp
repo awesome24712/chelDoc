@@ -1,7 +1,7 @@
 #include <NGenerator.h>
 #include <fstream>
 
-
+#include "../../chelDocBase/chelDocBase.h";
 
 void CHTMLWriter::createHeaders(const String& title){
 	outfile << "<head> \n";
@@ -69,4 +69,3 @@ void CHTMLWriter::printParagraph(const String& paragraph){
 void CHTMLWriter::printPreParagraph(const String& PreParagraph){
 	outfile << "<pre>" << PreParagraph << "</pre>";
 }
-

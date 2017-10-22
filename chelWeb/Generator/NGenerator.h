@@ -34,6 +34,8 @@ private:
 
 class CWebGenerator{
 	
+	CHTMLWriter m_Writer;
+	
 	/**
 	 * @brief 
 	 * @param treeList - list of trees to process
@@ -42,12 +44,16 @@ class CWebGenerator{
 	 */
 	void mapOutputLocations(CDynList<CDocTree*>& treeList, CHMap<CDocTree* , String>& outputMap, CHMap<String , String>& identifierMap);
 	
+	void fullyQualifiedName(CDocTree* pTree, CDynList<String>& result);
+	
 	/**
 	 * @brief 
 	 * @param treeList - list of trees to process
 	 * @param namespaceGrouping - map of partial namespace identifiers to a list of all identical partial namespace identifiers.
 	 */
-	void mapNamespaces(CDynList<CDocTree*>& treeList, CHMap<CDocTree*, CDynList<CDocTree*>>& namespaceGrouping);
+	void mapNamespaces(CDynList<CDocTree*>& treeList, CMap<CDocTree*, CDynList<CDocTree*>>& namespaceGrouping);
+	
+	CDynList<CDocTree*>* fullNamespaceDefinition(CDocTree*, CMap<CDocTree*, CDynList<CDocTree*>>& namespaceGrouping);
 	
 	/**
 	 * Dispatches functions to generate HTML documentation

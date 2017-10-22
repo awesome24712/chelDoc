@@ -104,5 +104,6 @@
   <VirtualDirectory Name="Generator">
     <File Name="Generator/NGenerator.h"/>
     <File Name="Generator/NGenerator.cpp"/>
+    <File Name="Generator/CWebGenerator.cpp"/>
   </VirtualDirectory>
 </CodeLite_Project>
