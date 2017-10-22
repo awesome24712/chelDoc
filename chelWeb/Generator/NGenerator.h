@@ -24,6 +24,10 @@ private:
 	void printPreParagraph(const String& PreParagraph);
 
 public:
+
+	//Ideally, I think the constructor should create an absolute path
+	//pointing to the root node of the HTML files, while open and close
+	//should accept the relative paths. Maybe? -Joy
 	void open(const String& path){
 		outfile.open(path);
 	}
@@ -88,7 +92,7 @@ private:
 	 * prints a row in a table describing the parameter
 	 * @param pParameter
 	 */
-	void printParameter(CDocTree* pParameter, int numberOfColumns);
+	void printParameter(CDocTree* pParameter);
 	
 	/**
 	 * @brief prints information about namespace and brief description of all of its members

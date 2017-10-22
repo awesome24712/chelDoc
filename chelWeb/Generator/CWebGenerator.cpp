@@ -110,32 +110,66 @@ void CWebGenerator::processJob(CDynList<CDocTree*>& treeList) {
 //Call printParameter for each child that is a Parameter and
 //	printVariable for each child that is a variable
 void CWebGenerator::printFunction(CDocTree* pFunction){
-	String& accessiibility = pVariable->asVariable.m_sAccessibility;
-	String& parameter = pVariable->asVariable.m_sParameter;
-	String m_sReturnType;
-	bool m_bIsFirstClass;
-	bool m_bCanOverride;
-	bool m_sIsVirtual;
-	// Don't know right now how many columns. Added so program will compile.
-	int numberOfColumns = 10;
+	String& accessiibility = pFunction->asVariable.m_sAccessibility;
+	String& parameter = pFunction->asVariable.m_sParameter;
+	String& name = pFunction->asVariable.m_sName;
+	String& returnType = pFunction->asVarialbe.m_sFunction;
+	bool isFirstClass = pFunction->asVariable.m_sIsFirstClass;
+	bool canOverride = pFunction->asVariable.m_sCannOverride;
+	bool isVirtual = pFunction->asVariable.m_sIsVirtual;
 	
-	for(int i = 0; i < pFunction->numChildren(); i++){
-		String type = pFunction->getEType();
-		switch(type) {
-			case VARIABLE : printVarial(pFunction->getChild(i));
-			case FUNCTION : printFunctionBrief(pFunction -> getChild(i));
-			case PARAMETER : printParameter(pFunction -> getChild(i), numberOfColumns);
-		}
+	// Open a file to the relative path. This is temporary.
+	String relativePath;
+	fullyQualifiedName(pFunction, relativePath&);
+	
+	CHTMLWriter.open(relativePath);
+	CHTMLWriter.createHeaders("Function" + pFunction->asFunction.getName());
+	//TO-DO print Function attributes (accessibility, parameter, etc)
+	
+	//Print parameters
+	if(numChildren() > 0){
+		CDynList<String> headers; headers.add("Parameter"); headers.add("Accessibility"); headers.add("Type"); headers.add("Name");
+			headers.add("Default Value"); headers.add("Is Constant"); headers.add("Is Volatile");
+			CHTMLWriter.createTable(headers);
 	}
+	for(int i = 0; i < pFunction->numChildren(); i++){
+		String type = pFunction.child(i)->getEType();
+		if(type == "PARAMETER")
+			printParameter(pFunction -> getChild(i));
+	}
+	CHTMLWriter.closeTable("Parameters");
+	CHTMLWriter.createFooter();
+	CHTMLWriter.close(relativePath);
 }
 
-void CWebGenerator::printParameter(CDocTree* pParameter, int numberOfColumns){
-	//TO-DO use m_Writer to print.
+void CWebGenerator::printParameter(CDocTree* pParameter){
+	
+	CDynList<String> pInfo; pInfo.add(pFunction->asVariable.m_sName); pInfo.add(pFunction->asVariable.m_sAccessibility); pInfo.add(pFunction->asVariable.m_sType);
+				pInfo.add(pFunction->asVariable.m_sName); pInfo.add(pFunction->asVariable.m_sDefaultVal); pInfo.add(pFunction->asVariable.m_sIsConst); pInfo.add(pFunction->asVariable.m_sIsVolatile);
+	CHTMLWriter.createTableRow(pInfo);
 	
 }
 
 void CWebGenerator::printNamespace(CDocTree* pNamespace){
-	//To-Do use m_Writer to print.
+	String accessibility = pNamespace->asNamespace().m_accessibility;
+	boolean isInstantiable = pNamespace->asNamespace().m_bisInstantiable;
+	String name = pNamespace->asNamespace().m_sName;
+	String scope = pNamespace->asNamespace().m_sScope;
+	
+	String relativePath;
+	fullyQualifiedName(pNamespace, relativePath&);
+	CHTMLWriter.open(relativePath);
+	CHTMLWriter.createHeaders("Namespace");
+	//TO-DO print Table with Namespace values
+	
+	// For each child, call the appropriate print method
+	for(int i = 0; i < pNamespace.numChildren(); i++){
+		switch (pNamespace.child(i).getEType){
+			case FUNCTION : printFunctionBrief(pNamespace.child(i));
+			case VARIABLE : printVariable(pNamespace.child(i));
+			default NAMESPACE : printNamespace(pNamespace.child(i));
+		}
+	}
 }
 
 void CWebGenerator::printFunctionBrief(CDocTree* pFunction){
@@ -150,5 +184,5 @@ void CWebGenerator::printVariable(CDocTree* pVariable){
 	bool isPointer = pVariable->asVariable.m_bIsPointer;
 	bool isOnHeap = pVariable->asVariable.m_bIsOnHeap;
 	
-	
+	//TO-DO
 }
