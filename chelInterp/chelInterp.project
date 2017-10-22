@@ -7,6 +7,15 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <File Name="chelInterp.h"/>
+  <VirtualDirectory Name="DynamicLoad">
+    <File Name="DynamicLoad/NDynamicLoad.h"/>
+    <File Name="DynamicLoad/NDynamicLoad.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="Dispatcher">
+    <File Name="Dispatcher/Dispatcher.cpp"/>
+    <File Name="Dispatcher/Dispatcher.h"/>
+  </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -26,10 +35,12 @@
         <LibraryPath Value="../chelMath/Debug"/>
         <LibraryPath Value="../chelDocBase/Debug"/>
         <LibraryPath Value="../chelInterpBase/Debug"/>
+        <LibraryPath Value="../chelProjectScanner/Debug"/>
         <Library Value="chelTypes.dll"/>
         <Library Value="chelMath.dll"/>
         <Library Value="chelDocBase.dll"/>
         <Library Value="chelInterpBase.dll"/>
+        <Library Value="chelProjectScanner.dll"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
@@ -105,13 +116,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <File Name="chelInterp.h"/>
-  <VirtualDirectory Name="DynamicLoad">
-    <File Name="DynamicLoad/NDynamicLoad.h"/>
-    <File Name="DynamicLoad/NDynamicLoad.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="Dispatcher">
-    <File Name="Dispatcher/Dispatcher.cpp"/>
-    <File Name="Dispatcher/Dispatcher.h"/>
-  </VirtualDirectory>
 </CodeLite_Project>

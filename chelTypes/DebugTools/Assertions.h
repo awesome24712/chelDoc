@@ -54,8 +54,6 @@ public:
 #else
 #define AssertTrue(a,b)
 #define AssertFalse(a,b)
-#define AssertTrue(a)
-#define AssertFalse(a)
 #endif
 //void AssertTrue(bool bCondition, const char * pszMsg);
 

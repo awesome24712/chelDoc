@@ -8,5 +8,6 @@ copy "chelProjectScanner\Debug\chelProjectScanner.dll" "%CD%"
 copy "chelInterpBase\Debug\chelInterpBase.dll" "%CD%"
 copy "chelWeb\Debug\chelWeb.dll" "%CD%"
 copy "chelInterp\Debug\chelInterp.dll" "%CD%"
-copy "chelDoc\Debug\chelInterp.dll" "%CD%"
+copy "chelDoc\Debug\chelDoc.dll" "%CD%"
+copy "chelTUI\Debug\chelTUI.exe" "%CD%"
 pause

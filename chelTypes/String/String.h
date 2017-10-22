@@ -80,6 +80,8 @@ public:
 	
 	String& operator+=(const char* str);
 	
+	String& operator /=(const String& other);
+	
 	/*operator char*();*/
 };
 

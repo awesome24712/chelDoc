@@ -10,6 +10,7 @@
 //chelDoc-specific includes
 #include "Linker/NDirectoryLinker.h"
 #include "Linker/NTaskLinker.h"
+#include "Init/NInitialize.h"
 
 
 #endif //CHEL_DOC

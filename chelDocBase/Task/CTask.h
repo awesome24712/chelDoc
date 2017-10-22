@@ -13,7 +13,7 @@ public:
 	SFilePath() : m_sRelativePath(getWorkingDirectory()) {}
 	
 	// Constructor with path as a parameter
-	SFilePath(String& path){
+	SFilePath(const String& path){
 		m_sRelativePath = path;
 	}
 	//Static methods for navigating Working Directory

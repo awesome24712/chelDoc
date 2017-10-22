@@ -14,7 +14,9 @@ class IConsole {
 protected:
 	~IConsole() {}
 public:
-	
+	IConsole() {
+		g_pConsole = this;
+	}
 
 	//prints to console
 	void Msg(const char* pszFormat, ...) {
@@ -49,6 +51,8 @@ public:
 	
 	virtual void ProcessCommand(const String& sCommand) = 0;
 };
+
+inline void SendCommand(const String& sCommand) { g_pConsole->ProcessCommand(sCommand); }
 
 inline void Msg(const char* pszFormat, ...) {
 	va_list args;

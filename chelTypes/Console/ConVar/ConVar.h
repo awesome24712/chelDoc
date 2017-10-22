@@ -13,10 +13,11 @@ protected:
 	
 public:
 	ConVar(const char* pszName, const char* pszDefaultValue);
+	ConVar(const char* pszName, const char* pszDefaultValue, const char* pszToolTip);
 
 
 	const String* 	getName() 	const { return &m_sName; }
-	const String* 	getToolTip()	const { return &m_sName; }
+	const String* 	getToolTip()	const { return &m_sToolTip; }
 	int				getFlags() 	const { return m_iFlags; }
 
 	const char* getCStr() 	const { return (char*) m_sValue; }

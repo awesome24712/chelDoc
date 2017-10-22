@@ -119,4 +119,15 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug">
+    <Project Name="chelMath"/>
+    <Project Name="chelTypes"/>
+    <Project Name="chelDocBase"/>
+    <Project Name="chelConsole"/>
+    <Project Name="chelProjectScanner"/>
+    <Project Name="chelInterpBase"/>
+    <Project Name="chelInterp"/>
+    <Project Name="chelWeb"/>
+    <Project Name="chelDoc"/>
+  </Dependencies>
 </CodeLite_Project>

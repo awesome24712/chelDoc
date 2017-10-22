@@ -118,9 +118,18 @@
     <File Name="Linker/NDirectoryLinker.h"/>
     <File Name="Linker/NTaskLinker.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="Task">
-    <File Name="Task/CTask.h"/>
-    <File Name="Task/CTask.cpp"/>
+  <VirtualDirectory Name="Init">
+    <File Name="Init/NInitialize.h"/>
+    <File Name="Init/NInitialize.cpp"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="Init"/>
+  <Dependencies Name="Debug">
+    <Project Name="chelMath"/>
+    <Project Name="chelTypes"/>
+    <Project Name="chelDocBase"/>
+    <Project Name="chelConsole"/>
+    <Project Name="chelProjectScanner"/>
+    <Project Name="chelInterpBase"/>
+    <Project Name="chelInterp"/>
+    <Project Name="chelWeb"/>
+  </Dependencies>
 </CodeLite_Project>

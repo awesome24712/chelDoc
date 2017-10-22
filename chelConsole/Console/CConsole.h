@@ -3,7 +3,7 @@
 
 #include "../../chelDocBase/chelDocBase.h"
 
-class CConsole {
+class CConsole : public IConsole {
 private:
 	String m_sPreviousOutput;
 	
@@ -14,7 +14,7 @@ public:
 
 	bool m_bQuit = false;
 	
-	CConsole(){
+	CConsole() : IConsole() {
 		m_sPreviousOutput.setReserveBuffer(5000);
 	}
 	

@@ -22,3 +22,7 @@ namespace NCFGLoad{
 		infile.close();
 	}
 }
+
+CON_COMMAND(print) {
+	Msg(args->get(1));
+}

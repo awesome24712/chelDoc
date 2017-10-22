@@ -426,11 +426,11 @@ template<class T> bool CDynList<T>::containsAsSubSet(const CDynList<T>& other) c
 }
 
 template<class T> CDynList<T> CDynList<T>::subString(int start, int end) {
-	CDynList<T> result(end - start + 1);
+	CDynList<T> result(end - start + 2);
 	//can't use null termination, in case we're storing objects by value
-	for (int i = start; i < end; i++)
-		result.m_array[i] = m_array[i + m_iStartIndex];
-	result.m_iEndIndex = end;
+	for (int i = 0; i < end - start; i++)
+		result.m_array[i] = m_array[i + start];
+	result.m_iEndIndex = end - start;
 	return result;
 }
 
@@ -442,10 +442,10 @@ template<class T> void CDynList<T>::flip() {
 }
 
 template<class T> void CDynList<T>::trimEnds(T removedItem) {
-	while (front() == removedItem)
+	while (length() > 0 && front() == removedItem)
 		popFront();
 	
-	while (end() == removedItem)
+	while (length() > 0 && end() == removedItem)
 		pop();
 }
 

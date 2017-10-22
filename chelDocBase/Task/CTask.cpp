@@ -7,6 +7,10 @@ void SFilePath::setWorkingDirectory(String& dir){
 	g_sWorkingDirectory = dir;
 }
 
+const String& SFilePath::getWorkingDirectory() {
+	return g_sWorkingDirectory;
+}
+
 void SFilePath::goUpDirectory() {
 	//Get index of last meaningful forward or backward slash.
 	char last = g_sWorkingDirectory.end();

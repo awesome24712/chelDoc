@@ -1,3 +1,3 @@
 #include "IInterp.h"
 
-CDynList<IInterp*> IInterp::g_lInterpreters;
+CDynList<IInterp*> g_lInterpreters;

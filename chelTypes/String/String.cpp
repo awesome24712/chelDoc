@@ -128,3 +128,13 @@ String& String::operator +=(const char* str) {
 		
 	return *this;
 }
+
+String& String::operator /=(const String& other) {
+	if (this->end() == '\\' || this->end()  == '/')
+		this->pop();
+		
+	if (other.front() != '\\' && other.front() != '/')
+		this->push('/');
+		
+	return (*this) += other;
+}

@@ -11,10 +11,16 @@ Debug/Console_ConCommand_ConCommand.cpp.o: \
  ../chelMath/Vector/Vector2D.h ../chelMath/Rand/Rand.h \
  C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h \
  ../chelMath/math.hpp \
+ Console/ConCommand/../../Templates/Networks/Net_Templates.hpp \
+ Console/ConCommand/../../Templates/Networks/CTree.hpp \
+ Console/ConCommand/../../Templates/Networks/CTree.h \
+ Console/ConCommand/../../Templates/Networks/../Lists/CDynList.hpp \
+ C:/Users/Chel/source/chelDoc/chelTypes/String/String.h \
+ Console/ConCommand/../../Templates/Networks/../Wrappers/Ptr.hpp \
+ Console/ConCommand/../../Templates/Networks/CMap.hpp \
+ Console/ConCommand/../../Templates/Networks/CMap.h \
  Console/ConCommand/../../Templates/Networks/HashMap/CHMap.hpp \
  Console/ConCommand/../../Templates/Networks/HashMap/../CMap.hpp \
- Console/ConCommand/../../Templates/Networks/HashMap/../CMap.h \
- C:/Users/Chel/source/chelDoc/chelTypes/Templates/Lists/CDynList.hpp \
  C:/Users/Chel/source/chelDoc/chelTypes/Templates/Lists/CList.hpp \
  C:/Users/Chel/source/chelDoc/chelTypes/Templates/Lists/CList.h
 
@@ -56,13 +62,25 @@ C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 
 ../chelMath/math.hpp:
 
+Console/ConCommand/../../Templates/Networks/Net_Templates.hpp:
+
+Console/ConCommand/../../Templates/Networks/CTree.hpp:
+
+Console/ConCommand/../../Templates/Networks/CTree.h:
+
+Console/ConCommand/../../Templates/Networks/../Lists/CDynList.hpp:
+
+C:/Users/Chel/source/chelDoc/chelTypes/String/String.h:
+
+Console/ConCommand/../../Templates/Networks/../Wrappers/Ptr.hpp:
+
+Console/ConCommand/../../Templates/Networks/CMap.hpp:
+
+Console/ConCommand/../../Templates/Networks/CMap.h:
+
 Console/ConCommand/../../Templates/Networks/HashMap/CHMap.hpp:
 
 Console/ConCommand/../../Templates/Networks/HashMap/../CMap.hpp:
-
-Console/ConCommand/../../Templates/Networks/HashMap/../CMap.h:
-
-C:/Users/Chel/source/chelDoc/chelTypes/Templates/Lists/CDynList.hpp:
 
 C:/Users/Chel/source/chelDoc/chelTypes/Templates/Lists/CList.hpp:
 

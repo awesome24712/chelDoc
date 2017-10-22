@@ -1,18 +1,19 @@
 #include "Dispatcher.h"
-namespace fs = std::filesystem;
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
 
 
 IInterp* NDispatcher::getInterpreterFor(String& filePath) {
 	char* filePathType;
-	int dot = filePath.lastIndexOf(".");
-	for(int i = filePath.length()-1, i >= dot; i--){
+	int dot = filePath.lastIndexOf('.');
+	for(int i = filePath.length()-1; i >= dot; i--){
 		filePathType += filePath.pop();
 	}
 	IInterp* pResult = nullptr;
 	filePath += filePathType;
-	for(int i = 0; i < IInterp::g_lInterpreters.length(); i++){
-		if(filePathType == IInterp::g_lInterpreters.get(i).getFileExtension()){
-			pResult = IInterp::g_lInterpreters.get(i);
+	for(int i = 0; i < g_lInterpreters.length(); i++){
+		if(filePathType == g_lInterpreters.get(i)->getFileExtension()){
+			pResult = g_lInterpreters.get(i);
 			break;
 		}
 	}
@@ -23,7 +24,7 @@ IInterp* NDispatcher::getInterpreterFor(String& filePath) {
 
 //Use function to get interp. AssertTrue(interp). Call function
 //to get documentation for file.
-Ptr<CDocTree> NDispatcher::getDocumentationFor(String& filePath){
+Ptr<NChelDoc::CDocTree> NDispatcher::getDocumentationFor(String& filePath){
 	IInterp* forFile = getInterpreterFor(filePath);
 	AssertTrue(forFile, "No interpreter found for this file type.");
 	
