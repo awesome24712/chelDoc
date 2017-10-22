@@ -2,6 +2,16 @@
 
 namespace NChelDoc{
 	
+	String& CDXML::getStringName(){
+		switch(m_eType) {
+			case FILEDESC: return m_pFile->m_sName;
+			case VARIABLE: return m_pVariable->m_sName;
+			case NAMESPACE: return m_pNamespace->m_sName;
+			case FUNCTION: return m_pFunction->m_sName;
+			default : return m_pParameter->m_sName;
+		}
+	}
+	
 	String g_aEnumTable[5] = {
 		"FILEDESC", 
 		"VARIABLE",

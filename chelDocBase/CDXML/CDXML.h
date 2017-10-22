@@ -66,6 +66,8 @@ namespace NChelDoc{
 		Ptr<SParameter> m_pParameter;
 		
 		EType m_eType;
+		String m_sOriginalDec;
+		
 	public:
 		EType 			getEType()		{ return m_eType; }
 		Ptr<SFile> 		asFile()		{ return m_pFile; }
@@ -73,6 +75,7 @@ namespace NChelDoc{
 		Ptr<SFunction>	asFunction()	{ return m_pFunction; }
 		Ptr<SVariable>	asVariable()	{ return m_pVariable; }
 		Ptr<SParameter> asParameter()	{ return m_pParameter; }
+		String&			getName();
 		
 		CDocTree(Ptr<SFile> pFile) : CXMLTree("FILE") {
 			m_pFile = pFile;
@@ -89,6 +92,9 @@ namespace NChelDoc{
 		CDocTree(Ptr<SVariable> pVariable) : CXMLTree("VARIABLE"){
 			m_pVariable = pVariable;
 		}
+		
+		const String& getOriginalDec() {  return m_sOriginalDec;  }
+		
 		
 
 	};
