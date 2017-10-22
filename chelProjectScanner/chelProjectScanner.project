@@ -103,6 +103,7 @@
       </Completion>
     </Configuration>
   </Settings>
+  <File Name="chelProjectScanner.h"/>
   <VirtualDirectory Name="Directory">
     <File Name="Directory/NDirectoryScanner.h"/>
     <File Name="Directory/NDirectoryScanner.cpp"/>

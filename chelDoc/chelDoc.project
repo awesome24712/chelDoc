@@ -113,4 +113,18 @@
       </Completion>
     </Configuration>
   </Settings>
+<<<<<<< .mine
+  <File Name="chelDoc.h"/>
+  <VirtualDirectory Name="Linker">
+    <File Name="Linker/NDirectoryLinker.h"/>
+    <File Name="Linker/NTaskLinker.h"/>
+  </VirtualDirectory>
+||||||| .r22
+  <VirtualDirectory Name="Task">
+    <File Name="Task/CTask.h"/>
+    <File Name="Task/CTask.cpp"/>
+  </VirtualDirectory>
+=======
+>>>>>>> .r49
+  <VirtualDirectory Name="Init"/>
 </CodeLite_Project>

@@ -7,6 +7,7 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <File Name="chelDocBase.h"/>
   <VirtualDirectory Name="CDXML">
     <File Name="CDXML/CDXML.h"/>
     <File Name="CDXML/EIdentifier.h"/>
@@ -113,5 +114,9 @@
   <VirtualDirectory Name="Task">
     <File Name="Task/CTask.cpp"/>
     <File Name="Task/CTask.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="CFGLoader">
+    <File Name="CFGLoader/NCFGLoad.cpp"/>
+    <File Name="CFGLoader/NCFGLoad.h"/>
   </VirtualDirectory>
 </CodeLite_Project>

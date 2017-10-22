@@ -1,14 +1,18 @@
 #ifndef CHEL_CCONSOLE
 #define CHEL_CCONSOLE
 
-#include "../../chelDocBase/ConsoleInterface/IConsole.h"
+#include "../../chelDocBase/chelDocBase.h"
 
 class CConsole {
-	
 private:
 	String m_sPreviousOutput;
+	
+	
+	
 public:
-	bool m_bQuit=false;
+	~CConsole() {}
+
+	bool m_bQuit = false;
 	
 	CConsole(){
 		m_sPreviousOutput.setReserveBuffer(5000);
@@ -21,17 +25,9 @@ public:
 	 //Enters input stream so that user can start typing commands
 	void EnterCommandCycle();
 	
-<<<<<<< .mine
+	void ProcessCommand(const String& sCommand);
+	
 };
-||||||| .r22
-	
-	
-}
-=======
-	virtual void ProcessCommand(const String& sCommand);
-	
-}
->>>>>>> .r33
 
 #endif //CHEL_CCONSOLE
 

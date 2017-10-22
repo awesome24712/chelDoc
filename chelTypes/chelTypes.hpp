@@ -10,5 +10,7 @@
 #include "ObjectFactory/GNameList.h"
 #include "XML/CXMLTree.h"
 
+#undef min
+#undef max
 
 #endif //CHELTYPES_HPP

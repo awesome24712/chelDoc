@@ -2,6 +2,7 @@
 #define CHEL_CONVAR_H
 
 #include "../../String/String.h"
+#include "string"
 
 class ConVar {
 protected:
@@ -24,9 +25,9 @@ public:
 	bool		getBool()	const { return !!getInt();  }
 	float		getFloat()	const { return strtof(m_sValue, nullptr); };
 	
-	void setValue(const char* pszValue);
-	void setValue(int iValue);
-	void setValue(float flValue);
+	void setValue(const char* pszValue) { m_sValue = pszValue; }
+	void setValue(int iValue) { m_sValue = String::fromInt(iValue); };
+	void setValue(float flValue) { m_sValue = std::to_string(flValue).c_str(); }
 	
 	static ConVar* 	findByName(const String& sName);
 	static bool		exists(const String& sName);

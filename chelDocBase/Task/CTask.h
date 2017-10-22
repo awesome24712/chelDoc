@@ -1,14 +1,16 @@
-#ifndef CTask
-#define CTask
+#ifndef CHEL_CTASK
+#define CHEL_CTASK
 
-#include "/../../chelTypes/chelTypes.hpp"
+#include "../../chelTypes/chelTypes.hpp"
 
-struct SFilePath{
+struct SFilePath {
 private:
 	String m_sRelativePath;
 	static char getSlashChar();
 public:
 	String getFilePath() {  return m_sRelativePath;  }
+	
+	SFilePath() : m_sRelativePath(getWorkingDirectory()) {}
 	
 	// Constructor with path as a parameter
 	SFilePath(String& path){
@@ -27,16 +29,16 @@ public:
 
 class CTask {
 private:
-	const CDynList<SFilePath> m_aFilePaths;
+	CDynList<SFilePath> m_aFilePaths;
 	int m_iNextIndex;
 	
 public:
 	
 	CDynList<SFilePath>* getFilePaths() { return &m_aFilePaths;  }
 	
-	void addFilePath(const SFilePath& toAdd) { m_aFilePaths->push(toAdd); }
+	void addFilePath(const SFilePath& toAdd) { m_aFilePaths.push(toAdd); }
 	
 	bool m_bMirrorDir;
 };
 
-#endif //CTask
+#endif //CHEL_CTASK

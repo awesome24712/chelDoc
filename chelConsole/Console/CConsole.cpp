@@ -1,8 +1,5 @@
 #include "CConsole.h"
 
-#undef min
-#undef max
-
 #include "string"
 #include "iostream"
 

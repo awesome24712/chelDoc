@@ -1,21 +1,21 @@
 #include "CTask.h"
 
 String g_sWorkingDirectory;
-char slashChar;
+char slashChar = 0;
 
-void CTask::setWorkingDirectory(String& dir){
+void SFilePath::setWorkingDirectory(String& dir){
 	g_sWorkingDirectory = dir;
 }
 
 void SFilePath::goUpDirectory() {
 	//Get index of last meaningful forward or backward slash.
-	char last = g_sWorkingDirectory->end();
-	bool hasLast = (last == "\\" || last == "/");
-	int slashLoc = g_sWorkingDirectory->   .indexOf(last);
+	char last = g_sWorkingDirectory.end();
+	bool hasLast = (last == '\\' || last == '/');
+	int slashLoc = g_sWorkingDirectory.indexOf(last);
 	
 	//Remove extra slash if there is one.
 	if(hasLast){
-		g_sWorkingDirectory->remove(slashLoc)
+		g_sWorkingDirectory.remove(slashLoc);
 		slashLoc = g_sWorkingDirectory.indexOf(last);
 	}
 	
@@ -29,7 +29,7 @@ void SFilePath::goUpDirectory() {
 
 void SFilePath::goDownDirectory(String& subfile){
 	//Get a char with the appropriate slash.
-	if(slashChar = NULL){
+	if(!slashChar){
 		char slash = getSlashChar();
 	}
 	//Get rid of slashes on Working Directory and subfile
@@ -46,12 +46,12 @@ void SFilePath::goDownDirectory(String& subfile){
 
 char SFilePath::getSlashChar(){
 	char slash;
-	if(g_sWorkingDirectory.contains("\")){
-		slash = "\";
-	} else if(g_sWorkingDirectory.contains"/") {
-		slash = "/";
+	if(g_sWorkingDirectory.contains('\\')){
+		slash = '\\';
+	} else if(g_sWorkingDirectory.contains('/')) {
+		slash = '/';
 	} else {    // Set the default to / if no slashes are found.
-		slash = "/";
+		slash = '/';
 	}
 }
 

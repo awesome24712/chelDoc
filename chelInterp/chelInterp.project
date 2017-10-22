@@ -105,8 +105,14 @@
       </Completion>
     </Configuration>
   </Settings>
+  <File Name="chelInterp.h"/>
   <VirtualDirectory Name="DynamicLoad">
     <File Name="DynamicLoad/NDynamicLoad.h"/>
+<<<<<<< .mine
+    
+||||||| .r22
+=======
     <File Name="DynamicLoad/NDynamicLoad.cpp"/>
+>>>>>>> .r49
   </VirtualDirectory>
 </CodeLite_Project>
