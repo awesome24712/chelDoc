@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=22/10/2017
+Date                   :=22/02/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -41,9 +41,9 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)chelTypes $(LibrarySwitch)chelMath $(LibrarySwitch)chelDocBase 
-ArLibs                 :=  "chelTypes.dll" "chelMath.dll" "chelDocBase.dll" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug $(LibraryPathSwitch)../chelMath/Debug $(LibraryPathSwitch)../chelDocBase/Debug 
+Libs                   := $(LibrarySwitch)chelTypes $(LibrarySwitch)chelMath 
+ArLibs                 :=  "chelTypes.dll" "chelMath.dll" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug $(LibraryPathSwitch)../chelMath/Debug 
 
 ##
 ## Common variables
@@ -62,7 +62,7 @@ AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/Console_CConsole.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/Console_CConsole.cpp$(ObjectSuffix) $(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(ObjectSuffix) 
 
 
 
@@ -102,6 +102,14 @@ $(IntermediateDirectory)/Console_CConsole.cpp$(DependSuffix): Console/CConsole.c
 
 $(IntermediateDirectory)/Console_CConsole.cpp$(PreprocessSuffix): Console/CConsole.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Console_CConsole.cpp$(PreprocessSuffix) Console/CConsole.cpp
+
+$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(ObjectSuffix): Init/chelConsoleInitialize.cpp $(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelConsole/Init/chelConsoleInitialize.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(DependSuffix): Init/chelConsoleInitialize.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(DependSuffix) -MM Init/chelConsoleInitialize.cpp
+
+$(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(PreprocessSuffix): Init/chelConsoleInitialize.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Init_chelConsoleInitialize.cpp$(PreprocessSuffix) Init/chelConsoleInitialize.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

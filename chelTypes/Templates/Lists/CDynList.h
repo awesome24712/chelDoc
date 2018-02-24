@@ -303,6 +303,8 @@ public:
 	 */
 	bool		containsAsSubSet(const CDynList<T>& other) const;
 	
+	bool 		containsAt(const CDynList<T>& other, int pos) const;
+	
 	/**
 	 * @brief Returns by deep-copied value a sublist from two indexes.
 	 * @param start - the starting point of the sub-list, inclusive
@@ -310,9 +312,9 @@ public:
 	 * @requires {start} and {end} are valid indexes
 	 * @return - a sub CDynList<T>
 	 */
-	CDynList<T> subString(int start, int end);
-	inline CDynList<T> subString(int start) { return subString(start, m_iEndIndex); }
-	inline CDynList<T> subStringByLength(int start, int length) { return subString(start, start + length); }
+	CDynList<T> 		subString(int start, int end);
+	inline CDynList<T> 	subString(int start) { return subString(start, m_iEndIndex); }
+	inline CDynList<T> 	subStringByLength(int start, int length) { return subString(start, start + length); }
 	
 	/**
 	 * @brief Pops the value from the end of this.

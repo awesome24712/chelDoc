@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=20/10/2017
+Date                   :=22/02/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -27,7 +27,7 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
+OutputFile             :=$(IntermediateDirectory)/$(ProjectName).dll
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
@@ -52,8 +52,8 @@ LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes
 AR       := C:/MinGW_GCC_7.1/mingw32/bin/ar.exe rcu
 CXX      := C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 CC       := C:/MinGW_GCC_7.1/mingw32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall  -fconcepts  -D DEBUG $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g  -fconcepts  -D DEBUG $(Preprocessors)
+CFLAGS   :=  -g  $(Preprocessors)
 ASFLAGS  := 
 AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 
@@ -62,7 +62,7 @@ AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix) $(IntermediateDirectory)/Commands.cpp$(ObjectSuffix) $(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(ObjectSuffix) $(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(ObjectSuffix) 
 
 
 
@@ -78,7 +78,9 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
-	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
+	$(SharedObjectLinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
+	@$(MakeDirCommand) "C:\Users\Chel\source\chelDoc/.build-debug"
+	@echo rebuilt > "C:\Users\Chel\source\chelDoc/.build-debug/chelTester"
 
 MakeIntermediateDirs:
 	@$(MakeDirCommand) "./Debug"
@@ -93,14 +95,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM main.cpp
-
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) main.cpp
-
 $(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix): CTestCase.cpp $(IntermediateDirectory)/CTestCase.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/CTestCase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/CTestCase.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/CTestCase.cpp$(DependSuffix): CTestCase.cpp
@@ -109,37 +103,29 @@ $(IntermediateDirectory)/CTestCase.cpp$(DependSuffix): CTestCase.cpp
 $(IntermediateDirectory)/CTestCase.cpp$(PreprocessSuffix): CTestCase.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/CTestCase.cpp$(PreprocessSuffix) CTestCase.cpp
 
-$(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix): Test/TestExample.cpp $(IntermediateDirectory)/Test_TestExample.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/TestExample.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Test_TestExample.cpp$(DependSuffix): Test/TestExample.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_TestExample.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_TestExample.cpp$(DependSuffix) -MM Test/TestExample.cpp
+$(IntermediateDirectory)/Commands.cpp$(ObjectSuffix): Commands.cpp $(IntermediateDirectory)/Commands.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Commands.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Commands.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Commands.cpp$(DependSuffix): Commands.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Commands.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Commands.cpp$(DependSuffix) -MM Commands.cpp
 
-$(IntermediateDirectory)/Test_TestExample.cpp$(PreprocessSuffix): Test/TestExample.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_TestExample.cpp$(PreprocessSuffix) Test/TestExample.cpp
+$(IntermediateDirectory)/Commands.cpp$(PreprocessSuffix): Commands.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Commands.cpp$(PreprocessSuffix) Commands.cpp
 
-$(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix): Test/Test_CHMap.cpp $(IntermediateDirectory)/Test_Test_CHMap.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/Test_CHMap.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Test_Test_CHMap.cpp$(DependSuffix): Test/Test_CHMap.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_Test_CHMap.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_Test_CHMap.cpp$(DependSuffix) -MM Test/Test_CHMap.cpp
+$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(ObjectSuffix): Test/Test_CUrDblLkLst.cpp $(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/Test_CUrDblLkLst.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(DependSuffix): Test/Test_CUrDblLkLst.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(DependSuffix) -MM Test/Test_CUrDblLkLst.cpp
 
-$(IntermediateDirectory)/Test_Test_CHMap.cpp$(PreprocessSuffix): Test/Test_CHMap.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_CHMap.cpp$(PreprocessSuffix) Test/Test_CHMap.cpp
+$(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(PreprocessSuffix): Test/Test_CUrDblLkLst.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_CUrDblLkLst.cpp$(PreprocessSuffix) Test/Test_CUrDblLkLst.cpp
 
-$(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix): Test/Test_Map.cpp $(IntermediateDirectory)/Test_Test_Map.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/Test_Map.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Test_Test_Map.cpp$(DependSuffix): Test/Test_Map.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_Test_Map.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_Test_Map.cpp$(DependSuffix) -MM Test/Test_Map.cpp
+$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(ObjectSuffix): Init/chelTesterInitialize.cpp $(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Init/chelTesterInitialize.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(DependSuffix): Init/chelTesterInitialize.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(DependSuffix) -MM Init/chelTesterInitialize.cpp
 
-$(IntermediateDirectory)/Test_Test_Map.cpp$(PreprocessSuffix): Test/Test_Map.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_Map.cpp$(PreprocessSuffix) Test/Test_Map.cpp
-
-$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix): Test/Test_CXMLTree.cpp $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelTester/Test/Test_CXMLTree.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix): Test/Test_CXMLTree.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(DependSuffix) -MM Test/Test_CXMLTree.cpp
-
-$(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(PreprocessSuffix): Test/Test_CXMLTree.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Test_Test_CXMLTree.cpp$(PreprocessSuffix) Test/Test_CXMLTree.cpp
+$(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(PreprocessSuffix): Init/chelTesterInitialize.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Init_chelTesterInitialize.cpp$(PreprocessSuffix) Init/chelTesterInitialize.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

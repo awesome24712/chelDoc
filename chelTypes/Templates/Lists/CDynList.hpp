@@ -425,6 +425,17 @@ template<class T> bool CDynList<T>::containsAsSubSet(const CDynList<T>& other) c
 	return bIsSubSet;
 }
 
+/*template<class T> bool CDynList<T>::containsAt(const CDynList<T>& other, int pos) {
+	if (pos + other.length() > this->length())
+		return false;
+	
+	bool bMatches = true;
+	for (int i = 0; i < other.length() && bMatches; i++)
+		bMatches = this->get(pos + i) == other.get(i);
+		
+	return bMatches;
+}*/
+
 template<class T> CDynList<T> CDynList<T>::subString(int start, int end) {
 	CDynList<T> result(end - start + 2);
 	//can't use null termination, in case we're storing objects by value

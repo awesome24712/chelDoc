@@ -25,7 +25,7 @@
  */
 class String : public CDynList<char> {
 private:
-	
+	inline void buildFromCStr(const char* str);
 	
 public:
 
@@ -42,6 +42,8 @@ public:
 	String(const CDynList<char>& str);
 	
 	static String fromInt(int toStr);
+	
+	static String EMPTY;
 	
 	/**
 	 * @brief Removes spaces from the front and end of this

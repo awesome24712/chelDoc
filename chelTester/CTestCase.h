@@ -12,6 +12,8 @@ class CTestCase {
 private:
 	double 				m_dRunTime = 0.0; //assigned from the outside
 	bool				m_bPassed = true; //only if all assertions pass
+	bool				m_bException; //did we catch an exception?
+	String				m_sExceptionMsg; //exception message
 	const char*			m_pszName;
 	CDynList<String>	m_aErrorList;
 protected:
@@ -48,10 +50,13 @@ private:
 	CDynList<CTestCase*> 	m_aTestCases;
 	bool					m_bPassed;
 	String					m_sName;
+	int						m_iErrorCount;
 	
 public:
 	CTestPlan(const char* pszName);
 	void					runTestPlan();
+	
+	static void				RunAll();
 };
 
 #endif //CHEL_TEST_CASE

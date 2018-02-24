@@ -1,7 +1,7 @@
 #ifndef CHEL_CCONSOLE
 #define CHEL_CCONSOLE
 
-#include "../../chelDocBase/chelDocBase.h"
+#include "../../chelTypes/chelTypes.hpp"
 
 class CConsole : public IConsole {
 private:
@@ -27,6 +27,7 @@ public:
 	
 	void ProcessCommand(const String& sCommand);
 	
+	void Clear();
 };
 
 #endif //CHEL_CCONSOLE

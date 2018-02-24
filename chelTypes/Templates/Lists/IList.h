@@ -1,6 +1,20 @@
 #ifndef CHEL_IARRAY_H
 #define CHEL_IARRAY_H
 
+template<class L> concept bool IIList =
+	requires(L x) {
+		typename L::value_t;
+		//x.begin;
+		//x.end;
+		x.length;
+		x.get;
+		//x.elementSize;
+		//x.lengthInBytes;
+		//x.getByte
+	};
+
+
+#if 0
 typedef unsigned char byte;
 
 class IList;
@@ -18,8 +32,6 @@ template<class T> concept bool IIList =
 		x.elementSize;
 		x.lengthInBytes;
 		x.getByte;
-		x.hashSourcce;
-		x.hashLength;
 	};
 
 
@@ -64,5 +76,5 @@ public:
 	inline 	byte* 	get(int i) { return begin() + i * elementSize(); }
 	inline 	byte* 	getByte(int i) { return begin() + i; }
 };
-
+#endif
 #endif //CHEL_IARRAY_H

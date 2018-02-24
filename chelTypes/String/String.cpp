@@ -18,14 +18,18 @@ template<> CDynList<char>::operator char*() const {
 	return m_array + m_iStartIndex;
 }
 
-String::String(const char * str) {
+inline void String::buildFromCStr(const char* str) {
 	int num = strlen(str);
-	m_array = new char[num];
-	m_iReservedLength = num;
+	m_iReservedLength = num+1;
+	m_array = new char[num+1];
 	m_iReserveBuffer = (int) (num * 1.3);
 	m_iEndIndex = num;
 	for (int i = 0; i < num; i++)
 		m_array[i] = str[i];
+}
+
+String::String(const char * str) {
+	buildFromCStr(str);
 }
 
 String& String::operator =(const CDynList<char>& str) {
@@ -74,6 +78,8 @@ String String::fromInt(int toStr) {
 	return String(pStr);
 }
 
+String String::EMPTY = String();
+
 void String::toUpperCase() {
 	for (int i = 0; i < length(); i++)
 		Character::toUpperCase(getPtr(i));
@@ -88,13 +94,7 @@ String& String::operator=(const char * str) {
 	flush();
 	delete[] m_array;
 	
-	int num = strlen(str);
-	m_array = new char[num];
-	m_iReservedLength = num;
-	m_iReserveBuffer = (int) (num * 1.3);
-	m_iEndIndex = num;
-	for (int i = 0; i < num; i++)
-		m_array[i] = str[i];
+	buildFromCStr(str);
 		
 	return *this;
 }

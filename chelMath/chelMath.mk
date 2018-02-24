@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=22/10/2017
+Date                   :=22/02/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := C:/MinGW_GCC_7.1/mingw32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/perfTest.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix) $(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/perfTest.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector_Vector.cpp$(ObjectSuffix) $(IntermediateDirectory)/Vector_Vector2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/BitBoard_BitBoard.cpp$(ObjectSuffix) $(IntermediateDirectory)/Coord_Coord2D.cpp$(ObjectSuffix) $(IntermediateDirectory)/Color_Color.cpp$(ObjectSuffix) $(IntermediateDirectory)/Rand_Rand.cpp$(ObjectSuffix) $(IntermediateDirectory)/Init_chelMathInitialize.cpp$(ObjectSuffix) 
 
 
 
@@ -150,6 +150,14 @@ $(IntermediateDirectory)/Rand_Rand.cpp$(DependSuffix): Rand/Rand.cpp
 
 $(IntermediateDirectory)/Rand_Rand.cpp$(PreprocessSuffix): Rand/Rand.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Rand_Rand.cpp$(PreprocessSuffix) Rand/Rand.cpp
+
+$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(ObjectSuffix): Init/chelMathInitialize.cpp $(IntermediateDirectory)/Init_chelMathInitialize.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Chel/source/chelDoc/chelMath/Init/chelMathInitialize.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(DependSuffix): Init/chelMathInitialize.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(DependSuffix) -MM Init/chelMathInitialize.cpp
+
+$(IntermediateDirectory)/Init_chelMathInitialize.cpp$(PreprocessSuffix): Init/chelMathInitialize.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Init_chelMathInitialize.cpp$(PreprocessSuffix) Init/chelMathInitialize.cpp
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

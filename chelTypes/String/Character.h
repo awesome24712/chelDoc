@@ -39,5 +39,7 @@ namespace Character {
 	inline bool isSymbol(char c) {
 		return !isLetter(c) && !isNumber(c) && c != ' ' && c != '_';
 	}
+	
+	int numDigitsFor(int n);
 }
 #endif //CHEL_CHARACTER_H

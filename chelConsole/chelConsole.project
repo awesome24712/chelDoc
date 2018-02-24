@@ -7,6 +7,10 @@
   </Plugins>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="Console">
+    <File Name="Console/CConsole.h"/>
+    <File Name="Console/CConsole.cpp"/>
+  </VirtualDirectory>
   <Settings Type="Dynamic Library">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -24,10 +28,8 @@
       <Linker Options="" Required="yes">
         <LibraryPath Value="../chelTypes/Debug"/>
         <LibraryPath Value="../chelMath/Debug"/>
-        <LibraryPath Value="../chelDocBase/Debug"/>
         <Library Value="chelTypes.dll"/>
         <Library Value="chelMath.dll"/>
-        <Library Value="chelDocBase.dll"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName).dll" IntermediateDirectory="./Debug" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
@@ -103,10 +105,11 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="Console">
-    <File Name="Console/CConsole.h"/>
-    <File Name="Console/CConsole.cpp"/>
-  </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
+  <VirtualDirectory Name="Init">
+    <File Name="Init/chelConsoleInitialize.h"/>
+    <File Name="Init/chelConsoleInitialize.cpp"/>
+  </VirtualDirectory>
+  <File Name="chelConsole.h"/>
 </CodeLite_Project>

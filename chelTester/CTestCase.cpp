@@ -34,28 +34,39 @@ const char* g_pszFailMsg = "FAILED";
 #define TEST_CASE_NAME_CODE "%-30s"
 
 void CTestPlan::runTestPlan() {
+	m_iErrorCount = 0;
 	int iNumPassed = 0;
-	int	iNumFailed = 0;
 	double dRunTime = 0.0;
 	
 	//Run test cases first, then display results
 	for (int i = 0; i < m_aTestCases.length(); i++) {
 		double dStartTime = getTime();
-		m_aTestCases.get(i)->runTest();
+		CTestCase* pCase = m_aTestCases.get(i);
+		
+		//catch exceptions for each test case
+		try {
+			pCase->runTest();
+		} catch (CChelException* e) {
+			pCase->m_bPassed = false;
+			pCase->m_bException = true;
+			pCase->m_sExceptionMsg = e->errorMsg();
+			pCase->m_aErrorList.push(e->errorMsg());
+			delete e;
+		}
 		double dInterval = getTime() - dStartTime;
 		m_aTestCases.get(i)->m_dRunTime = dInterval;
 		dRunTime += dInterval;
 		
-		int* pIncremented = m_aTestCases.get(i)->passed() ? &iNumPassed : &iNumFailed;
+		int* pIncremented = m_aTestCases.get(i)->passed() ? &iNumPassed : &m_iErrorCount;
 		(*pIncremented)++;
 	}
 	
-	m_bPassed = !iNumFailed;
+	m_bPassed = !m_iErrorCount;
 	const char* pszResultMsg = m_bPassed ? g_pszPassMsg : g_pszFailMsg;
 	
 	//Print test plan header
 	printf("Test plan: %s %s\n", (char*) m_sName, pszResultMsg);
-	printf("-> %i passed, %i failed! (%lfs)\n", iNumPassed, iNumFailed, dRunTime);
+	printf("-> %i passed, %i failed! (%lfs)\n", iNumPassed, m_iErrorCount, dRunTime);
 	
 	//Display results of individual test cases and their errors
 	for (int i = 0; i < m_aTestCases.length(); i++) {

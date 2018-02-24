@@ -52,13 +52,13 @@ void CConsole::ProcessCommand(const String& sCommand) {
 			pVar->setValue(varValue);
 		}
 		else if(ConCommandBase::exists(subcmd)){
-			CArgs args = String(cmd.subString(spIndex+1));
+			CArgs args = cmd;
 			ConCommandBase::getCommand(subcmd)->performCommand(&args);
 		}
 	}
 	else if(ConCommandBase::exists(cmd)){
-			//CArgs args = cmd;
-			ConCommandBase::getCommand(cmd)->performCommand(nullptr);
+			CArgs args = String::EMPTY;
+			ConCommandBase::getCommand(cmd)->performCommand(&args);
 	}
 	else if(ConVar::exists(cmd)){
 		ConVar* pVar = ConVar::findByName(cmd);
@@ -68,19 +68,22 @@ void CConsole::ProcessCommand(const String& sCommand) {
 		
 		Msg("\n\t %s = \"%s\"\n\t\t\"%s\"\n\n", pName, pValue, pToolTip);
 	}
-	else{
+	else {
 		Msg("Unknown command\n");
 	}
+}
+
+String g_sEmptyLines(100,'\n');
+void CConsole::Clear() {
+	Msg(g_sEmptyLines);
 }
 
 CON_COMMAND(quit){
 	dynamic_cast<CConsole*>(g_pConsole)->m_bQuit = true;
 }
 
-String g_sEmptyLines(100,'\n');
-
 CON_COMMAND(cls){
-	Msg(g_sEmptyLines);
+	g_pConsole->Clear();
 }
 
 CON_COMMAND(printstars) {

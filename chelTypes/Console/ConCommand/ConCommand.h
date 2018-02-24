@@ -6,13 +6,15 @@
 
 class CArgs {
 private:
-	CDynList<String> m_Args;
+	CDynList<char*> m_Args;
 	
 public:
-	CArgs(const String& str) { parseFromString(str); }
-	void parseFromString(const String& str);
-	const String& get(int i) const { return *(m_Args.getPtr(i)); }
+	CArgs(String& str) { parseFromString(str); }
+	void parseFromString(String& str);
+	const char* get(int i) const { return *(m_Args.getPtr(i)); }
 	int argCount() const { return m_Args.length(); }
+	
+	const char* operator[](int i) { return get(i); }
 };
 
 class ConCommandBase {

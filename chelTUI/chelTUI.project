@@ -10,6 +10,19 @@
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
   </VirtualDirectory>
+  <Dependencies Name="Release"/>
+  <Dependencies Name="Debug">
+    <Project Name="chelMath"/>
+    <Project Name="chelTypes"/>
+    <Project Name="chelDocBase"/>
+    <Project Name="chelConsole"/>
+    <Project Name="chelTester"/>
+    <Project Name="chelProjectScanner"/>
+    <Project Name="chelWeb"/>
+    <Project Name="chelInterpBase"/>
+    <Project Name="chelInterp"/>
+    <Project Name="chelDoc"/>
+  </Dependencies>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -27,6 +40,7 @@
       <Linker Options="" Required="yes">
         <LibraryPath Value="../chelTypes/Debug"/>
         <LibraryPath Value="../chelMath/Debug"/>
+        <LibraryPath Value="../chelTester/Debug"/>
         <LibraryPath Value="../chelDocBase/Debug"/>
         <LibraryPath Value="../chelInterpBase/Debug"/>
         <LibraryPath Value="../chelConsole/Debug"/>
@@ -36,6 +50,7 @@
         <LibraryPath Value="../chelDoc/Debug"/>
         <Library Value="chelTypes.dll"/>
         <Library Value="chelMath.dll"/>
+        <Library Value="chelTester.dll"/>
         <Library Value="chelDocBase.dll"/>
         <Library Value="chelInterpBase.dll"/>
         <Library Value="chelConsole.dll"/>
@@ -119,16 +134,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug">
-    <Project Name="chelMath"/>
-    <Project Name="chelTypes"/>
-    <Project Name="chelDocBase"/>
-    <Project Name="chelConsole"/>
-    <Project Name="chelProjectScanner"/>
-    <Project Name="chelInterpBase"/>
-    <Project Name="chelInterp"/>
-    <Project Name="chelWeb"/>
-    <Project Name="chelDoc"/>
-  </Dependencies>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

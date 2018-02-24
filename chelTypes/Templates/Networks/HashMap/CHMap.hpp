@@ -59,10 +59,11 @@ private:
 		uint32 hashCode = hash(key.hashSource(), key.hashLength());
 #endif
 		uint32 modded = hashCode % m_aHashTable.length();
+		
 		return m_aHashTable.getPtr((int) modded);
 	}
 public:
-
+	
 	/**
 	 * @brief Builds the hashmap
 	 * @param iNumTables - the number of sub-maps

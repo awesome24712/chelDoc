@@ -10,7 +10,10 @@
   <Project Name="chelWeb" Path="chelWeb/chelWeb.project" Active="No"/>
   <Project Name="chelInterp" Path="chelInterp/chelInterp.project" Active="No"/>
   <Project Name="chelDoc" Path="chelDoc/chelDoc.project" Active="No"/>
-  <Project Name="chelTUI" Path="chelTUI/chelTUI.project" Active="Yes"/>
+  <Project Name="chelTUI" Path="chelTUI/chelTUI.project" Active="No"/>
+  <Project Name="java" Path="java/java.project" Active="No"/>
+  <Project Name="consoleTest" Path="consoleTest/consoleTest.project" Active="No"/>
+  <Project Name="chelGUI" Path="chelGUI/chelGUI.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -25,6 +28,9 @@
       <Project Name="chelInterp" ConfigName="Debug"/>
       <Project Name="chelDoc" ConfigName="Debug"/>
       <Project Name="chelTUI" ConfigName="Debug"/>
+      <Project Name="java" ConfigName="Debug"/>
+      <Project Name="consoleTest" ConfigName="Debug"/>
+      <Project Name="chelGUI" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -39,6 +45,9 @@
       <Project Name="chelInterp" ConfigName="Release"/>
       <Project Name="chelDoc" ConfigName="Release"/>
       <Project Name="chelTUI" ConfigName="Release"/>
+      <Project Name="java" ConfigName="Release"/>
+      <Project Name="consoleTest" ConfigName="Release"/>
+      <Project Name="chelGUI" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

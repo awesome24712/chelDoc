@@ -1,6 +1,0 @@
-#ifndef CHEL_CHESS_MOVESET
-#define CHEL_CHESS_MOVESET
-
-
-
-#endif //CHEL_CHESS_MOVESET

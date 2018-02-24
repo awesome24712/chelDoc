@@ -13,9 +13,6 @@ private:
 	int 	m_iLength;
 	T *		m_pFirst;
 	
-	//privatize default constructor to prevent empty list
-	CList<T>() {}
-	
 public:
 	/**
 	 * @brief Retrieves a pointer to the value at the given index

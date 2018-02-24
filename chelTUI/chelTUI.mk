@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Chel
-Date                   :=22/10/2017
+Date                   :=22/02/2018
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW_GCC_7.1/mingw32/bin/g++.exe -shared -fPIC
@@ -41,9 +41,9 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := $(LibrarySwitch)chelTypes $(LibrarySwitch)chelMath $(LibrarySwitch)chelDocBase $(LibrarySwitch)chelInterpBase $(LibrarySwitch)chelConsole $(LibrarySwitch)chelProjectScanner $(LibrarySwitch)chelWeb $(LibrarySwitch)chelInterp $(LibrarySwitch)chelDoc 
-ArLibs                 :=  "chelTypes.dll" "chelMath.dll" "chelDocBase.dll" "chelInterpBase.dll" "chelConsole.dll" "chelProjectScanner.dll" "chelWeb.dll" "chelInterp.dll" "chelDoc.dll" 
-LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug $(LibraryPathSwitch)../chelMath/Debug $(LibraryPathSwitch)../chelDocBase/Debug $(LibraryPathSwitch)../chelInterpBase/Debug $(LibraryPathSwitch)../chelConsole/Debug $(LibraryPathSwitch)../chelProjectScanner/Debug $(LibraryPathSwitch)../chelWeb/Debug $(LibraryPathSwitch)../chelInterp/Debug $(LibraryPathSwitch)../chelDoc/Debug 
+Libs                   := $(LibrarySwitch)chelTypes $(LibrarySwitch)chelMath $(LibrarySwitch)chelTester $(LibrarySwitch)chelDocBase $(LibrarySwitch)chelInterpBase $(LibrarySwitch)chelConsole $(LibrarySwitch)chelProjectScanner $(LibrarySwitch)chelWeb $(LibrarySwitch)chelInterp $(LibrarySwitch)chelDoc 
+ArLibs                 :=  "chelTypes.dll" "chelMath.dll" "chelTester.dll" "chelDocBase.dll" "chelInterpBase.dll" "chelConsole.dll" "chelProjectScanner.dll" "chelWeb.dll" "chelInterp.dll" "chelDoc.dll" 
+LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)../chelTypes/Debug $(LibraryPathSwitch)../chelMath/Debug $(LibraryPathSwitch)../chelTester/Debug $(LibraryPathSwitch)../chelDocBase/Debug $(LibraryPathSwitch)../chelInterpBase/Debug $(LibraryPathSwitch)../chelConsole/Debug $(LibraryPathSwitch)../chelProjectScanner/Debug $(LibraryPathSwitch)../chelWeb/Debug $(LibraryPathSwitch)../chelInterp/Debug $(LibraryPathSwitch)../chelDoc/Debug 
 
 ##
 ## Common variables
@@ -74,7 +74,7 @@ Objects=$(Objects0)
 .PHONY: all clean PreBuild PrePreBuild PostBuild MakeIntermediateDirs
 all: $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\chelMath" "..\.build-debug\chelTypes" "..\.build-debug\chelDocBase" "..\.build-debug\chelConsole" "..\.build-debug\chelProjectScanner" "..\.build-debug\chelInterpBase" "..\.build-debug\chelInterp" "..\.build-debug\chelWeb" "..\.build-debug\chelDoc" $(Objects) 
+$(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\chelMath" "..\.build-debug\chelTypes" "..\.build-debug\chelDocBase" "..\.build-debug\chelConsole" "..\.build-debug\chelTester" "..\.build-debug\chelProjectScanner" "..\.build-debug\chelWeb" "..\.build-debug\chelInterpBase" "..\.build-debug\chelInterp" "..\.build-debug\chelDoc" $(Objects) 
 	@$(MakeDirCommand) $(@D)
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
@@ -100,9 +100,19 @@ $(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\chelMath" "..\.build
 	@echo stam > "..\.build-debug\chelConsole"
 
 
+"..\.build-debug\chelTester":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\chelTester"
+
+
 "..\.build-debug\chelProjectScanner":
 	@$(MakeDirCommand) "..\.build-debug"
 	@echo stam > "..\.build-debug\chelProjectScanner"
+
+
+"..\.build-debug\chelWeb":
+	@$(MakeDirCommand) "..\.build-debug"
+	@echo stam > "..\.build-debug\chelWeb"
 
 
 "..\.build-debug\chelInterpBase":
@@ -113,11 +123,6 @@ $(OutputFile): $(IntermediateDirectory)/.d "..\.build-debug\chelMath" "..\.build
 "..\.build-debug\chelInterp":
 	@$(MakeDirCommand) "..\.build-debug"
 	@echo stam > "..\.build-debug\chelInterp"
-
-
-"..\.build-debug\chelWeb":
-	@$(MakeDirCommand) "..\.build-debug"
-	@echo stam > "..\.build-debug\chelWeb"
 
 
 "..\.build-debug\chelDoc":

@@ -63,7 +63,7 @@ public:
 	 * @return - the tree of results
 	 */
 	template<class R> CTreeHandle<R> dispatchFunction(R (*pFunction)(T*)) {
-		return CTreeHandle<T>(dispatchFunctionRecurse(pFunction));
+		return CTreeHandle<R>(dispatchFunctionRecurse(pFunction));
 	}
 	
 private:
@@ -111,7 +111,7 @@ public:
 	int 		indexOfChild(const T& childValue) const;
 	
 	/**
-	 * @brief Detaches a child ang gives it back as a CTreeHandle
+	 * @brief Detaches a child and gives it back as a CTreeHandle
 	 * @param index - the index of the child to remove
 	 * @return - a CTreeHandle for that child
 	 */
@@ -194,4 +194,6 @@ public:
 	operator CTree<T>&() const { return *m_pNode; } 
 	CTree<T>* operator->() const { return m_pNode; }
 	CTree<T>& operator*() const { return *m_pNode; }
+	
+	
 };

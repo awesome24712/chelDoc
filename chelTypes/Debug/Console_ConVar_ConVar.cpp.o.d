@@ -2,12 +2,13 @@ Debug/Console_ConVar_ConVar.cpp.o: Console/ConVar/ConVar.cpp \
  Console/ConVar/ConVar.h Console/ConVar/../../String/String.h \
  Console/ConVar/../../String/../Templates/Lists/CDynList.hpp \
  Console/ConVar/../../String/../Templates/Lists/CDynList.h \
- ../chelMath/chelMath.hpp ../chelMath/math.hpp ../chelMath/CBase/CBase.h \
- ../chelMath/perfTest.hpp ../chelMath/Coord/Coord2D.h \
- ../chelMath/Color/Color.h ../chelMath/Color/../CBase/CBase.h \
- ../chelMath/Hash/NHash.h ../chelMath/BitBoard/BitBoard.h \
- ../chelMath/BitBoard/../Coord/Coord2D.h ../chelMath/Vector/Vector.h \
- ../chelMath/Vector/Vector2D.h ../chelMath/Rand/Rand.h \
+ ../chelMath/chelMath.hpp ../chelMath/BitBoard/BitBoard.h \
+ ../chelMath/BitBoard/../Coord/Coord2D.h ../chelMath/CBase/CBase.h \
+ ../chelMath/math.hpp ../chelMath/Color/Color.h \
+ ../chelMath/Color/../CBase/CBase.h ../chelMath/Coord/Coord2D.h \
+ ../chelMath/Hash/NHash.h ../chelMath/perfTest.hpp \
+ ../chelMath/Init/chelMathInitialize.h ../chelMath/Rand/Rand.h \
+ ../chelMath/Vector/Vector.h ../chelMath/Vector/Vector2D.h \
  C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h \
  ../chelMath/math.hpp \
  Console/ConVar/../../Templates/Networks/HashMap/CHMap.hpp \
@@ -27,29 +28,31 @@ Console/ConVar/../../String/../Templates/Lists/CDynList.h:
 
 ../chelMath/chelMath.hpp:
 
-../chelMath/math.hpp:
+../chelMath/BitBoard/BitBoard.h:
+
+../chelMath/BitBoard/../Coord/Coord2D.h:
 
 ../chelMath/CBase/CBase.h:
 
-../chelMath/perfTest.hpp:
-
-../chelMath/Coord/Coord2D.h:
+../chelMath/math.hpp:
 
 ../chelMath/Color/Color.h:
 
 ../chelMath/Color/../CBase/CBase.h:
 
+../chelMath/Coord/Coord2D.h:
+
 ../chelMath/Hash/NHash.h:
 
-../chelMath/BitBoard/BitBoard.h:
+../chelMath/perfTest.hpp:
 
-../chelMath/BitBoard/../Coord/Coord2D.h:
+../chelMath/Init/chelMathInitialize.h:
+
+../chelMath/Rand/Rand.h:
 
 ../chelMath/Vector/Vector.h:
 
 ../chelMath/Vector/Vector2D.h:
-
-../chelMath/Rand/Rand.h:
 
 C:/Users/Chel/source/chelDoc/chelTypes/DebugTools/Assertions.h:
 

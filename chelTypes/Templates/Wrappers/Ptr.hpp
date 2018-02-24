@@ -80,6 +80,7 @@ public:
 		else
 			return 0;
 	}
+	
 	operator T*() const {return m_ptReference;}
 	T& operator*() const {return *m_ptReference;}
 	operator bool () const { return m_ptReference; }

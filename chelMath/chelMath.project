@@ -131,6 +131,10 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="Init">
+    <File Name="Init/chelMathInitialize.h"/>
+    <File Name="Init/chelMathInitialize.cpp"/>
+  </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
 </CodeLite_Project>

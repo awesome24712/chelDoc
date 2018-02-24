@@ -9,6 +9,7 @@
 #include "Templates/Templates.hpp"
 #include "ObjectFactory/GNameList.h"
 #include "XML/CXMLTree.h"
+#include "Init/chelTypesInitialize.h"
 
 #undef min
 #undef max
